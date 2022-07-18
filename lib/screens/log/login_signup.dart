@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tutor_group/screens/log/login_for_student.dart';
 import 'package:tutor_group/screens/log/login_for_teacher.dart';
+import 'package:tutor_group/screens/log/signup_for_student.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class LogIn extends StatelessWidget {
@@ -60,7 +61,10 @@ class LogIn extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                     const Spacer(),
                     buildButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (contexdt) => const SignUpForStudent()));
+                        },
                         color: utils.orangeL,
                         child: const Text('Sign Up'),
                         size: 0.2 * size.width),
