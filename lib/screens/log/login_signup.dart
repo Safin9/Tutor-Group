@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tutor_group/screens/log/login.dart';
+import 'package:tutor_group/screens/log/login_for_student.dart';
+import 'package:tutor_group/screens/log/login_for_teacher.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class LogIn extends StatelessWidget {
@@ -19,6 +20,16 @@ class LogIn extends StatelessWidget {
           width: double.infinity,
           child: Stack(
             children: [
+              Positioned(
+                top: -6,
+                right: 5,
+                child: myTextButton(
+                    text: 'Teacher sign in?',
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (contexdt) => const LogInForTeachre()));
+                    }),
+              ),
               Positioned(
                   bottom: 0,
                   top: 150,
@@ -68,7 +79,7 @@ class LogIn extends StatelessWidget {
                     buildButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const Login()));
+                              builder: (context) => const LoginForStudent()));
                         },
                         color: utils.blueL,
                         child: const Text('Sign In'),
@@ -150,6 +161,19 @@ class LogIn extends StatelessWidget {
       child: Image.asset(
         'assets/images/backgroundbook.png',
         color: color,
+      ),
+    );
+  }
+
+  TextButton myTextButton({
+    required String text,
+    required VoidCallback onPressed,
+  }) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 12, color: Colors.orange[900]),
       ),
     );
   }
