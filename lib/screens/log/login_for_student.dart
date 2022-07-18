@@ -11,4 +11,27 @@ class LoginForStudent extends StatelessWidget {
       ),
     );
   }
+
+  Container buildTextField({
+    required String hint,
+    required Color color,
+    required double size,
+    required TextEditingController? controller,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: size),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: hint,
+          hintStyle: TextStyle(
+            color: color,
+            fontSize: size,
+          ),
+        ),
+      ),
+    );
+  }
 }
