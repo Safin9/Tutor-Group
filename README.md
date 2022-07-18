@@ -1,16 +1,5 @@
-# tutor_group
+<p align="center"><img src="https://user-images.githubusercontent.com/97254019/179369890-28d9d041-e9ba-4e73-bfba-e0512c31b4c5.png" width=150 height=150></p>
 
-A new Flutter project.
+# final-solo-project-for-WeCode
+### for implementing the final solo project as WeCode required procedure 
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
