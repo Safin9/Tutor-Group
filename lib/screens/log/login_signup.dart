@@ -11,13 +11,10 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  TextEditingController? _emailController;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _emailController = TextEditingController();
   }
 
   @override
