@@ -3,19 +3,8 @@ import 'package:lottie/lottie.dart';
 import 'package:tutor_group/screens/log/login.dart';
 import 'package:tutor_group/utils/utils.dart';
 
-class LogIn extends StatefulWidget {
+class LogIn extends StatelessWidget {
   const LogIn({Key? key}) : super(key: key);
-
-  @override
-  State<LogIn> createState() => _LogInState();
-}
-
-class _LogInState extends State<LogIn> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
