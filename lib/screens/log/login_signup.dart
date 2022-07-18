@@ -25,11 +25,12 @@ class LogIn extends StatelessWidget {
                 top: -6,
                 right: 5,
                 child: myTextButton(
-                    text: 'Teacher sign in?',
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (contexdt) => const LogInForTeachre()));
-                    }),
+                  text: 'Teacher sign in?',
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (contexdt) => const LogInForTeachre()));
+                  },
+                ),
               ),
               Positioned(
                   bottom: 0,
@@ -37,59 +38,57 @@ class LogIn extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: myBackgroundImage(utils.textGreyL.withOpacity(0.3))),
-              Expanded(
-                child: Column(
-                  children: [
-                    buldText(
-                        text: 'TUTOR',
-                        color: utils.textBlackL,
-                        size: 25,
-                        fontWeight: FontWeight.bold),
-                    SizedBox(
-                      height: 0.15 * size.height,
-                    ),
-                    SizedBox(
-                      width: 200,
-                      height: 200,
-                      child: LottieBuilder.network(
-                          'https://assets5.lottiefiles.com/private_files/lf30_g4ft9Z.json'),
-                    ),
-                    buldText(
-                        text: 'Education leads to self illumination',
-                        color: utils.textBlackL,
-                        size: 15,
-                        fontWeight: FontWeight.w400),
-                    const Spacer(),
-                    buildButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (contexdt) => const SignUpForStudent()));
-                        },
-                        color: utils.orangeL,
-                        child: const Text('Sign Up'),
-                        size: 0.2 * size.width),
-                    SizedBox(
-                      height: 0.035 * size.height,
-                    ),
-                    buldText(
-                      text: '___   or   ___',
+              Column(
+                children: [
+                  buldText(
+                      text: 'TUTOR',
                       color: utils.textBlackL,
-                      size: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    SizedBox(
-                      height: 0.035 * size.height,
-                    ),
-                    buildButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LoginForStudent()));
-                        },
-                        color: utils.blueL,
-                        child: const Text('Sign In'),
-                        size: 0.2 * size.width),
-                  ],
-                ),
+                      size: 25,
+                      fontWeight: FontWeight.bold),
+                  SizedBox(
+                    height: 0.15 * size.height,
+                  ),
+                  SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: LottieBuilder.network(
+                        'https://assets5.lottiefiles.com/private_files/lf30_g4ft9Z.json'),
+                  ),
+                  buldText(
+                      text: 'Education leads to self illumination',
+                      color: utils.textBlackL,
+                      size: 15,
+                      fontWeight: FontWeight.w400),
+                  const Spacer(),
+                  buildButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (contexdt) => const SignUpForStudent()));
+                      },
+                      color: utils.orangeL,
+                      child: const Text('Sign Up'),
+                      size: 0.2 * size.width),
+                  SizedBox(
+                    height: 0.035 * size.height,
+                  ),
+                  buldText(
+                    text: '___   or   ___',
+                    color: utils.textBlackL,
+                    size: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  SizedBox(
+                    height: 0.035 * size.height,
+                  ),
+                  buildButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const LoginForStudent()));
+                      },
+                      color: utils.blueL,
+                      child: const Text('Sign In'),
+                      size: 0.2 * size.width),
+                ],
               ),
             ],
           ),
@@ -129,7 +128,7 @@ class LogIn extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        background: Paint()..color = Colors.white.withOpacity(0.6),
+        background: Paint()..color = Colors.white.withOpacity(0.8),
         fontWeight: fontWeight,
         color: color,
         fontSize: size,
