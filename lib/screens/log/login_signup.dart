@@ -3,6 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:tutor_group/screens/log/login_for_student.dart';
 import 'package:tutor_group/screens/log/login_for_teacher.dart';
 import 'package:tutor_group/screens/log/signup_for_student.dart';
+import 'package:tutor_group/screens/log/tools/login_and_signup_text_fields.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class LogIn extends StatelessWidget {
@@ -11,6 +12,7 @@ class LogIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Utils utils = Utils();
+    ToolsForLogAndSignup tools = ToolsForLogAndSignup();
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -24,7 +26,7 @@ class LogIn extends StatelessWidget {
               Positioned(
                 top: -6,
                 right: 5,
-                child: myTextButton(
+                child: tools.myTextButton(
                   text: 'Teacher sign in?',
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -37,10 +39,11 @@ class LogIn extends StatelessWidget {
                   top: 150,
                   left: 0,
                   right: 0,
-                  child: myBackgroundImage(utils.textGreyL.withOpacity(0.3))),
+                  child: tools
+                      .myBackgroundImage(utils.textGreyL.withOpacity(0.3))),
               Column(
                 children: [
-                  buldText(
+                  tools.buldText(
                       text: 'TUTOR',
                       color: utils.textBlackL,
                       size: 25,
@@ -54,24 +57,26 @@ class LogIn extends StatelessWidget {
                     child: LottieBuilder.network(
                         'https://assets5.lottiefiles.com/private_files/lf30_g4ft9Z.json'),
                   ),
-                  buldText(
+                  tools.buldText(
                       text: 'Education leads to self illumination',
                       color: utils.textBlackL,
                       size: 15,
                       fontWeight: FontWeight.w400),
                   const Spacer(),
-                  buildButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (contexdt) => const SignUpForStudent()));
-                      },
-                      color: utils.orangeL,
-                      child: const Text('Sign Up'),
-                      size: 0.2 * size.width),
+                  tools.buildButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (contexdt) => SignUpForStudent()));
+                    },
+                    color: utils.orangeL,
+                    child: const Text('Sign Up'),
+                    widthP: 0.2 * size.width,
+                    heightP: 0,
+                  ),
                   SizedBox(
                     height: 0.035 * size.height,
                   ),
-                  buldText(
+                  tools.buldText(
                     text: '___   or   ___',
                     color: utils.textBlackL,
                     size: 12,
@@ -80,80 +85,20 @@ class LogIn extends StatelessWidget {
                   SizedBox(
                     height: 0.035 * size.height,
                   ),
-                  buildButton(
+                  tools.buildButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const LoginForStudent()));
                       },
                       color: utils.blueL,
                       child: const Text('Sign In'),
-                      size: 0.2 * size.width),
+                      heightP: 0,
+                      widthP: 0.2 * size.width),
                 ],
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Container buildButton({
-    required VoidCallback onPressed,
-    required Color color,
-    required Widget child,
-    required double size,
-  }) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: size),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          primary: color,
-          elevation: 3,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-        ),
-        child: child,
-      ),
-    );
-  }
-
-  Text buldText(
-      {required String text,
-      required Color color,
-      required double size,
-      required FontWeight fontWeight}) {
-    return Text(
-      text,
-      style: TextStyle(
-        background: Paint()..color = Colors.white.withOpacity(0.8),
-        fontWeight: fontWeight,
-        color: color,
-        fontSize: size,
-      ),
-    );
-  }
-
-  Container myBackgroundImage(Color color) {
-    return Container(
-      child: Image.asset(
-        'assets/images/backgroundbook.png',
-        color: color,
-      ),
-    );
-  }
-
-  TextButton myTextButton({
-    required String text,
-    required VoidCallback onPressed,
-  }) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 12, color: Colors.orange[900]),
       ),
     );
   }
