@@ -10,19 +10,3 @@ class ThemeController extends GetxController {
     Get.changeThemeMode(val ? ThemeMode.dark : ThemeMode.light);
   }
 }
-
-// class ThemeControlle1r extends GetxController {
-//   bool get isDark => storage.read('darkmode') ?? false;
-
-//   ThemeData get theme => isDark ? ThemeData.dark() : ThemeData.light();
-
-//   void changeTheme(bool val) async {
-//     await storage.write('darkmode', val);
-//     print('Changed');
-//   }
-
-//   @override
-//   void onInit() async {
-//     print(storage.read('darkmode'));
-//   }
-// }

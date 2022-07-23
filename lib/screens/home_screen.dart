@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
+import 'package:tutor_group/screens/profile.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,6 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
+          ElevatedButton(
+              onPressed: () {
+                Get.to(() => const Profile());
+              },
+              child: const Text('profile')),
           const Center(
             child: Text('Home Screen'),
           ),
@@ -31,6 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
             color: utils.isDark ? utils.orangeD : utils.blueD,
             height: 100,
             width: 100,
+            child: Text(
+              'this is my color: ',
+              style: TextStyle(
+                  color: utils.isDark ? utils.textWhiteD : utils.textBlackL,
+                  fontSize: 25),
+            ),
           ),
           Switch(
             value: theme.isDark,

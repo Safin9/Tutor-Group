@@ -19,7 +19,7 @@ class Utils {
   Color textGreyL = const Color.fromARGB(255, 74, 85, 103);
   Color textBlueL = const Color.fromARGB(255, 43, 108, 176);
 
-  Color textWhitekD = const Color.fromARGB(255, 249, 251, 253);
+  Color textWhiteD = const Color.fromARGB(255, 249, 251, 253);
   Color textGreyD = const Color.fromARGB(255, 222, 226, 234);
   Color textGreenD = const Color.fromARGB(255, 129, 230, 217);
 }

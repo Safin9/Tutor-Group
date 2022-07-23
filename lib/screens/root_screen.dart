@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     final theme = Get.find<ThemeController>();
     return GetMaterialApp(
         themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
-        theme: ThemeData.light(),
+        theme: MyThemes().lightTheme,
         darkTheme: MyThemes().darkTheme,
         home: const HomeScreen());
   }
