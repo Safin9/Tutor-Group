@@ -30,21 +30,11 @@ class _ProfileState extends State<Profile> {
           child: Stack(
             children: [
               Positioned(
-                top: 10,
-                left: 10,
-                right: 10,
+                top: 15,
+                left: 20,
+                right: 20,
                 child: Row(
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(
-                        (isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
-                        color: color,
-                        size: 30,
-                      ),
-                    ),
                     const Text(
                       'Profile',
                       style:
