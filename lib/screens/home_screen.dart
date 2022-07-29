@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tutor_group/screens/chat_screen.dart';
 import 'package:tutor_group/screens/explore_screen.dart';
@@ -17,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _pageController = PageController();
+
     print('initialized');
     super.initState();
   }
@@ -29,6 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
     _pageController!.dispose();
     print('disposed');
     super.dispose();
+  }
+
+  Future<DocumentReference> addANameToTheDB({required String name}) async {
+    DocumentReference doc =
+        await FirebaseFirestore.instance.collection('names').add({
+      "first_name": name,
+    });
+    return doc;
   }
 
   @override

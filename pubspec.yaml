@@ -41,6 +41,8 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   font_awesome_flutter: ^10.1.0
   pinput: ^2.2.11
+  firebase_core: ^1.20.0
+  cloud_firestore: ^3.4.2
 
 dev_dependencies:
   flutter_test:

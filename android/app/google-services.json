@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1082232975939",
+    "project_id": "tutorgroup-9c6eb",
+    "storage_bucket": "tutorgroup-9c6eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082232975939:android:06e511a16694743507daf6",
+        "android_client_info": {
+          "package_name": "com.safin.tutor_group"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082232975939-96j30f4tg7oejbme91lcd8q62of73210.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFz94OQP6o6cTKSzwmhn69xLwmFLciITw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082232975939-96j30f4tg7oejbme91lcd8q62of73210.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

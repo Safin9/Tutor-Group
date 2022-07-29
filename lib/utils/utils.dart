@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tutor_group/main.dart';
+
+import '../main.dart';
 
 class Utils {
   final bool isDark = storage.read('isDark');
