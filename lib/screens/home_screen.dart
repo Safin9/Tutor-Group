@@ -36,48 +36,58 @@ class _HomeScreenState extends State<HomeScreen> {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (value) => setState(() {
-                  currentIndex = value;
-                }),
-                children: const [
-                  ExploreScreen(),
-                  ChatScreen(),
-                  Profile(),
-                ],
-              ),
-            )
-          ],
-        ),
-        bottomNavigationBar: BottomNavyBar(
-          selectedIndex: currentIndex,
-          curve: Curves.easeIn,
-          items: [
-            BottomNavyBarItem(
-                activeColor: isDark ? Colors.white : Colors.black,
-                icon: const Icon(Icons.home),
-                title: const Text('Home')),
-            BottomNavyBarItem(
-                activeColor: isDark ? Colors.white : Colors.black,
-                icon: const Icon(Icons.chat),
-                title: const Text('Chats')),
-            BottomNavyBarItem(
-                activeColor: isDark ? Colors.white : Colors.black,
-                icon: const Icon(Icons.account_circle),
-                title: const Text('Account')),
-          ],
-          onItemSelected: ((index) {
-            setState(() {
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _pageController,
+              onPageChanged: (value) => setState(() {
+                currentIndex = value;
+              }),
+              children: const [
+                ExploreScreen(),
+                ChatScreen(),
+                Profile(),
+              ],
+            ),
+          )
+        ],
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: currentIndex,
+        backgroundColor: isDark ? Colors.black87 : Colors.white70,
+        curve: Curves.easeInToLinear,
+        items: [
+          BottomNavyBarItem(
+              textAlign: TextAlign.center,
+              activeColor: isDark ? Colors.white : Colors.black,
+              icon: Icon(currentIndex == 0 ? Icons.home : Icons.home_outlined),
+              title: const Text('Home')),
+          BottomNavyBarItem(
+              textAlign: TextAlign.center,
+              activeColor: isDark ? Colors.white : Colors.black,
+              icon: Icon(currentIndex == 1 ? Icons.chat_bubble : Icons.chat),
+              title: const Text('Chats')),
+          BottomNavyBarItem(
+              textAlign: TextAlign.center,
+              activeColor: isDark ? Colors.white : Colors.black,
+              icon: Icon(currentIndex == 2
+                  ? Icons.account_circle
+                  : Icons.account_circle_outlined),
+              title: const Text('Account')),
+        ],
+        onItemSelected: ((index) {
+          setState(
+            () {
               currentIndex = index;
               _pageController!.animateToPage(index,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn);
-            });
-          }),
-        ));
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.fastOutSlowIn);
+            },
+          );
+        }),
+      ),
+    );
   }
 }

@@ -17,7 +17,10 @@ class ChatScreen extends StatelessWidget {
                 left: 20,
                 child: Text(
                   'Chats',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

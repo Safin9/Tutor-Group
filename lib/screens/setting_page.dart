@@ -30,74 +30,77 @@ class _SettingsState extends State<Settings> {
         child: SizedBox(
           width: double.infinity,
           height: double.infinity,
-          child: Stack(children: [
-            Positioned(
-              top: 20,
-              left: 10,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(
-                      (isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
-                      color: color,
-                      size: 30,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 20,
+                left: 10,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(
+                        (isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
+                        color: color,
+                        size: 30,
+                      ),
                     ),
-                  ),
-                  const Text(
-                    'Settings',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                ],
+                    const Text(
+                      'Settings',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 0.1 * size.height),
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Platform.isAndroid
-                        ? SwitchListTile(
-                            tileColor: tileColor,
-                            value: theme.isDark,
-                            onChanged: (value) {
-                              setState(() {
-                                theme.changeTheme(value);
-                              });
-                            },
-                            title: const Text('Dark Mode'),
-                          )
-                        : Container(
-                            color: tileColor,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  const Text('Dark Mode'),
-                                  const Spacer(),
-                                  CupertinoSwitch(
-                                      value: theme.isDark,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          theme.changeTheme(value);
-                                        });
-                                      }),
-                                ],
+              Padding(
+                padding: EdgeInsets.only(top: 0.1 * size.height),
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Platform.isAndroid
+                          ? SwitchListTile(
+                              tileColor: tileColor,
+                              value: theme.isDark,
+                              onChanged: (value) {
+                                setState(() {
+                                  theme.changeTheme(value);
+                                });
+                              },
+                              title: const Text('Dark Mode'),
+                            )
+                          : Container(
+                              color: tileColor,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    const Text('Dark Mode'),
+                                    const Spacer(),
+                                    CupertinoSwitch(
+                                        value: theme.isDark,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            theme.changeTheme(value);
+                                          });
+                                        }),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                  ),
-                  myListTile(
-                    tileColor: tileColor,
-                    title: 'About us',
-                  ),
-                ],
+                    ),
+                    myListTile(
+                      tileColor: tileColor,
+                      title: 'About us',
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ]),
+            ],
+          ),
         ),
       ),
     );
