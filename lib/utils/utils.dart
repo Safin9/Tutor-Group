@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-
 class Utils {
-  final bool isDark = storage.read('isDark');
-
   Color blueD = const Color.fromARGB(255, 69, 173, 255);
   Color greenD = const Color.fromARGB(255, 115, 255, 224);
   Color orangeD = const Color.fromARGB(255, 255, 137, 117);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
 import 'package:tutor_group/modules/my_custom_themes.dart';
-import 'package:tutor_group/screens/home_screen.dart';
+import 'package:tutor_group/screens/splash_screen/splash_screen.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,10 +17,10 @@ class _MyAppState extends State<MyApp> {
     Get.put(ThemeController());
     final theme = Get.find<ThemeController>();
     return GetMaterialApp(
-      themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
-      theme: MyThemes().lightTheme,
-      darkTheme: MyThemes().darkTheme,
-      home: const HomeScreen(),
-    );
+        debugShowCheckedModeBanner: false,
+        themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
+        theme: MyThemes().lightTheme,
+        darkTheme: MyThemes().darkTheme,
+        home: const SplashScreenView());
   }
 }

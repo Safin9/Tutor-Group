@@ -38,7 +38,7 @@ class _ProfileState extends State<Profile> {
                     const Text(
                       'Profile',
                       style:
-                          TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     const Spacer(),
                     IconButton(

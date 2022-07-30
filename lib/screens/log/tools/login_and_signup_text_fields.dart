@@ -61,7 +61,7 @@ class ToolsForLogAndSignup {
       onPressed: onPressed,
       child: Text(
         text,
-        style: TextStyle(fontSize: 12, color: Colors.orange[900]),
+        style: TextStyle(fontSize: 10, color: Colors.orange[900]),
       ),
     );
   }

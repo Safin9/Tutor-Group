@@ -18,7 +18,7 @@ class ExploreScreen extends StatelessWidget {
                 child: Text(
                   'Home',
                   style: TextStyle(
-                    fontSize: 23,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
