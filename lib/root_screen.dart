@@ -17,6 +17,7 @@ class _MyAppState extends State<MyApp> {
     Get.put(ThemeController());
     final theme = Get.find<ThemeController>();
     return GetMaterialApp(
+        scrollBehavior: const MaterialScrollBehavior(),
         debugShowCheckedModeBanner: false,
         themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
         theme: MyThemes().lightTheme,
