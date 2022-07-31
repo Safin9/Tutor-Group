@@ -31,14 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  // Future<DocumentReference> addANameToTheDB({required String name}) async {
-  //   DocumentReference doc =
-  //       await FirebaseFirestore.instance.collection('names').add({
-  //     "first_name": name,
-  //   });
-  //   return doc;
-  // }
-
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
@@ -124,11 +116,6 @@ class _HomeScreenState extends State<HomeScreen> {
               () {
                 currentIndex = index;
                 _pageController!.jumpToPage(index);
-                // _pageController!.animateToPage(
-                //   index,
-                //   duration: const Duration(milliseconds: 250),
-                //   curve: Curves.fastOutSlowIn,
-                // );
               },
             );
           }),

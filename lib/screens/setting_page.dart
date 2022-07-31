@@ -25,9 +25,9 @@ class _SettingsState extends State<Settings> {
         ? utils.textWhiteD
         : utils.textBlackL;
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SafeArea(
-        child: SizedBox(
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(

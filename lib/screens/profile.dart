@@ -21,44 +21,39 @@ class _ProfileState extends State<Profile> {
         : utils.textBlackL;
     final bool isAndroid = Platform.isAndroid;
     return Scaffold(
-      // appBar: myProfileAppBar(),
-
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: Stack(
-            children: [
-              Positioned(
-                top: 10,
-                left: 20,
-                right: 20,
-                child: Row(
-                  children: [
-                    const Text(
-                      'Profile',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Stack(
+          children: [
+            Positioned(
+              top: 10,
+              left: 20,
+              right: 20,
+              child: Row(
+                children: [
+                  const Text(
+                    'Profile',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {
+                      Get.to(
+                        () => const Settings(),
+                        transition: Transition.cupertino,
+                      );
+                    },
+                    icon: Icon(
+                      Icons.settings,
+                      color: color,
+                      size: 30,
                     ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {
-                        Get.to(
-                          () => const Settings(),
-                          transition: Transition.cupertino,
-                        );
-                      },
-                      icon: Icon(
-                        Icons.settings,
-                        color: color,
-                        size: 30,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
