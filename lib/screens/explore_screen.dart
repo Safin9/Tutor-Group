@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final bool isAndroid = GetPlatform.isAndroid;
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: Stack(
-            children: const [
+            children: [
               Positioned(
-                top: 0,
+                top: isAndroid ? 5 : 10,
                 left: 20,
-                child: Text(
+                child: const Text(
                   'Home',
                   style: TextStyle(
                     fontSize: 18,

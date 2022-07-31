@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/screens/setting_page.dart';
@@ -19,7 +17,7 @@ class _ProfileState extends State<Profile> {
     Color color = Theme.of(context).brightness == Brightness.dark
         ? utils.textWhiteD
         : utils.textBlackL;
-    final bool isAndroid = Platform.isAndroid;
+    final bool isAndroid = GetPlatform.isAndroid;
     return SafeArea(
       child: Scaffold(
         body: SizedBox(
@@ -28,7 +26,7 @@ class _ProfileState extends State<Profile> {
           child: Stack(
             children: [
               Positioned(
-                top: 0,
+                top: isAndroid ? 5 : 10,
                 left: 20,
                 right: 20,
                 child: Row(
