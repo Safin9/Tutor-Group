@@ -30,7 +30,7 @@ class _ProfileState extends State<Profile> {
           child: Stack(
             children: [
               Positioned(
-                top: 15,
+                top: 10,
                 left: 20,
                 right: 20,
                 child: Row(
@@ -43,7 +43,10 @@ class _ProfileState extends State<Profile> {
                     const Spacer(),
                     IconButton(
                       onPressed: () {
-                        Get.to(() => const Settings());
+                        Get.to(
+                          () => const Settings(),
+                          transition: Transition.cupertino,
+                        );
                       },
                       icon: Icon(
                         Icons.settings,

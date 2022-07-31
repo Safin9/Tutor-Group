@@ -53,9 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 children: [
                   Expanded(
+                      child:
+                          NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (notification) {
+                      notification.disallowIndicator();
+                      return true;
+                    },
                     child: PageView(
-                      physics: const NeverScrollableScrollPhysics(),
+                      // physics: const NeverScrollableScrollPhysics(),
                       controller: _pageController,
+
                       onPageChanged: (value) => setState(
                         () {
                           currentIndex = value;
@@ -67,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Profile(),
                       ],
                     ),
-                  )
+                  )),
                 ],
               ),
               Positioned.fill(
@@ -116,11 +123,12 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(
               () {
                 currentIndex = index;
-                _pageController!.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 250),
-                  curve: Curves.fastOutSlowIn,
-                );
+                _pageController!.jumpToPage(index);
+                // _pageController!.animateToPage(
+                //   index,
+                //   duration: const Duration(milliseconds: 250),
+                //   curve: Curves.fastOutSlowIn,
+                // );
               },
             );
           }),
