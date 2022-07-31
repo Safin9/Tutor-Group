@@ -35,91 +35,89 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return SafeArea(
-      child: Scaffold(
-        body: SizedBox(
-          height: double.infinity,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Expanded(
-                      child:
-                          NotificationListener<OverscrollIndicatorNotification>(
-                    onNotification: (notification) {
-                      notification.disallowIndicator();
-                      return true;
-                    },
-                    child: PageView(
-                      // physics: const NeverScrollableScrollPhysics(),
-                      controller: _pageController,
+    return Scaffold(
+      body: SizedBox(
+        height: double.infinity,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                    child:
+                        NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (notification) {
+                    notification.disallowIndicator();
+                    return true;
+                  },
+                  child: PageView(
+                    // physics: const NeverScrollableScrollPhysics(),
+                    controller: _pageController,
 
-                      onPageChanged: (value) => setState(
-                        () {
-                          currentIndex = value;
-                        },
-                      ),
-                      children: const [
-                        ExploreScreen(),
-                        ChatScreen(),
-                        Profile(),
-                      ],
+                    onPageChanged: (value) => setState(
+                      () {
+                        currentIndex = value;
+                      },
                     ),
-                  )),
-                ],
-              ),
-              Positioned.fill(
-                top: 10,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: ClipOval(
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      color: Colors.red,
-                      child: const Center(child: Text('Profile')),
-                    ),
+                    children: const [
+                      ExploreScreen(),
+                      ChatScreen(),
+                      Profile(),
+                    ],
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: BottomNavyBar(
-          containerHeight: 65,
-          selectedIndex: currentIndex,
-          backgroundColor: isDark ? Colors.black87 : Colors.white70,
-          curve: Curves.easeInToLinear,
-          items: [
-            BottomNavyBarItem(
-                textAlign: TextAlign.center,
-                activeColor: isDark ? Colors.white : Colors.black,
-                icon:
-                    Icon(currentIndex == 0 ? Icons.home : Icons.home_outlined),
-                title: const Text('Home')),
-            BottomNavyBarItem(
-                textAlign: TextAlign.center,
-                activeColor: isDark ? Colors.white : Colors.black,
-                icon: Icon(currentIndex == 1 ? Icons.chat_bubble : Icons.chat),
-                title: const Text('Chats')),
-            BottomNavyBarItem(
-                textAlign: TextAlign.center,
-                activeColor: isDark ? Colors.white : Colors.black,
-                icon: Icon(currentIndex == 2
-                    ? Icons.account_circle
-                    : Icons.account_circle_outlined),
-                title: const Text('Account')),
+                )),
+              ],
+            ),
+            // Positioned.fill(
+            //   top: 29,
+            //   child: Align(
+            //     alignment: Alignment.topCenter,
+            //     child: ClipOval(
+            //       child: Container(
+            //         height: 80,
+            //         width: 80,
+            //         color: Colors.red,
+            //         child: const Center(child: Text('Profile')),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
-          onItemSelected: ((index) {
-            setState(
-              () {
-                currentIndex = index;
-                _pageController!.jumpToPage(index);
-              },
-            );
-          }),
         ),
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        containerHeight: 65,
+        selectedIndex: currentIndex,
+        backgroundColor: isDark ? Colors.black87 : Colors.white70,
+        curve: Curves.easeInToLinear,
+        items: [
+          BottomNavyBarItem(
+              textAlign: TextAlign.center,
+              activeColor: isDark ? Colors.white : Colors.black,
+              icon: Icon(currentIndex == 0 ? Icons.home : Icons.home_outlined),
+              title: const Text('Home')),
+          BottomNavyBarItem(
+              textAlign: TextAlign.center,
+              activeColor: isDark ? Colors.white : Colors.black,
+              icon: Icon(currentIndex == 1 ? Icons.chat_bubble : Icons.chat),
+              title: const Text('Chats')),
+          BottomNavyBarItem(
+              textAlign: TextAlign.center,
+              activeColor: isDark ? Colors.white : Colors.black,
+              icon: Icon(currentIndex == 2
+                  ? Icons.account_circle
+                  : Icons.account_circle_outlined),
+              title: const Text('Account')),
+        ],
+        onItemSelected: ((index) {
+          setState(
+            () {
+              currentIndex = index;
+              _pageController!.jumpToPage(index);
+            },
+          );
+        }),
       ),
     );
   }

@@ -13,7 +13,7 @@ class ChatScreen extends StatelessWidget {
           child: Stack(
             children: const [
               Positioned(
-                top: 20,
+                top: 0,
                 left: 20,
                 child: Text(
                   'Chats',

@@ -25,32 +25,34 @@ class _SettingsState extends State<Settings> {
         ? utils.textWhiteD
         : utils.textBlackL;
     final size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        body: SizedBox(
+    return Scaffold(
+      body: SafeArea(
+        child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
             children: [
               Positioned(
-                top: 20,
+                top: 0,
                 left: 10,
                 child: Row(
                   children: [
                     IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Get.back();
                       },
                       icon: Icon(
                         (isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
                         color: color,
-                        size: 30,
+                        size: 20,
                       ),
                     ),
                     const Text(
                       'Settings',
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

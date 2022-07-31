@@ -20,40 +20,46 @@ class _ProfileState extends State<Profile> {
         ? utils.textWhiteD
         : utils.textBlackL;
     final bool isAndroid = Platform.isAndroid;
-    return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Stack(
-          children: [
-            Positioned(
-              top: 10,
-              left: 20,
-              right: 20,
-              child: Row(
-                children: [
-                  const Text(
-                    'Profile',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {
-                      Get.to(
-                        () => const Settings(),
-                        transition: Transition.cupertino,
-                      );
-                    },
-                    icon: Icon(
-                      Icons.settings,
-                      color: color,
-                      size: 30,
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 20,
+                right: 20,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Profile',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    const Spacer(),
+                    IconButton(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onPressed: () {
+                        Get.to(
+                          () => const Settings(),
+                          transition: Transition.cupertino,
+                        );
+                      },
+                      icon: Icon(
+                        Icons.settings,
+                        color: color,
+                        size: 25,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
