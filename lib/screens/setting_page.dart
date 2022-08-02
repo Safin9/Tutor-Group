@@ -58,7 +58,11 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 0.1 * size.height),
+                padding: EdgeInsets.only(
+                  top: 0.1 * size.height,
+                  left: 0.02 * size.width,
+                  right: 0.02 * size.width,
+                ),
                 child: ListView(
                   children: [
                     Padding(
