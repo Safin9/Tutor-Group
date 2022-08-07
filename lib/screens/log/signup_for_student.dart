@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:get/get.dart';
 import 'package:tutor_group/screens/log/tools/login_and_signup_text_fields.dart';
 
 class SignUpForStudent extends StatefulWidget {
@@ -47,21 +47,21 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
           width: double.infinity,
           child: Stack(
             children: [
-              Positioned.fill(
-                child: Image.asset(
-                  'assets/images/backgroundbook.png',
-                  color: tools.utils.textGreyL.withOpacity(0.1),
-                ),
-              ),
-              Positioned(
-                bottom: 0.12 * size.height,
-                left: 0.1 * size.width,
-                right: 0.1 * size.width,
-                child: LottieBuilder.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_gyiysecz.json',
-                  fit: BoxFit.cover,
-                ),
-              ),
+              // Positioned.fill(
+              //   child: Image.asset(
+              //     'assets/images/backgroundbook.png',
+              //     color: tools.utils.textGreyL.withOpacity(0.1),
+              //   ),
+              // ),
+              // Positioned(
+              //   bottom: 0.12 * size.height,
+              //   left: 0.1 * size.width,
+              //   right: 0.1 * size.width,
+              //   child: LottieBuilder.network(
+              //     'https://assets1.lottiefiles.com/packages/lf20_gyiysecz.json',
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
               Positioned(
                 top: 10,
                 left: 10,
@@ -69,7 +69,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Get.back();
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,
@@ -100,18 +100,22 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                           children: [
                             tools.buildTextField(
                               hintText: '',
+                              labelText: 'user name',
                               controller: userNameController,
+                              textInputType: TextInputType.name,
                               validator: (value) {
                                 if (value.isEmpty) {
                                   return 'Please enter your name';
                                 }
                                 return null;
                               },
-                              hint: 'User Name',
+                              hint: '',
                             ),
-                            SizedBox(height: 0.035 * size.height),
+                            SizedBox(height: 0.001 * size.height),
                             tools.buildTextField(
-                              hint: 'Email',
+                              hint: '',
+                              labelText: 'email',
+                              textInputType: TextInputType.emailAddress,
                               controller: emailController,
                               validator: (value) {
                                 String p =
@@ -127,11 +131,11 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                               },
                               hintText: '',
                             ),
-                            SizedBox(
-                              height: 0.035 * size.height,
-                            ),
+                            SizedBox(height: 0.001 * size.height),
                             tools.buildTextField(
-                              hint: 'Password',
+                              hint: '',
+                              labelText: 'password',
+                              textInputType: TextInputType.visiblePassword,
                               controller: passwordController,
                               validator: (value) {
                                 if (!value.isEmpty) {
@@ -141,11 +145,11 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                               },
                               hintText: '',
                             ),
-                            SizedBox(
-                              height: 0.035 * size.height,
-                            ),
+                            SizedBox(height: 0.001 * size.height),
                             tools.buildTextField(
-                                hint: 'Confirm Password',
+                                textInputType: TextInputType.visiblePassword,
+                                hint: '',
+                                labelText: 're-enter password',
                                 controller: passwordConfirmController,
                                 validator: (value) {
                                   if (value == passwordController!.text) {
@@ -157,9 +161,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 0.22 * size.height,
-                      ),
+                      SizedBox(height: 0.001 * size.height),
                       tools.buildButton(
                         onPressed: () {
                           bool isvalid = signUpFormKey.currentState!.validate();
@@ -180,8 +182,8 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                         },
                         color: tools.utils.orangeL,
                         child: const Text('Sign Up'),
-                        widthP: 0.2 * size.width,
-                        heightP: 0.2 * size.width,
+                        widthP: 0.1 * size.width,
+                        heightP: 0.1 * size.width,
                       ),
                     ],
                   ),

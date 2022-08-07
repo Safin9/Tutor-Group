@@ -9,16 +9,27 @@ class ToolsForLogAndSignup {
     TextEditingController? controller,
     required Function? validator,
     required String hintText,
+    required String labelText,
+    TextInputType? textInputType,
+    Widget? icon,
   }) {
     return Container(
       width: double.infinity,
+      height: 75,
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
+        keyboardType: textInputType,
         validator: ((value) => validator!(value)),
         controller: controller,
         decoration: InputDecoration(
+          prefixIcon: icon,
+          errorStyle: const TextStyle(color: Colors.redAccent),
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          labelText: labelText,
+          helperText: '',
           filled: true,
-          fillColor: Colors.white.withOpacity(0.65),
+          fillColor: Colors.white.withOpacity(0.5),
           hintText: hint,
           hintStyle: const TextStyle(
             color: Colors.grey,
@@ -66,12 +77,13 @@ class ToolsForLogAndSignup {
     );
   }
 
-  Container buildButton(
-      {required VoidCallback onPressed,
-      required Color color,
-      required Widget child,
-      required double heightP,
-      required double widthP}) {
+  Container buildButton({
+    required VoidCallback onPressed,
+    required Color color,
+    required Widget child,
+    required double heightP,
+    required double widthP,
+  }) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: widthP, vertical: heightP),
@@ -79,9 +91,9 @@ class ToolsForLogAndSignup {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           primary: color,
-          elevation: 3,
+          elevation: 8,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(7),
           ),
         ),
         child: child,

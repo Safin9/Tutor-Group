@@ -96,7 +96,8 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                         child: Column(
                           children: [
                             tools.buildTextField(
-                              hint: 'Email',
+                              hint: '',
+                              labelText: 'email',
                               controller: _emailController,
                               validator: (value) {
                                 String p =
@@ -116,7 +117,8 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                               height: 0.07 * size.height,
                             ),
                             tools.buildTextField(
-                                hint: 'Password',
+                                hint: '',
+                                labelText: 'password',
                                 controller: _passwordController,
                                 validator: (value) {
                                   if (!value.isEmpty) {

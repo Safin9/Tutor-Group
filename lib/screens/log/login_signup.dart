@@ -66,8 +66,7 @@ class LogIn extends StatelessWidget {
                   const Spacer(),
                   tools.buildButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (contexdt) => const SignUpForStudent()));
+                      Get.to(() => const SignUpForStudent());
                     },
                     color: utils.orangeL,
                     child: const Text('Sign Up'),

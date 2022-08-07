@@ -91,7 +91,8 @@ class _LoginForStudentState extends State<LoginForStudent> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       tools.buildTextField(
-                        hint: 'Email',
+                        hint: '',
+                        labelText: 'email',
                         controller: _emailController,
                         validator: null,
                         hintText: '',
@@ -100,7 +101,8 @@ class _LoginForStudentState extends State<LoginForStudent> {
                         height: 0.07 * size.height,
                       ),
                       tools.buildTextField(
-                        hint: 'Password',
+                        hint: '',
+                        labelText: 'password',
                         controller: _passwordController,
                         validator: null,
                         hintText: '',

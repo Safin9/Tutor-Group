@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/screens/home_screen.dart';
+import 'package:tutor_group/screens/log/login_signup.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({Key? key}) : super(key: key);
@@ -32,8 +33,8 @@ class _SplashScreenViewState extends State<SplashScreenView> {
 
   void route() {
     Get.offAll(
-      () => const HomeScreen(),
-      curve: Curves.slowMiddle,
+      () => const LogIn(),
+      curve: Curves.bounceOut,
       duration: const Duration(milliseconds: 1500),
       transition: Transition.cupertino,
     );
