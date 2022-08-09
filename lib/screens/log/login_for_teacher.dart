@@ -97,6 +97,7 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                           children: [
                             tools.buildTextField(
                               hint: '',
+                              isobsecure: false,
                               labelText: 'email',
                               controller: _emailController,
                               validator: (value) {
@@ -117,6 +118,7 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                               height: 0.07 * size.height,
                             ),
                             tools.buildTextField(
+                              isobsecure: false,
                                 hint: '',
                                 labelText: 'password',
                                 controller: _passwordController,

@@ -1,5 +1,7 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tutor_group/modules/my_custom_themes.dart';
 import 'package:tutor_group/screens/chat_screen.dart';
 import 'package:tutor_group/screens/explore_screen.dart';
 import 'package:tutor_group/screens/profile.dart';
@@ -86,38 +88,32 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavyBar(
-        containerHeight: 65,
-        selectedIndex: currentIndex,
-        backgroundColor: isDark ? Colors.black87 : Colors.white70,
-        curve: Curves.easeInToLinear,
+      bottomNavigationBar: CupertinoTabBar(
+        activeColor: isDark ? Colors.white : Colors.black,
+        currentIndex: currentIndex,
+        iconSize: 25,
+        backgroundColor: isDark ? utils.botomNavBarD : Colors.white70,
         items: [
-          BottomNavyBarItem(
-              textAlign: TextAlign.center,
-              activeColor: isDark ? Colors.white : Colors.black,
-              icon: Icon(currentIndex == 0 ? Icons.home : Icons.home_outlined),
-              title: const Text('Home')),
-          BottomNavyBarItem(
-              textAlign: TextAlign.center,
-              activeColor: isDark ? Colors.white : Colors.black,
-              icon: Icon(currentIndex == 1 ? Icons.chat_bubble : Icons.chat),
-              title: const Text('Chats')),
-          BottomNavyBarItem(
-              textAlign: TextAlign.center,
-              activeColor: isDark ? Colors.white : Colors.black,
-              icon: Icon(currentIndex == 2
-                  ? Icons.account_circle
-                  : Icons.account_circle_outlined),
-              title: const Text('Account')),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home),
+            label: currentIndex == 0 ? 'Explore' : '',
+            activeIcon: const FaIcon(FontAwesomeIcons.c),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.chat),
+            label: currentIndex == 1 ? 'Chats' : '',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.account_circle),
+            label: currentIndex == 2 ? 'Account' : '',
+          ),
         ],
-        onItemSelected: ((index) {
-          setState(
-            () {
-              currentIndex = index;
-              _pageController!.jumpToPage(index);
-            },
-          );
-        }),
+        onTap: (value) {
+          setState(() {
+            currentIndex = value;
+            _pageController!.jumpToPage(value);
+          });
+        },
       ),
     );
   }

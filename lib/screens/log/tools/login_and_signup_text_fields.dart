@@ -12,6 +12,7 @@ class ToolsForLogAndSignup {
     required String labelText,
     TextInputType? textInputType,
     Widget? icon,
+    required bool isobsecure,
   }) {
     return Container(
       width: double.infinity,
@@ -21,6 +22,7 @@ class ToolsForLogAndSignup {
         keyboardType: textInputType,
         validator: ((value) => validator!(value)),
         controller: controller,
+        obscureText: isobsecure,
         decoration: InputDecoration(
           prefixIcon: icon,
           errorStyle: const TextStyle(color: Colors.redAccent),

@@ -100,6 +100,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                           children: [
                             tools.buildTextField(
                               hintText: '',
+                              isobsecure: false,
                               labelText: 'user name',
                               controller: userNameController,
                               textInputType: TextInputType.name,
@@ -114,6 +115,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                             SizedBox(height: 0.001 * size.height),
                             tools.buildTextField(
                               hint: '',
+                              isobsecure: false,
                               labelText: 'email',
                               textInputType: TextInputType.emailAddress,
                               controller: emailController,
@@ -133,6 +135,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                             ),
                             SizedBox(height: 0.001 * size.height),
                             tools.buildTextField(
+                              isobsecure: false,
                               hint: '',
                               labelText: 'password',
                               textInputType: TextInputType.visiblePassword,
@@ -149,6 +152,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                             tools.buildTextField(
                                 textInputType: TextInputType.visiblePassword,
                                 hint: '',
+                                isobsecure: false,
                                 labelText: 're-enter password',
                                 controller: passwordConfirmController,
                                 validator: (value) {

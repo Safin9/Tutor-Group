@@ -92,6 +92,7 @@ class _LoginForStudentState extends State<LoginForStudent> {
                     children: [
                       tools.buildTextField(
                         hint: '',
+                        isobsecure: false,
                         labelText: 'email',
                         controller: _emailController,
                         validator: null,
@@ -102,6 +103,7 @@ class _LoginForStudentState extends State<LoginForStudent> {
                       ),
                       tools.buildTextField(
                         hint: '',
+                        isobsecure: false,
                         labelText: 'password',
                         controller: _passwordController,
                         validator: null,
