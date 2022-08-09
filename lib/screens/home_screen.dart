@@ -20,15 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _pageController = PageController();
 
-    print('initialized');
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _pageController!.dispose();
-    print('disposed');
+
     super.dispose();
   }
 

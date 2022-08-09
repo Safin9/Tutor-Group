@@ -63,46 +63,55 @@ class _SettingsState extends State<Settings> {
                   left: 0.02 * size.width,
                   right: 0.02 * size.width,
                 ),
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Platform.isAndroid
-                          ? SwitchListTile(
-                              tileColor: tileColor,
-                              value: theme.isDark,
-                              onChanged: (value) {
-                                setState(() {
-                                  theme.changeTheme(value);
-                                });
-                              },
-                              title: const Text('Dark Mode'),
-                            )
-                          : Container(
-                              color: tileColor,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    const Text('Dark Mode'),
-                                    const Spacer(),
-                                    CupertinoSwitch(
-                                        value: theme.isDark,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            theme.changeTheme(value);
-                                          });
-                                        }),
-                                  ],
+                child: Expanded(
+                  child: NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (notification) {
+                      notification.disallowIndicator();
+                      return true;
+                    },
+                    child: ListView(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8),
+                          child: Platform.isAndroid
+                              ? SwitchListTile(
+                                  tileColor: tileColor,
+                                  value: theme.isDark,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      theme.changeTheme(value);
+                                    });
+                                  },
+                                  title: const Text('Dark Mode'),
+                                )
+                              : Container(
+                                  color: tileColor,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8),
+                                    child: Row(
+                                      children: [
+                                        const Text('Dark Mode'),
+                                        const Spacer(),
+                                        CupertinoSwitch(
+                                            value: theme.isDark,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                theme.changeTheme(value);
+                                              });
+                                            }),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
+                        ),
+                        myListTile(
+                          tileColor: tileColor,
+                          title: 'About us',
+                        ),
+                      ],
                     ),
-                    myListTile(
-                      tileColor: tileColor,
-                      title: 'About us',
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],
