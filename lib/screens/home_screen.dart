@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_group/modules/my_custom_themes.dart';
 import 'package:tutor_group/screens/chat_screen.dart';
 import 'package:tutor_group/screens/explore_screen.dart';
@@ -97,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.home),
             label: currentIndex == 0 ? 'Explore' : '',
-            activeIcon: const FaIcon(FontAwesomeIcons.c),
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.chat),
