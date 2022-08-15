@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/screens/home_screen.dart';
-import 'package:tutor_group/screens/log/login_signup.dart';
+import 'package:tutor_group/screens/auth/login_signup.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({Key? key}) : super(key: key);

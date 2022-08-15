@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tutor_group/screens/log/tools/login_and_signup_text_fields.dart';
+import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
 
 class SignUpForStudent extends StatefulWidget {
   const SignUpForStudent({Key? key}) : super(key: key);

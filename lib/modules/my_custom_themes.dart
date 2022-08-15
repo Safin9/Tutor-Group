@@ -8,10 +8,10 @@ class MyThemes {
     scaffoldBackgroundColor: utils.backgroundD,
     primaryColor: Colors.amber,
     dividerColor: Colors.white.withOpacity(0.5),
-    colorScheme: const ColorScheme.dark(secondary: Colors.black),
   );
   ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: utils.backgroundL,
     splashColor: Colors.transparent,
+    dividerColor: Colors.black.withOpacity(0.5),
   );
 }

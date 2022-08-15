@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tutor_group/screens/log/login_for_teacher.dart';
-import 'package:tutor_group/screens/log/pinput_otp_screen.dart';
-import 'package:tutor_group/screens/log/signup_for_student.dart';
-import 'package:tutor_group/screens/log/tools/login_and_signup_text_fields.dart';
+import 'package:tutor_group/screens/auth/login_for_teacher.dart';
+import 'package:tutor_group/screens/auth/pinput_otp_screen.dart';
+import 'package:tutor_group/screens/auth/signup_for_student.dart';
+import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class LogIn extends StatelessWidget {
