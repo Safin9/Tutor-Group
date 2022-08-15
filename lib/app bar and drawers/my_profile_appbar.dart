@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tutor_group/screens/setting_page.dart';
 
-PreferredSizeWidget myProfileAppBar() {
+PreferredSizeWidget myHomeAppBar({
+  required String title,
+  required Color backgroundColor,
+  required List<Widget> actions,
+  required Color titleColor,
+}) {
   return AppBar(
-    title: const Text('profile'),
-    actions: [
-      IconButton(
-          onPressed: () {
-            Get.to(() => const Settings());
-          },
-          icon: const Icon(Icons.settings))
-    ],
+    backgroundColor: backgroundColor,
+    title: Text(
+      title,
+      style: TextStyle(
+        color: titleColor,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
+    actions: actions,
+    elevation: 0,
+    automaticallyImplyLeading: false,
   );
 }

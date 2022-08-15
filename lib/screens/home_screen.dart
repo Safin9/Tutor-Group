@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_group/modules/my_custom_themes.dart';
 import 'package:tutor_group/screens/chat_screen.dart';
 import 'package:tutor_group/screens/explore_screen.dart';
@@ -38,50 +39,31 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                    child:
-                        NotificationListener<OverscrollIndicatorNotification>(
-                  onNotification: (notification) {
-                    notification.disallowIndicator();
-                    return true;
-                  },
-                  child: PageView(
-                    // physics: const NeverScrollableScrollPhysics(),
-                    controller: _pageController,
+            Expanded(
+                child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (notification) {
+                notification.disallowIndicator();
+                return true;
+              },
+              child: PageView(
+                // physics: const NeverScrollableScrollPhysics(),
+                controller: _pageController,
 
-                    onPageChanged: (value) => setState(
-                      () {
-                        currentIndex = value;
-                      },
-                    ),
-                    children: const [
-                      ExploreScreen(),
-                      ChatScreen(),
-                      Profile(),
-                    ],
-                  ),
-                )),
-              ],
-            ),
-            // Positioned.fill(
-            //   top: 29,
-            //   child: Align(
-            //     alignment: Alignment.topCenter,
-            //     child: ClipOval(
-            //       child: Container(
-            //         height: 80,
-            //         width: 80,
-            //         color: Colors.red,
-            //         child: const Center(child: Text('Profile')),
-            //       ),
-            //     ),
-            //   ),
-            // ),
+                onPageChanged: (value) => setState(
+                  () {
+                    currentIndex = value;
+                  },
+                ),
+                children: const [
+                  ExploreScreen(),
+                  ChatScreen(),
+                  Profile(),
+                ],
+              ),
+            )),
           ],
         ),
       ),
@@ -90,18 +72,24 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: currentIndex,
         iconSize: 25,
         backgroundColor: isDark ? utils.botomNavBarD : Colors.white70,
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            label: currentIndex == 0 ? 'Explore' : '',
+            icon: FaIcon(
+              FontAwesomeIcons.house,
+              size: 20,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.chat),
-            label: currentIndex == 1 ? 'Chats' : '',
+            icon: FaIcon(
+              FontAwesomeIcons.solidMessage,
+              size: 20,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.account_circle),
-            label: currentIndex == 2 ? 'Account' : '',
+            icon: FaIcon(
+              FontAwesomeIcons.userTie,
+              size: 20,
+            ),
           ),
         ],
         onTap: (value) {

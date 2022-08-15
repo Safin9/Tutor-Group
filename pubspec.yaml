@@ -42,7 +42,43 @@ dependencies:
   pinput: ^2.2.11
   firebase_core: ^1.20.0
   cloud_firestore: ^3.4.2
+  firebase_auth: ^3.6.3
   device_preview: ^1.1.0
+
+  # android_gravity can be one of the following Android Gravity (see
+  # https://developer.android.com/reference/android/view/Gravity): bottom, center,
+  # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
+  # fill_vertical, left, right, start, or top.
+  #android_gravity: center
+  #
+  # ios_content_mode can be one of the following iOS UIView.ContentMode (see
+  # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
+  # scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight,
+  # bottomLeft, or bottomRight.
+  #ios_content_mode: center
+  #
+  # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
+  #web_image_mode: center
+
+  # The screen orientation can be set in Android with the android_screen_orientation parameter.
+  # Valid parameters can be found here:
+  # https://developer.android.com/guide/topics/manifest/activity-element#screen
+  #android_screen_orientation: sensorLandscape
+
+  # To hide the notification bar, use the fullscreen parameter.  Has no effect in web since web
+  # has no notification bar.  Defaults to false.
+  # NOTE: Unlike Android, iOS will not automatically show the notification bar when the app loads.
+  #       To show the notification bar, add the following code to your Flutter app:
+  #       WidgetsFlutterBinding.ensureInitialized();
+  #       SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  #fullscreen: true
+
+  # If you have changed the name(s) of your info.plist file(s), you can specify the filename(s)
+  # with the info_plist_files parameter.  Remove only the # characters in the three lines below,
+  # do not remove any spaces:
+  #info_plist_files:
+  #  - 'ios/Runner/Info-Debug.plist'
+  #  - 'ios/Runner/Info-Release.plist'
 
 dev_dependencies:
   flutter_test:
@@ -56,14 +92,30 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   rename: ^2.0.1
   flutter_launcher_icons:
-
+  flutter_native_splash:
 flutter_icons:
   image_path: "assets/images/tutorlogo.png"
   android: true
   ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  color: "#140C34"
+  image: "assets/images/tutorlogo.png"
+  # image: assets/logo-development.png
+  # branding: assets/branding-development.png
+  # color_dark: "#121212"
+  # image_dark: assets/logo-development.png
+  # branding_dark: assets/branding-development.png
 
+  # android_12:
+  #   image: assets/logo-development.png
+  #   icon_background_color: "#ffffff"
+  #   image_dark: assets/logo-development.png
+  #   icon_background_color_dark: "#121212"
+
+  web: false
 # The following section is specific to Flutter packages.
 flutter:
   # The following line ensures that the Material Icons font is
