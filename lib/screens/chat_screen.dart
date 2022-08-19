@@ -8,14 +8,13 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isAndroid = GetPlatform.isAndroid;
     bool isDark = Get.isDarkMode;
     return Scaffold(
       appBar: myHomeAppBar(
-          titleColor: isDark ? utils.textWhiteD : utils.textBlackL,
-          title: 'Chats',
-          backgroundColor: isDark ? utils.backgroundD : utils.backgroundL,
-          actions: []),
+        titleColor: isDark ? utils.textWhiteD : utils.textBlackL,
+        title: 'Chats',
+        backgroundColor: isDark ? utils.backgroundD : utils.backgroundL,
+      ),
       body: SafeArea(
         child: SizedBox(
           height: double.infinity,

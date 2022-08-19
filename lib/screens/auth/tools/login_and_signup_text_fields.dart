@@ -5,19 +5,20 @@ class ToolsForLogAndSignup {
   Utils utils = Utils();
 
   Container buildTextField({
-    required String hint,
+    String? hint,
     TextEditingController? controller,
-    required Function? validator,
-    required String hintText,
-    required String labelText,
+    Function? validator,
+    String? hintText,
+    String? labelText,
     TextInputType? textInputType,
     Widget? icon,
+    double? padding,
     required bool isobsecure,
   }) {
     return Container(
       width: double.infinity,
       height: 75,
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: EdgeInsets.symmetric(horizontal: padding ?? 25),
       child: TextFormField(
         keyboardType: textInputType,
         validator: ((value) => validator!(value)),
@@ -85,9 +86,11 @@ class ToolsForLogAndSignup {
     required Widget child,
     required double heightP,
     required double widthP,
+    double? width,
+    double? height,
   }) {
     return Container(
-      width: double.infinity,
+      width: width ?? double.infinity,
       padding: EdgeInsets.symmetric(horizontal: widthP, vertical: heightP),
       child: ElevatedButton(
         onPressed: onPressed,

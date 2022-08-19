@@ -2,20 +2,20 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
+import 'package:tutor_group/providers/phone_code_provider.dart';
 import 'package:tutor_group/screens/home_screen.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class OtpScreen extends StatefulWidget {
-  final String phone;
-  const OtpScreen({Key? key, required this.phone}) : super(key: key);
+  const OtpScreen({Key? key}) : super(key: key);
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController? _pinOtpController;
   FocusNode? _pinOtpFocusNode;
   String? verificationCode;
@@ -39,6 +39,13 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    //this is full number:
+    final phoneNumber = Provider.of<TestProvider>(context).finalNumber!;
+    //this is code:
+    final code = Provider.of<TestProvider>(context).n;
+    //this is number
+    final number = Provider.of<TestProvider>(context).phonenumber!;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -69,8 +76,15 @@ class _OtpScreenState extends State<OtpScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  // Text(
+                  //   'Verifying  ${widget.phone}',
+                  //   style: const TextStyle(
+                  //     fontSize: 15,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   Text(
-                    'Verifying  ${widget.phone}',
+                    'Verifying  +$code  $number',
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,

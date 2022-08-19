@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 PreferredSizeWidget myHomeAppBar({
   required String title,
   required Color backgroundColor,
-  required List<Widget> actions,
+  List<Widget>? actions,
   required Color titleColor,
 }) {
   return AppBar(

@@ -12,10 +12,10 @@ class ExploreScreen extends StatelessWidget {
     final bool isDark = Get.isDarkMode;
     return Scaffold(
       appBar: myHomeAppBar(
-          titleColor: isDark ? utils.textWhiteD : utils.textBlackL,
-          title: 'Home',
-          backgroundColor: isDark ? utils.backgroundD : utils.backgroundL,
-          actions: []),
+        titleColor: isDark ? utils.textWhiteD : utils.textBlackL,
+        title: 'Home',
+        backgroundColor: isDark ? utils.backgroundD : utils.backgroundL,
+      ),
       body: SafeArea(
         child: SizedBox(
           height: double.infinity,

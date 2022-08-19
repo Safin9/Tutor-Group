@@ -87,7 +87,7 @@ class LogIn extends StatelessWidget {
                   ),
                   tools.buildButton(
                       onPressed: () {
-                        Get.to(const OtpScreen(phone: '2000'));
+                        Get.to(const OtpScreen());
                       },
                       color: utils.blueL,
                       child: const Text('Sign In'),
