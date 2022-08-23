@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:get/get.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 import 'tools/login_and_signup_text_fields.dart';
@@ -37,129 +37,88 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
     final size = MediaQuery.of(context).size;
     Utils utils = Utils();
     return Scaffold(
-      backgroundColor: utils.backgroundL,
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        title: tools.buldText(
+          text: 'Teacher Sign In',
+          color: utils.textBlackL,
+          size: 20,
+          fontWeight: FontWeight.bold,
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () => Get.back(),
+        ),
+      ),
       body: SafeArea(
         child: SizedBox(
           height: double.infinity,
           width: double.infinity,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  'assets/images/backgroundbook.png',
-                  color: utils.textGreyL.withOpacity(0.2),
-                ),
-              ),
-              Positioned(
-                top: 0.04 * size.height,
-                left: 0.1 * size.width,
-                right: 0.1 * size.width,
-                child: LottieBuilder.network(
-                  'https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                top: 10,
-                left: 10,
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: utils.textBlackL,
-                        size: 30,
-                      ),
-                    ),
-                    tools.buldText(
-                      text: 'Teacher Sign In',
-                      color: utils.textBlackL,
-                      size: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Form(
-                        key: _loginFormKey,
-                        child: Column(
-                          children: [
-                            tools.buildTextField(
-                              hint: '',
-                              isobsecure: false,
-                              labelText: 'email',
-                              controller: _emailController,
-                              validator: (value) {
-                                String p =
-                                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                RegExp regExp = RegExp(p);
+          child: SingleChildScrollView(
+            child: Form(
+              key: _loginFormKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 0.2 * size.height),
+                  tools.buildTextField(
+                    hint: '',
+                    isobsecure: false,
+                    labelText: 'email',
+                    controller: _emailController,
+                    validator: (value) {
+                      String p =
+                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                      RegExp regExp = RegExp(p);
 
-                                if (!value.isEmpty &&
-                                    value.length > 6 &&
-                                    regExp.hasMatch(value)) {
-                                  return null;
-                                }
-                                return 'Please enter your email';
-                              },
-                              hintText: '',
-                            ),
-                            SizedBox(
-                              height: 0.07 * size.height,
-                            ),
-                            tools.buildTextField(
-                              isobsecure: false,
-                                hint: '',
-                                labelText: 'password',
-                                controller: _passwordController,
-                                validator: (value) {
-                                  if (!value.isEmpty) {
-                                    return null;
-                                  }
-                                  return 'Please enter your password';
-                                },
-                                hintText: ''),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 0.07 * size.height,
-                      ),
-                      tools.buildButton(
-                        onPressed: () {
-                          bool isvalid = _loginFormKey.currentState!.validate();
-                          if (isvalid) {
-                            print(isvalid);
-                            print(_emailController!.text);
-
-                            print(_passwordController!.text);
-
-                            _emailController!.clear();
-                            _passwordController!.clear();
-                          } else {
-                            print('error');
-                          }
-                        },
-                        color: utils.blueL,
-                        child: const Text('Sign In'),
-                        widthP: 0.2 * size.width,
-                        heightP: 0.2 * size.width,
-                      ),
-                    ],
+                      if (!value.isEmpty &&
+                          value.length > 6 &&
+                          regExp.hasMatch(value)) {
+                        return null;
+                      }
+                      return 'Please enter your email';
+                    },
+                    hintText: '',
                   ),
-                ),
+                  tools.buildTextField(
+                      isobsecure: false,
+                      hint: '',
+                      labelText: 'password',
+                      controller: _passwordController,
+                      validator: (value) {
+                        if (!value.isEmpty) {
+                          return null;
+                        }
+                        return 'Please enter your password';
+                      },
+                      hintText: ''),
+                  tools.buildButton(
+                    onPressed: () {
+                      bool isvalid = _loginFormKey.currentState!.validate();
+                      if (isvalid) {
+                        print(isvalid);
+                        print(_emailController!.text);
+
+                        print(_passwordController!.text);
+
+                        _emailController!.clear();
+                        _passwordController!.clear();
+                      } else {
+                        print('error');
+                      }
+                    },
+                    color: utils.blueL,
+                    child: const Text('Sign In'),
+                    widthP: 0.2 * size.width,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

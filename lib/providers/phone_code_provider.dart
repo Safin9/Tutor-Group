@@ -4,6 +4,7 @@ class TestProvider extends ChangeNotifier {
   int n = 964;
   String? finalNumber;
   String? phonenumber;
+  String? verificationCode;
   method({required int number}) {
     n = number;
     debugPrint('from provider: $n');
@@ -16,16 +17,13 @@ class TestProvider extends ChangeNotifier {
     debugPrint('from provider full number: $finalNumber ');
     debugPrint('from provider code: $n');
     debugPrint('from provider number: $number ');
+
     notifyListeners();
     return finalNumber!;
   }
 
-  // fullnumber({required String numb}) {
-  //   finalNumber = numb;
-  //   finalNumber = n.toString() + numb;
-  //   debugPrint('from provider full number: $finalNumber ');
-  //   notifyListeners();
-  //   debugPrint('from provider code: $n');
-  //   debugPrint('from provider number: $numb ');
-  // }
+  phoneVerificationCode({required String vCode}) {
+    verificationCode = vCode;
+    notifyListeners();
+  }
 }

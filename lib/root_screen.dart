@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
 import 'package:tutor_group/modules/my_custom_themes.dart';
-import 'package:tutor_group/screens/auth/sign_by_phone.dart';
+import 'package:tutor_group/screens/auth/handler_screen.dart';
+import 'package:tutor_group/screens/auth/login_signup.dart';
+
+import 'package:tutor_group/screens/home_screen.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -23,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       theme: MyThemes().lightTheme,
       darkTheme: MyThemes().darkTheme,
       // home: const SplashScreenView());
-      home: SignInByPhone(),
+      home: const HandlerScreen(),
     );
   }
 }

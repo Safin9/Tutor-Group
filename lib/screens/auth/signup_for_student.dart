@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
+import 'package:tutor_group/services/auth_services.dart';
+import 'package:tutor_group/services/firestore_services.dart';
 
 class SignUpForStudent extends StatefulWidget {
   const SignUpForStudent({Key? key}) : super(key: key);
@@ -47,21 +51,6 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
           width: double.infinity,
           child: Stack(
             children: [
-              // Positioned.fill(
-              //   child: Image.asset(
-              //     'assets/images/backgroundbook.png',
-              //     color: tools.utils.textGreyL.withOpacity(0.1),
-              //   ),
-              // ),
-              // Positioned(
-              //   bottom: 0.12 * size.height,
-              //   left: 0.1 * size.width,
-              //   right: 0.1 * size.width,
-              //   child: LottieBuilder.network(
-              //     'https://assets1.lottiefiles.com/packages/lf20_gyiysecz.json',
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
               Positioned(
                 top: 10,
                 left: 10,
@@ -167,15 +156,28 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                       ),
                       SizedBox(height: 0.001 * size.height),
                       tools.buildButton(
-                        onPressed: () {
+                        onPressed: () async {
                           bool isvalid = signUpFormKey.currentState!.validate();
                           if (isvalid) {
-                            print(isvalid);
-                            print("email: ${emailController!.text}");
-
-                            print('pass: ${passwordController!.text}');
-                            print("username: ${userNameController!.text}");
-
+                            await AuthServices()
+                                .createAccountWithEmailAndPasswordForUser(
+                                    email: emailController!.text.trim(),
+                                    password: passwordController!.text);
+                            FireStoreService().addUserToDBWithInformationUsers(
+                                userModel: UserModel(
+                                    name: userNameController!.text,
+                                    createdAt: DateTime.now(),
+                                    birthDate: DateTime.now()
+                                        .subtract(const Duration(days: 365)),
+                                    currentCity: 'Duhok',
+                                    uid: FirebaseAuth.instance.currentUser!.uid,
+                                    phone: '7807050300',
+                                    surName: 'Saber',
+                                    languages: [
+                                  'Kurdish',
+                                  'English',
+                                  'Arabic'
+                                ]));
                             emailController!.clear();
                             passwordController!.clear();
                             userNameController!.clear();

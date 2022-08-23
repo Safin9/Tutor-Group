@@ -1,4 +1,4 @@
-import 'package:country_pickers/country_pickers.dart';
+import 'package:country_pickers/country_picker_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +16,25 @@ class SignInByPhone extends StatelessWidget {
     ToolsForLogAndSignup tools = ToolsForLogAndSignup();
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: tools.buldText(
+            text: 'Sign with Phone',
+            color: utils.textBlackL,
+            size: 17,
+            fontWeight: FontWeight.bold),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -48,17 +67,14 @@ class SignInByPhone extends StatelessWidget {
                             'QA',
                             'CN',
                             'IN',
+                            'GB',
                           ].contains(country.isoCode)),
                       onTap: () =>
                           FocusScope.of(context).requestFocus(FocusNode()),
                       onValuePicked: ((value) {
-                        final code = context
+                        context
                             .read<TestProvider>()
                             .method(number: int.parse(value.phoneCode));
-                        // setState(() {
-                        //   phoneCode = value.phoneCode;
-                        //   print(phoneCode);
-                        // });
                       }),
                       sortComparator: (a, b) =>
                           a.phoneCode.compareTo(b.phoneCode),
@@ -72,14 +88,38 @@ class SignInByPhone extends StatelessWidget {
                           final phoneCode = context.read<TestProvider>().n;
                           if (phoneCode == 964) {
                             if (val.trim().isEmpty) {
-                              return 'Enter a number';
+                              return 'enter a number';
+                              Get.snackbar(
+                                '',
+                                'Please enter your number',
+                                colorText: Colors.white,
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 0, 0),
+                                forwardAnimationCurve: Curves.easeInOutExpo,
+                              );
                             } else if (val.length < 10) {
-                              return 'Please Enter a valid number';
+                              return 'enter a valid number';
+                              Get.snackbar(
+                                '',
+                                ' Please Enter a valid number',
+                                colorText: Colors.white,
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 0, 0),
+                                forwardAnimationCurve: Curves.easeInOutExpo,
+                              );
                             }
                             return null;
                           } else {
                             if (val.trim().isEmpty) {
-                              return 'Enter a number';
+                              return 'enter a number';
+                              Get.snackbar(
+                                '',
+                                'Enter a number',
+                                colorText: Colors.white,
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 0, 0),
+                                forwardAnimationCurve: Curves.easeInOutExpo,
+                              );
                             }
                             return null;
                           }
@@ -107,9 +147,6 @@ class SignInByPhone extends StatelessWidget {
                       },
                       color: utils.orangeL,
                       child: const Text('Verify'),
-                      heightP: 100,
-                      widthP: 0,
-                      width: 250,
                     ),
                   ],
                 ),

@@ -70,12 +70,15 @@ class ToolsForLogAndSignup {
   TextButton myTextButton({
     required String text,
     required VoidCallback onPressed,
+    double? size,
+    Color? color,
   }) {
     return TextButton(
       onPressed: onPressed,
       child: Text(
         text,
-        style: TextStyle(fontSize: 10, color: Colors.orange[900]),
+        style:
+            TextStyle(fontSize: size ?? 12, color: color ?? Colors.orange[900]),
       ),
     );
   }
@@ -84,14 +87,15 @@ class ToolsForLogAndSignup {
     required VoidCallback onPressed,
     required Color color,
     required Widget child,
-    required double heightP,
-    required double widthP,
+    double? heightP,
+    double? widthP,
     double? width,
     double? height,
   }) {
     return Container(
       width: width ?? double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: widthP, vertical: heightP),
+      padding: EdgeInsets.symmetric(
+          horizontal: widthP ?? 75, vertical: heightP ?? 15),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(

@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
+import 'package:tutor_group/services/auth_services.dart';
 import 'package:tutor_group/utils/utils.dart';
 import 'dart:io';
 
@@ -17,6 +19,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     final theme = Get.find<ThemeController>();
     final utils = Utils();
+    AuthServices authServices = AuthServices();
     Color tileColor = Theme.of(context).brightness == Brightness.dark
         ? utils.textGreyL
         : utils.textGreyD;
@@ -104,6 +107,14 @@ class _SettingsState extends State<Settings> {
                                     ),
                                   ),
                                 ),
+                        ),
+                        myListTile(
+                          tileColor: tileColor,
+                          title: 'Log out',
+                          onTap: () async {
+                            // await authServices.logout();
+                            await FirebaseAuth.instance.signOut();
+                          },
                         ),
                         myListTile(
                           tileColor: tileColor,
