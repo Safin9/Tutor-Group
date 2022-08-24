@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:tutor_group/modules/my_custom_themes.dart';
+import 'package:tutor_group/screens/auth/handler_screen.dart';
+import 'package:tutor_group/screens/auth/login_signup.dart';
 import 'package:tutor_group/screens/chat_screen.dart';
 import 'package:tutor_group/screens/explore_screen.dart';
 import 'package:tutor_group/screens/profile.dart';
@@ -20,7 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _pageController = PageController();
-
+    FirebaseAuth.instance.authStateChanges().listen((event) {
+      if (event == null) {
+        Get.offAll(() => const HandlerScreen());
+      }
+    });
     super.initState();
   }
 

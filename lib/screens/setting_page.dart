@@ -7,14 +7,14 @@ import 'package:tutor_group/services/auth_services.dart';
 import 'package:tutor_group/utils/utils.dart';
 import 'dart:io';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+class Settingsr extends StatefulWidget {
+  const Settingsr({Key? key}) : super(key: key);
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<Settingsr> createState() => _SettingsrState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsrState extends State<Settingsr> {
   @override
   Widget build(BuildContext context) {
     final theme = Get.find<ThemeController>();

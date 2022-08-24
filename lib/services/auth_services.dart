@@ -18,7 +18,8 @@ class AuthServices {
               verificationId: verificationID, smsCode: smsCode))
           .then((value) {
         if (value.user != null) {
-          Get.offAll(() => const HomeScreen());
+          // FirebaseFirestore.instance.collection('Users').doc(auth.currentUser!.uid).
+          Get.offAll(() => const HandlerScreen());
         }
       });
     } catch (e) {
@@ -64,8 +65,9 @@ class AuthServices {
   }
 
   Future<void> logout() async {
-    await FirebaseAuth.instance.signOut();
-    Get.to(() => const HandlerScreen());
+    await FirebaseAuth.instance
+        .signOut()
+        .then((value) => Get.offAll(() => const HandlerScreen()));
   }
 
 // verificationphone() async {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tutor_group/services/teacher_auth_service.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 import 'tools/login_and_signup_text_fields.dart';
@@ -101,6 +102,9 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                     onPressed: () {
                       bool isvalid = _loginFormKey.currentState!.validate();
                       if (isvalid) {
+                        TeacherAuthServices().signIn(
+                            email: _emailController!.text,
+                            password: _passwordController!.text);
                         print(isvalid);
                         print(_emailController!.text);
 
