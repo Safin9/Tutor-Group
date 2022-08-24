@@ -130,6 +130,7 @@ flutter:
     - assets/images/backgroundbook.png
     - assets/images/tutorlogo.png
     - assets/svg/teacher.svg
+    - assets/lottie/teacher.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/providers/user_provider.dart';
-import 'package:tutor_group/screens/auth/login_signup.dart';
+import 'package:tutor_group/screens/auth/sign_by_phone.dart';
 import 'package:tutor_group/screens/auth/signup_for_student.dart';
 import 'package:tutor_group/screens/home_screen.dart';
 
@@ -33,7 +33,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator.adaptive();
           } else if (snapshot.data == null) {
-            return LogIn();
+            return SignInByPhone();
           } else if (snapshot.hasError) {
             return const Center(child: Text('Error'));
           }

@@ -87,102 +87,77 @@ class _OtpScreenState extends State<OtpScreen> {
 
     return Scaffold(
       key: scaffoldkey,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SafeArea(
-        child: Stack(
-          children: [
-            // Positioned(
-            //   top: 7,
-            //   left: 7,
-            //   child: IconButton(
-            //     highlightColor: Colors.grey.withOpacity(0.05),
-            //     splashColor: Colors.transparent,
-            //     onPressed: () {
-            //       Get.back();
-            //     },
-            //     icon: Icon(Platform.isAndroid
-            //         ? Icons.arrow_back
-            //         : Icons.arrow_back_ios),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.only(top: 100.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 0.05 * size.height,
+              ),
+              const Text(
+                'OTPs',
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
                 children: [
-                  const Text(
-                    'OTPs',
-                    style: TextStyle(
-                      fontSize: 23,
+                  const Spacer(),
+                  SelectableText(
+                    'Verifying  +$code  $number',
+                    style: const TextStyle(
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      const Spacer(),
-                      SelectableText(
-                        'Verifying  +$code  $number',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      IconButton(
-                          onPressed: (() {
-                            Get.back();
-                            context.read<TestProvider>().n = 964;
-                          }),
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          icon: const FaIcon(
-                            FontAwesomeIcons.pencil,
-                            size: 17,
-                          )),
-                      const Spacer(),
-                    ],
+                  const SizedBox(
+                    width: 10,
                   ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(40.0),
-                      child: Pinput(
-                        length: 6,
-                        focusNode: _pinOtpFocusNode,
-                        controller: _pinOtpController,
-                        // onTap: () {
-                        //   _pinOtpController!.clear();
-                        // },
-                        onSubmitted: (value) {},
-                        onCompleted: (pin) {
-                          // verificationCode = pin;
-//FIXME:
-                          authServices.signInWithPhoneNumber(
-                            verificationID: verificationCode!,
-                            smsCode: pin,
-                          );
-                          print("verification code: ${verificationCode!}");
-                          print(pin);
-                        },
-                      ),
-                    ),
-                  ),
-
-                  // tools.buildButton(
-                  //   onPressed: ()  {
-                  //     // Get.offAll(() => const HomeScreen());
-
-                  //   },
-                  //   color: utils.blueL,
-                  //   child: const Text('Sign In'),
-                  //   heightP: 0,
-                  //   widthP: 0.2 * size.width,
-                  // ),
+                  IconButton(
+                      onPressed: (() {
+                        Get.back();
+                        context.read<TestProvider>().n = 964;
+                      }),
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      icon: const FaIcon(
+                        FontAwesomeIcons.pencil,
+                        size: 17,
+                      )),
+                  const Spacer(),
                 ],
               ),
-            ),
-          ],
+              SizedBox(
+                height: 0.02 * size.height,
+              ),
+              const Text('Enter verification code down here'),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40.0, vertical: 20),
+                  child: Pinput(
+                    length: 6,
+                    focusNode: _pinOtpFocusNode,
+                    controller: _pinOtpController,
+                    onSubmitted: (value) {},
+                    onCompleted: (pin) {
+                      authServices.signInWithPhoneNumber(
+                        verificationID: verificationCode!,
+                        smsCode: pin,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

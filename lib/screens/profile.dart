@@ -50,34 +50,34 @@ class _ProfileState extends State<Profile> {
           width: double.infinity,
           height: double.infinity,
           child: Column(
-            children: [
-              Expanded(
-                child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                  future: data,
-                  builder: ((context, snapshot) {
-                    // UserModel userModel =
-                    //     UserModel.fromMap(snapshot.data!.data()!);
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
-                    }
-                    return Column(
-                      children: const [
-                        // SizedBox(
-                        //   height: 150,
-                        //   child: Image.network(
-                        //       snapshot.data!.data()!['imageUrl']),
-                        // // ),
-                        // Text(snapshot.data!.data()!['name'].toString()),
-                        // Text(snapshot.data!.data()!['surname'].toString()),
-                        // Text(snapshot.data!.data()!['email'].toString()),
-                        // Text(snapshot.data!.data()!['phoneNumber'].toString()),
-                      ],
-                    );
-                  }),
-                ),
-              )
+            children: const [
+              // Expanded(
+              //   child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+              //     future: data,
+              //     builder: ((context, snapshot) {
+              //       // UserModel userModel =
+              //       //     UserModel.fromMap(snapshot.data!.data()!);
+              //       if (snapshot.connectionState == ConnectionState.waiting) {
+              //         return const Center(
+              //           child: CircularProgressIndicator.adaptive(),
+              //         );
+              //       }
+              //       return Column(
+              //         children: const [
+              //           // SizedBox(
+              //           //   height: 150,
+              //           //   child: Image.network(
+              //           //       snapshot.data!.data()!['imageUrl']),
+              //           // // ),
+              //           // Text(snapshot.data!.data()!['name'].toString()),
+              //           // Text(snapshot.data!.data()!['surname'].toString()),
+              //           // Text(snapshot.data!.data()!['email'].toString()),
+              //           // Text(snapshot.data!.data()!['phoneNumber'].toString()),
+              //         ],
+              //       );
+              //     }),
+              //   ),
+              // )
             ],
           ),
         ),

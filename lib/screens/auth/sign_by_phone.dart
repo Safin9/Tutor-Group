@@ -1,9 +1,12 @@
 import 'package:country_pickers/country_picker_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:tutor_group/modules/my_custom_themes.dart';
 import 'package:tutor_group/providers/phone_code_provider.dart';
+import 'package:tutor_group/screens/auth/login_for_teacher.dart';
 import 'package:tutor_group/screens/auth/pinput_otp_screen.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
 
@@ -21,19 +24,27 @@ class SignInByPhone extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: tools.buldText(
-            text: 'Sign with Phone',
+            text: 'TUTOR',
             color: utils.textBlackL,
-            size: 17,
+            size: 25,
             fontWeight: FontWeight.bold),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
+        // leading: IconButton(
+        //   icon: const Icon(
+        //     Icons.arrow_back,
+        //     color: Colors.black,
+        //   ),
+        //   onPressed: () {
+        //     Get.back();
+        //   },
+        // ),
+        actions: [
+          tools.myTextButton(
+            text: 'Teacher sign in?',
+            onPressed: () {
+              Get.to(() => const LogInForTeachre());
+            },
           ),
-          onPressed: () {
-            Get.back();
-          },
-        ),
+        ],
       ),
       body: SafeArea(
         child: SizedBox(
@@ -50,7 +61,18 @@ class SignInByPhone extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 150),
+                    SizedBox(
+                      height: 200,
+                      child: LottieBuilder.asset('assets/lottie/teacher.json'),
+                    ),
+                    const SizedBox(height: 50),
+                    tools.buldText(
+                      text: 'Education leads to self illumination',
+                      color: utils.textBlackL,
+                      size: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    const SizedBox(height: 25),
                     CountryPickerDropdown(
                       initialValue: 'IQ',
                       itemFilter: ((country) => [
@@ -145,8 +167,17 @@ class SignInByPhone extends StatelessWidget {
                           numberContorller.clear();
                         }
                       },
-                      color: utils.orangeL,
-                      child: const Text('Verify'),
+                      color: utils.textBlackL,
+                      child: Row(
+                        children: const [
+                          FaIcon(FontAwesomeIcons.phone),
+                          Spacer(),
+                          Text('Continue with phone'),
+                          Spacer(),
+                        ],
+                      ),
+                      // widthP: 0.2 * size.width,
+                      heightP: 0,
                     ),
                   ],
                 ),
