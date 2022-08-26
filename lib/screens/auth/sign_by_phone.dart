@@ -4,11 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:tutor_group/modules/my_custom_themes.dart';
 import 'package:tutor_group/providers/phone_code_provider.dart';
 import 'package:tutor_group/screens/auth/login_for_teacher.dart';
 import 'package:tutor_group/screens/auth/pinput_otp_screen.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
+import 'package:tutor_group/utils/utils.dart';
 
 class SignInByPhone extends StatelessWidget {
   SignInByPhone({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class SignInByPhone extends StatelessWidget {
         centerTitle: true,
         title: tools.buldText(
             text: 'TUTOR',
-            color: utils.textBlackL,
+            color: textBlackL,
             size: 25,
             fontWeight: FontWeight.bold),
         // leading: IconButton(
@@ -68,7 +68,7 @@ class SignInByPhone extends StatelessWidget {
                     const SizedBox(height: 50),
                     tools.buldText(
                       text: 'Education leads to self illumination',
-                      color: utils.textBlackL,
+                      color: textBlackL,
                       size: 15,
                       fontWeight: FontWeight.w400,
                     ),
@@ -167,7 +167,7 @@ class SignInByPhone extends StatelessWidget {
                           numberContorller.clear();
                         }
                       },
-                      color: utils.textBlackL,
+                      color: textBlackL,
                       child: Row(
                         children: const [
                           FaIcon(FontAwesomeIcons.phone),

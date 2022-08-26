@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_group/utils/utils.dart';
 
 class ToolsForLogAndSignup {
-  Utils utils = Utils();
-
   Container buildTextField({
     String? hint,
     TextEditingController? controller,

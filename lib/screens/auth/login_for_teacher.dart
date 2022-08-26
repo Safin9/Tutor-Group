@@ -36,7 +36,6 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    Utils utils = Utils();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -44,7 +43,7 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
         backgroundColor: Colors.transparent,
         title: tools.buldText(
           text: 'Teacher Sign In',
-          color: utils.textBlackL,
+          color: textBlackL,
           size: 20,
           fontWeight: FontWeight.bold,
         ),
@@ -116,7 +115,7 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                         print('error');
                       }
                     },
-                    color: utils.blueL,
+                    color: blueL,
                     child: const Text('Sign In'),
                     widthP: 0.2 * size.width,
                   ),

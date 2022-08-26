@@ -23,7 +23,7 @@ class _OtpScreenState extends State<OtpScreen> {
   FocusNode? _pinOtpFocusNode;
   String? verificationCode;
   AuthServices authServices = AuthServices();
-  Utils utils = Utils();
+
   ToolsForLogAndSignup tools = ToolsForLogAndSignup();
 
   @override

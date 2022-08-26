@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tutor_group/modules/user_model.dart';
+import 'package:tutor_group/modules/user1_model.dart';
 
 class UserProvider extends ChangeNotifier {
-  UserModel? weCodeUser;
+  UserModel? theUser;
 
-  setWeCodeUser(UserModel user) {
-    weCodeUser = user;
-    debugPrint('from provider : $weCodeUser');
+  setUser(UserModel user) {
+    theUser = user;
+    debugPrint('from provider : $theUser');
     notifyListeners();
   }
 }

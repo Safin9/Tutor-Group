@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
-import 'package:tutor_group/modules/my_custom_themes.dart';
-import 'package:tutor_group/screens/auth/sign_by_phone.dart';
+import 'package:tutor_group/screens/auth/signup_for_student.dart';
+
+import 'package:tutor_group/utils/constant.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -20,10 +21,13 @@ class _MyAppState extends State<MyApp> {
       scrollBehavior: const MaterialScrollBehavior(),
       debugShowCheckedModeBanner: false,
       themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
-      theme: MyThemes().lightTheme,
-      darkTheme: MyThemes().darkTheme,
-      // home: const SplashScreenView());
-      home: SignInByPhone(),
+      // theme: kLightTheme,
+      // darkTheme: kDarkTheme,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+//  FIXME: add home as HandlerScreen()
+      // home: const HandlerScreen(),
+      home: const SignUpForStudent(),
     );
   }
 }

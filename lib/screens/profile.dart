@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:tutor_group/app%20bar%20and%20drawers/my_profile_appbar.dart';
 import 'package:tutor_group/screens/setting_page.dart';
-import 'package:tutor_group/utils/utils.dart';
+import 'package:tutor_group/widgets/profile_header.dart';
+import 'package:tutor_group/widgets/profile_information.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -15,104 +15,61 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    final utils = Utils();
-    Color color = Theme.of(context).brightness == Brightness.dark
-        ? utils.textWhiteD
-        : utils.textBlackL;
-    final bool isAndroid = GetPlatform.isAndroid;
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-    dynamic data = FirebaseFirestore.instance.collection("Teachers").get();
-    // UserModel user = UserModel.fromSnapShot(data);
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: myHomeAppBar(
-            title: 'Profile',
-            titleColor: isDark ? utils.textWhiteD : utils.textBlackL,
-            backgroundColor: isDark ? utils.backgroundD : utils.backgroundL,
-            actions: [
-              IconButton(
-                highlightColor: Colors.transparent,
-                splashColor: Colors.transparent,
-                onPressed: () {
-                  Get.to(
-                    const Settingsr(),
-                    transition: Transition.cupertino,
-                  );
-                },
-                icon: Icon(
-                  Icons.settings,
-                  color: color,
-                  size: 25,
-                ),
-              ),
-            ]),
+        appBar: AppBar(title: const Text('Profile'), actions: [
+          IconButton(
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            onPressed: () {
+              Get.to(
+                () => const Settingsr(),
+                transition: Transition.cupertino,
+              );
+            },
+            icon: const Icon(
+              Icons.settings,
+              size: 25,
+            ),
+          ),
+        ]),
         body: SizedBox(
           width: double.infinity,
           height: double.infinity,
-          child: Column(
-            children: const [
-              // Expanded(
-              //   child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-              //     future: data,
-              //     builder: ((context, snapshot) {
-              //       // UserModel userModel =
-              //       //     UserModel.fromMap(snapshot.data!.data()!);
-              //       if (snapshot.connectionState == ConnectionState.waiting) {
-              //         return const Center(
-              //           child: CircularProgressIndicator.adaptive(),
-              //         );
-              //       }
-              //       return Column(
-              //         children: const [
-              //           // SizedBox(
-              //           //   height: 150,
-              //           //   child: Image.network(
-              //           //       snapshot.data!.data()!['imageUrl']),
-              //           // // ),
-              //           // Text(snapshot.data!.data()!['name'].toString()),
-              //           // Text(snapshot.data!.data()!['surname'].toString()),
-              //           // Text(snapshot.data!.data()!['email'].toString()),
-              //           // Text(snapshot.data!.data()!['phoneNumber'].toString()),
-              //         ],
-              //       );
-              //     }),
-              //   ),
-              // )
-            ],
+          child: Scrollbar(
+            child: SingleChildScrollView(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    const ProfileHeader(),
+                    SizedBox(height: 0.025 * size.height),
+                    Wrap(
+                      children: [
+                        // FIXME: add bio
+                        SelectableText(
+                          'jhhhhhhhhhhhhhhhhhhhhhyfuccccccccccccccccccccccccccccjddddjssssssssssssssssssssssssssssssssssssssssssssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddddddyucyyyyyyyyyyyyyyyyyyyyyyhhs',
+                          style: bioStyle(),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 0.025 * size.height),
+                    const ProfileInformation(),
+                    const SizedBox(height: 100),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),
     );
   }
+
+  TextStyle bioStyle() {
+    return const TextStyle(fontSize: 13, fontWeight: FontWeight.w400);
+  }
 }
-// Positioned(
-//   top: isAndroid ? 5 : 10,
-//   left: 20,
-//   right: 20,
-//   child: Row(
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: [
-//       const Text(
-//         'Profile',
-//         style:
-//             TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//       ),
-//       const Spacer(),
-//       IconButton(
-//         highlightColor: Colors.transparent,
-//         splashColor: Colors.transparent,
-//         onPressed: () {
-//           Get.to(
-//             () => const Settings(),
-//             transition: Transition.cupertino,
-//           );
-//         },
-//         icon: Icon(
-//           Icons.settings,
-//           color: color,
-//           size: 25,
-//         ),
-//       ),
-//     ],
-//   ),
-// ),

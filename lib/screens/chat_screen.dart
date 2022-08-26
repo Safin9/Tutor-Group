@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/app%20bar%20and%20drawers/my_profile_appbar.dart';
-import 'package:tutor_group/modules/my_custom_themes.dart';
+import 'package:tutor_group/utils/utils.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -11,9 +11,9 @@ class ChatScreen extends StatelessWidget {
     bool isDark = Get.isDarkMode;
     return Scaffold(
       appBar: myHomeAppBar(
-        titleColor: isDark ? utils.textWhiteD : utils.textBlackL,
+        titleColor: isDark ? textWhiteD : textBlackL,
         title: 'Chats',
-        backgroundColor: isDark ? utils.backgroundD : utils.backgroundL,
+        backgroundColor: isDark ? backgroundD : backgroundL,
       ),
       body: SafeArea(
         child: SizedBox(

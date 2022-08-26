@@ -46,6 +46,8 @@ dependencies:
   device_preview: ^1.1.0
   country_pickers: ^2.0.0
   provider: ^6.0.3
+  cached_network_image: ^3.2.1
+  flutter_screenutil: ^1.0.2
 
   # android_gravity can be one of the following Android Gravity (see
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
@@ -154,6 +156,16 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+  fonts:
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/SF-Pro-Text-Thin.otf
+          weight: 100
+        - asset: assets/fonts/SF-Pro-Text-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SF-Pro-Text-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SF-Pro-Text-Bold.otf
+          weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

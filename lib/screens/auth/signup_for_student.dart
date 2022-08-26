@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tutor_group/modules/birthdate_model.dart';
+import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
 import 'package:tutor_group/services/firestore_services.dart';
 import 'package:tutor_group/utils/general_dropdown.dart';
+import 'package:tutor_group/utils/strings.dart';
 
-import '../../modules/user_model.dart';
+import '../../utils/utils.dart';
 
 class SignUpForStudent extends StatefulWidget {
   const SignUpForStudent({Key? key}) : super(key: key);
@@ -21,34 +24,23 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
   TextEditingController? userNameController;
   TextEditingController? passwordConfirmController;
   final signUpFormKey = GlobalKey<FormState>();
-  List<String> citysList = [
-    'Erbil',
-    'Duhok',
-    'Slemmany',
-    'Karkuk',
-    'Zakho',
-    'Halabja'
-  ];
-  List<String> gender = [
-    'Male',
-    'Female',
-  ];
 
-  String? selectedCity = 'Duhok';
-  String? selectedGender = 'Male';
-  DateTime? birthDate;
+  String selectedDay = '0';
+  String selectedMonth = '0';
+  String selectedYear = '0';
+
+  String selectedCity = 'Duhok';
+  String selectedGender = 'Male';
+  Numbers n = Numbers();
   @override
   void initState() {
-    // TODO: implement initState
-
     userNameController = TextEditingController();
+    n.methods();
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     userNameController!.dispose();
     super.dispose();
   }
@@ -57,6 +49,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
   Widget build(BuildContext context) {
     ToolsForLogAndSignup tools = ToolsForLogAndSignup();
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -67,13 +60,13 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
           },
           icon: Icon(
             Icons.arrow_back_ios,
-            color: tools.utils.textBlackL,
+            color: textBlackL,
             size: 20,
           ),
         ),
         title: tools.buldText(
           text: 'Sign Up',
-          color: tools.utils.textBlackL,
+          color: textBlackL,
           size: 20,
           fontWeight: FontWeight.bold,
         ),
@@ -90,10 +83,11 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                   key: signUpFormKey,
                   child: Column(
                     children: [
+                      text(text: 'User Name'),
                       tools.buildTextField(
                         hintText: '',
                         isobsecure: false,
-                        labelText: 'user name',
+                        labelText: '',
                         controller: userNameController,
                         textInputType: TextInputType.name,
                         validator: (value) {
@@ -105,26 +99,23 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                         hint: '',
                       ),
                       SizedBox(height: 0.001 * size.height),
-                      // tools.buildTextField(
-                      //   hint: '',
-                      //   isobsecure: false,
-                      //   labelText: 'email',
-                      //   textInputType: TextInputType.emailAddress,
-                      //   controller: emailController,
-                      //   validator: (value) {
-                      //     String p =
-                      //         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                      //     RegExp regExp = RegExp(p);
-
-                      //     if (!value.isEmpty &&
-                      //         value.length > 6 &&
-                      //         regExp.hasMatch(value)) {
-                      //       return null;
-                      //     }
-                      //     return 'Please enter your email';
-                      //   },
-                      //   hintText: '',
-                      // ),
+                      text(text: 'SurName  (optional)'),
+                      tools.buildTextField(
+                        hintText: '',
+                        isobsecure: false,
+                        labelText: '',
+                        controller: userNameController,
+                        textInputType: TextInputType.name,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
+                        hint: '',
+                      ),
+                      SizedBox(height: 0.001 * size.height),
+                      text(text: 'City'),
                       GeneralDropDownButton(
                           selectedItem: selectedCity,
                           itemsList: citysList,
@@ -134,6 +125,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                             });
                           })),
                       SizedBox(height: 0.03 * size.height),
+                      text(text: 'Gender'),
                       GeneralDropDownButton(
                           selectedItem: selectedGender,
                           itemsList: gender,
@@ -142,21 +134,44 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                               selectedGender = value;
                             });
                           })),
-
-                      SizedBox(height: 0.001 * size.height),
-                      // tools.buildTextField(
-                      //     textInputType: TextInputType.visiblePassword,
-                      //     hint: '',
-                      //     isobsecure: false,
-                      //     labelText: 're-enter password',
-                      //     controller: passwordConfirmController,
-                      //     validator: (value) {
-                      //       if (value == passwordController!.text) {
-                      //         return null;
-                      //       }
-                      //       return 'password does not match';
-                      //     },
-                      //     hintText: ''),
+                      SizedBox(height: 0.05 * size.height),
+                      text(text: 'Birhtdate'),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 25),
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            datePicker(
+                                items: n.days,
+                                sizeWidth: size.width,
+                                valueChanged: (value) {
+                                  setState(() {
+                                    selectedDay = value;
+                                    print('selected day :$selectedDay');
+                                  });
+                                }),
+                            datePicker(
+                                items: n.months,
+                                sizeWidth: size.width,
+                                valueChanged: (value) {
+                                  setState(() {
+                                    selectedMonth = value;
+                                    print('selected month :$selectedMonth');
+                                  });
+                                }),
+                            datePicker(
+                                items: n.years,
+                                sizeWidth: size.width,
+                                valueChanged: (value) {
+                                  setState(() {
+                                    selectedYear = value;
+                                    print('selected year :$selectedYear');
+                                  });
+                                }),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -167,30 +182,29 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                     print(selectedGender);
                     bool isvalid = signUpFormKey.currentState!.validate();
                     if (isvalid) {
-                      // await AuthServices()
-                      //     .createAccountWithEmailAndPasswordForUser(
-                      //         email: emailController!.text.trim(),
-                      //         password: passwordController!.text);
+                      BirthDateModel birthDate = BirthDateModel(
+                          year: int.parse(selectedYear),
+                          day: int.parse(selectedDay),
+                          month: int.parse(selectedMonth));
                       FireStoreService().addUserToDBWithInformationUsers(
-                          userModel: UserModel(
-                              name: userNameController!.text,
-                              createdAt: DateTime.now(),
-                              birthDate: DateTime.now()
-                                  .subtract(const Duration(days: 365)),
-                              currentCity: 'Duhok',
-                              uid: FirebaseAuth.instance.currentUser!.uid,
-                              phone: '7807050300',
-                              surName: 'Saber',
-                              languages: ['Kurdish', 'English', 'Arabic']));
-                      // emailController!.clear();
-                      // passwordController!.clear();
+                          userModel: UserModelReady(
+                        name: userNameController!.text,
+                        createdAt: DateTime.now(),
+                        birthDate: [birthDate],
+                        currentCity: selectedCity,
+                        uid: FirebaseAuth.instance.currentUser!.uid,
+                        phoneNumber:
+                            FirebaseAuth.instance.currentUser!.phoneNumber,
+                        surname: 'Saber',
+                        languages: ['Kurdish', 'English', 'Arabic'],
+                        gender: selectedGender,
+                      ));
                       userNameController!.clear();
-                      // passwordConfirmController!.clear();
                     } else {
                       print('error');
                     }
                   },
-                  color: tools.utils.orangeL,
+                  color: orangeL,
                   child: const Text('Sign Up'),
                   widthP: 0.1 * size.width,
                   heightP: 0.1 * size.width,
@@ -201,5 +215,46 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
         ),
       ),
     );
+  }
+
+  Widget text({required String text}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget datePicker(
+      {required List<String> items,
+      required double sizeWidth,
+      required ValueChanged<String> valueChanged}) {
+    return Container(
+        margin: const EdgeInsets.all(8),
+        width: 0.2 * sizeWidth,
+        child: DropdownButtonFormField<String>(
+          // value: selectedDay ?? items.first,
+          items: items
+              .map((item) => DropdownMenuItem(
+                  value: item,
+                  child: Text(
+                    item,
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  )))
+              .toList(),
+          onChanged: ((value) {
+            valueChanged(value!);
+          }),
+        ));
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
-import 'package:tutor_group/services/auth_services.dart';
 import 'package:tutor_group/utils/utils.dart';
 import 'dart:io';
 
@@ -18,118 +17,120 @@ class _SettingsrState extends State<Settingsr> {
   @override
   Widget build(BuildContext context) {
     final theme = Get.find<ThemeController>();
-    final utils = Utils();
-    AuthServices authServices = AuthServices();
-    Color tileColor = Theme.of(context).brightness == Brightness.dark
-        ? utils.textGreyL
-        : utils.textGreyD;
-    final bool isAndroid = Platform.isAndroid;
-    Color color = Theme.of(context).brightness == Brightness.dark
-        ? utils.textWhiteD
-        : utils.textBlackL;
-    final size = MediaQuery.of(context).size;
+
+    Color tileColor =
+        Theme.of(context).brightness == Brightness.dark ? textGreyL : textGreyD;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+      ),
       body: SafeArea(
-        child: SizedBox(
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 25),
           width: double.infinity,
           height: double.infinity,
-          child: Stack(
-            children: [
-              Positioned(
-                top: 0,
-                left: 10,
-                child: Row(
-                  children: [
-                    IconButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: Icon(
-                        (isAndroid ? Icons.arrow_back : Icons.arrow_back_ios),
-                        color: color,
-                        size: 20,
-                      ),
-                    ),
-                    const Text(
-                      'Settings',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 0.1 * size.height,
-                  left: 0.02 * size.width,
-                  right: 0.02 * size.width,
-                ),
-                child: Expanded(
-                  child: NotificationListener<OverscrollIndicatorNotification>(
-                    onNotification: (notification) {
-                      notification.disallowIndicator();
-                      return true;
-                    },
-                    child: ListView(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: Platform.isAndroid
-                              ? SwitchListTile(
-                                  tileColor: tileColor,
-                                  value: theme.isDark,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      theme.changeTheme(value);
-                                    });
-                                  },
-                                  title: const Text('Dark Mode'),
-                                )
-                              : Container(
-                                  color: tileColor,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, right: 8),
-                                    child: Row(
-                                      children: [
-                                        const Text('Dark Mode'),
-                                        const Spacer(),
-                                        CupertinoSwitch(
-                                            value: theme.isDark,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                theme.changeTheme(value);
-                                              });
-                                            }),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                        ),
-                        myListTile(
-                          tileColor: tileColor,
-                          title: 'Log out',
-                          onTap: () async {
-                            // await authServices.logout();
-                            await FirebaseAuth.instance.signOut();
-                          },
-                        ),
-                        myListTile(
-                          tileColor: tileColor,
-                          title: 'About us',
-                        ),
-                      ],
-                    ),
+          child: Expanded(
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (notification) {
+                notification.disallowIndicator();
+                return true;
+              },
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    child: Platform.isAndroid
+                        ? SwitchListTile(
+                            tileColor: tileColor,
+                            value: theme.isDark,
+                            onChanged: (value) {
+                              setState(() {
+                                theme.changeTheme(value);
+                              });
+                            },
+                            title: const Text('Dark Mode'),
+                          )
+                        : Container(
+                            color: tileColor,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 8.0, right: 8),
+                              child: Row(
+                                children: [
+                                  const Text('Dark Mode'),
+                                  const Spacer(),
+                                  CupertinoSwitch(
+                                      value: theme.isDark,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          theme.changeTheme(value);
+                                        });
+                                      }),
+                                ],
+                              ),
+                            ),
+                          ),
                   ),
-                ),
+                  myListTile(
+                    tileColor: tileColor,
+                    title: 'Log out',
+                    onTap: logout,
+                  ),
+                  myListTile(
+                    tileColor: tileColor,
+                    title: 'About us',
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  logout() {
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return GetPlatform.isAndroid
+              ? AlertDialog(
+                  title: const Text('Log Out'),
+                  content: Wrap(
+                    children: const [Text('Are you sure?')],
+                  ),
+                  actionsAlignment: MainAxisAlignment.spaceEvenly,
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () => Get.back(),
+                        child: const Text('Cancel')),
+                    ElevatedButton(
+                        onPressed: () async {
+                          await FirebaseAuth.instance.signOut();
+                        },
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.red)),
+                        child: const Text('Confirm')),
+                  ],
+                )
+              : CupertinoAlertDialog(
+                  title: const Text('Log Out'),
+                  actions: [
+                    TextButton(
+                        onPressed: () => Get.back(),
+                        child: const Text('Cancel')),
+                    TextButton(
+                        onPressed: () async {
+                          await FirebaseAuth.instance.signOut();
+                        },
+                        style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.red)),
+                        child: const Text('Confirm')),
+                  ],
+                );
+        }));
   }
 
   Padding myListTile({

@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:tutor_group/modules/my_custom_themes.dart';
 import 'package:tutor_group/screens/auth/handler_screen.dart';
 import 'package:tutor_group/screens/chat_screen.dart';
 import 'package:tutor_group/screens/explore_screen.dart';
 import 'package:tutor_group/screens/profile.dart';
+import 'package:tutor_group/utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -57,9 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 return true;
               },
               child: PageView(
-                // physics: const NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _pageController,
-
                 onPageChanged: (value) => setState(
                   () {
                     currentIndex = value;
@@ -79,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
         activeColor: isDark ? Colors.white : Colors.black,
         currentIndex: currentIndex,
         iconSize: 25,
-        backgroundColor: isDark ? utils.botomNavBarD : Colors.white70,
+        backgroundColor: isDark ? botomNavBarD : Colors.white70,
         items: const [
           BottomNavigationBarItem(
             icon: FaIcon(

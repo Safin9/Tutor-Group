@@ -4,50 +4,74 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-class UserModel {
+import 'package:tutor_group/modules/birthdate_model.dart';
+
+class UserModelReady {
   String name;
-  String? surName;
-  String? imageUrl;
-  DateTime createdAt;
-  DateTime birthDate;
-  String? shortBio;
+  String surname;
+  String? email;
+  String? lessonType;
   String currentCity;
-  String? phone;
+  String gender;
   String uid;
+  String? imageUrl;
+  String? phoneNumber;
+  String? shortbio;
+  int? star;
+  DateTime createdAt;
+  List<BirthDateModel>? birthDate;
+  List<String>? education;
   List<String>? languages;
-  DocumentReference? reference;
-  UserModel({
+  UserModelReady({
     required this.name,
-    this.surName,
-    this.imageUrl,
-    required this.createdAt,
-    required this.birthDate,
+    required this.surname,
+    this.email,
+    this.lessonType,
     required this.currentCity,
-    this.phone,
+    required this.gender,
     required this.uid,
+    this.imageUrl,
+    this.phoneNumber,
+    this.shortbio,
+    this.star,
+    required this.createdAt,
+    this.birthDate,
+    this.education,
     this.languages,
   });
 
-  UserModel copyWith({
+  UserModelReady copyWith({
     String? name,
-    String? surName,
-    String? imageUrl,
-    DateTime? createdAt,
-    DateTime? birthDate,
+    String? surname,
+    String? email,
+    String? lessonType,
     String? currentCity,
-    String? phone,
+    String? gender,
     String? uid,
+    String? imageUrl,
+    String? phoneNumber,
+    String? shortbio,
+    int? star,
+    DateTime? createdAt,
+    List<BirthDateModel>? birthDate,
+    List<String>? education,
     List<String>? languages,
   }) {
-    return UserModel(
+    return UserModelReady(
       name: name ?? this.name,
-      surName: surName ?? this.surName,
+      surname: surname ?? this.surname,
+      email: email ?? this.email,
+      lessonType: lessonType ?? this.lessonType,
+      currentCity: currentCity ?? this.currentCity,
+      gender: gender ?? this.gender,
+      uid: uid ?? this.uid,
       imageUrl: imageUrl ?? this.imageUrl,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      shortbio: shortbio ?? this.shortbio,
+      star: star ?? this.star,
       createdAt: createdAt ?? this.createdAt,
       birthDate: birthDate ?? this.birthDate,
-      currentCity: currentCity ?? this.currentCity,
-      phone: phone ?? this.phone,
-      uid: uid ?? this.uid,
+      education: education ?? this.education,
       languages: languages ?? this.languages,
     );
   }
@@ -55,32 +79,55 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
-      'surName': surName,
-      'imageUrl': imageUrl,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'birthDate': birthDate.millisecondsSinceEpoch,
+      'surname': surname,
+      'email': email,
+      'lessonType': lessonType,
       'currentCity': currentCity,
-      'phone': phone,
+      'gender': gender,
       'uid': uid,
+      'imageUrl': imageUrl,
+      'phoneNumber': phoneNumber,
+      'shortbio': shortbio,
+      'star': star,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'birthDate': birthDate!.map((x) => x.toMap()).toList(),
+      'education': education,
       'languages': languages,
     };
   }
 
-  factory UserModel.fromSnapShot(DocumentSnapshot documentSnapshot) {
-    return UserModel.fromMap(documentSnapshot.data() as Map<String, dynamic>,
+  factory UserModelReady.fromSnapShot(DocumentSnapshot documentSnapshot) {
+    return UserModelReady.fromMap(
+        documentSnapshot.data() as Map<String, dynamic>,
         reference: documentSnapshot.reference);
   }
-  factory UserModel.fromMap(Map<String, dynamic> map,
+  factory UserModelReady.fromMap(Map<String, dynamic> map,
       {DocumentReference? reference}) {
-    return UserModel(
+    return UserModelReady(
       name: map['name'] as String,
-      surName: map['surName'] != null ? map['surName'] as String : null,
-      imageUrl: map['imageUrl'] != null ? map['imageUrl'] as String : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      birthDate: DateTime.fromMillisecondsSinceEpoch(map['birthDate'] as int),
+      surname: map['surname'] as String,
+      email: map['email'] != null ? map['email'] as String : null,
+      lessonType:
+          map['lessonType'] != null ? map['lessonType'] as String : null,
       currentCity: map['currentCity'] as String,
-      phone: map['phone'] != null ? map['phone'] as String : null,
+      gender: map['gender'] as String,
       uid: map['uid'] as String,
+      imageUrl: map['imageUrl'] != null ? map['imageUrl'] as String : null,
+      phoneNumber:
+          map['phoneNumber'] != null ? map['phoneNumber'] as String : null,
+      shortbio: map['shortbio'] != null ? map['shortbio'] as String : null,
+      star: map['star'] != null ? map['star'] as int : null,
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      birthDate: map['birthDate'] != null
+          ? List<BirthDateModel>.from(
+              (map['birthDate'] as List<int>).map<BirthDateModel?>(
+                (x) => BirthDateModel.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+      education: map['education'] != null
+          ? List<String>.from((map['education'] as List<String>))
+          : null,
       languages: map['languages'] != null
           ? List<String>.from((map['languages'] as List<String>))
           : null,
@@ -89,39 +136,51 @@ class UserModel {
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModelReady.fromJson(String source) =>
+      UserModelReady.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserModel(name: $name, surName: $surName, imageUrl: $imageUrl, createdAt: $createdAt, birthDate: $birthDate, currentCity: $currentCity, phone: $phone, uid: $uid, languages: $languages)';
+    return 'UserModelReady(name: $name, surname: $surname, email: $email, lessonType: $lessonType, currentCity: $currentCity, gender: $gender, uid: $uid, imageUrl: $imageUrl, phoneNumber: $phoneNumber, shortbio: $shortbio, star: $star, createdAt: $createdAt, birthDate: $birthDate, education: $education, languages: $languages)';
   }
 
   @override
-  bool operator ==(covariant UserModel other) {
+  bool operator ==(covariant UserModelReady other) {
     if (identical(this, other)) return true;
 
     return other.name == name &&
-        other.surName == surName &&
-        other.imageUrl == imageUrl &&
-        other.createdAt == createdAt &&
-        other.birthDate == birthDate &&
+        other.surname == surname &&
+        other.email == email &&
+        other.lessonType == lessonType &&
         other.currentCity == currentCity &&
-        other.phone == phone &&
+        other.gender == gender &&
         other.uid == uid &&
+        other.imageUrl == imageUrl &&
+        other.phoneNumber == phoneNumber &&
+        other.shortbio == shortbio &&
+        other.star == star &&
+        other.createdAt == createdAt &&
+        listEquals(other.birthDate, birthDate) &&
+        listEquals(other.education, education) &&
         listEquals(other.languages, languages);
   }
 
   @override
   int get hashCode {
     return name.hashCode ^
-        surName.hashCode ^
+        surname.hashCode ^
+        email.hashCode ^
+        lessonType.hashCode ^
+        currentCity.hashCode ^
+        gender.hashCode ^
+        uid.hashCode ^
         imageUrl.hashCode ^
+        phoneNumber.hashCode ^
+        shortbio.hashCode ^
+        star.hashCode ^
         createdAt.hashCode ^
         birthDate.hashCode ^
-        currentCity.hashCode ^
-        phone.hashCode ^
-        uid.hashCode ^
+        education.hashCode ^
         languages.hashCode;
   }
 }
