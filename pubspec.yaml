@@ -48,6 +48,7 @@ dependencies:
   provider: ^6.0.3
   cached_network_image: ^3.2.1
   flutter_screenutil: ^1.0.2
+  blurrycontainer: ^1.0.2
 
   # android_gravity can be one of the following Android Gravity (see
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
@@ -131,6 +132,10 @@ flutter:
   assets:
     - assets/images/backgroundbook.png
     - assets/images/tutorlogo.png
+    - assets/images/biology.jpg
+    - assets/images/physic.jpg
+    - assets/images/chemistry.jpg
+    - assets/images/math.jpg
     - assets/svg/teacher.svg
     - assets/lottie/teacher.json
 

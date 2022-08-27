@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tutor_group/modules/user1_model.dart';
+
+import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/auth/sign_by_phone.dart';
 import 'package:tutor_group/screens/auth/signup_for_student.dart';
 import 'package:tutor_group/screens/home_screen.dart';
@@ -16,7 +17,7 @@ class HandlerScreen extends StatefulWidget {
 class _HandlerScreenState extends State<HandlerScreen> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  UserModel? theUser;
+  UserModelReady? theUser;
 
   @override
   Widget build(BuildContext context) {

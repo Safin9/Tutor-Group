@@ -13,7 +13,7 @@ List<String> gender = [
 
 class Numbers {
   methods() {
-    for (var i = 0; i < 32; i++) {
+    for (var i = 1; i < 32; i++) {
       days.add('$i');
     }
     for (var i = 1; i < 13; i++) {

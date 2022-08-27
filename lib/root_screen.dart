@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
-import 'package:tutor_group/screens/auth/signup_for_student.dart';
+import 'package:tutor_group/screens/auth/handler_screen.dart';
 
 import 'package:tutor_group/utils/constant.dart';
 
@@ -21,13 +21,10 @@ class _MyAppState extends State<MyApp> {
       scrollBehavior: const MaterialScrollBehavior(),
       debugShowCheckedModeBanner: false,
       themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
-      // theme: kLightTheme,
-      // darkTheme: kDarkTheme,
       theme: lightTheme,
       darkTheme: darkTheme,
 //  FIXME: add home as HandlerScreen()
-      // home: const HandlerScreen(),
-      home: const SignUpForStudent(),
+      home: const HandlerScreen(),
     );
   }
 }

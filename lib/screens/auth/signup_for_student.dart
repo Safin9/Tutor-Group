@@ -7,7 +7,7 @@ import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart
 import 'package:tutor_group/services/firestore_services.dart';
 import 'package:tutor_group/utils/general_dropdown.dart';
 import 'package:tutor_group/utils/strings.dart';
-
+import 'package:intl/intl.dart';
 import '../../utils/utils.dart';
 
 class SignUpForStudent extends StatefulWidget {
@@ -22,6 +22,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
   TextEditingController? emailController;
   TextEditingController? passwordController;
   TextEditingController? userNameController;
+  TextEditingController? surnameController;
   TextEditingController? passwordConfirmController;
   final signUpFormKey = GlobalKey<FormState>();
 
@@ -35,6 +36,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
   @override
   void initState() {
     userNameController = TextEditingController();
+    surnameController = TextEditingController();
     n.methods();
     super.initState();
   }
@@ -42,6 +44,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
   @override
   void dispose() {
     userNameController!.dispose();
+    surnameController!.dispose();
     super.dispose();
   }
 
@@ -80,6 +83,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Form(
+                  // FIXME: complete the signup for student
                   key: signUpFormKey,
                   child: Column(
                     children: [
@@ -104,12 +108,9 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                         hintText: '',
                         isobsecure: false,
                         labelText: '',
-                        controller: userNameController,
+                        controller: surnameController,
                         textInputType: TextInputType.name,
                         validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter your name';
-                          }
                           return null;
                         },
                         hint: '',
@@ -178,30 +179,34 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                 SizedBox(height: 0.001 * size.height),
                 tools.buildButton(
                   onPressed: () async {
-                    print(selectedCity);
-                    print(selectedGender);
                     bool isvalid = signUpFormKey.currentState!.validate();
                     if (isvalid) {
+                      DateTime now = DateTime.now();
+
+                      final formatter = DateFormat('yyyy-MM-dd');
+                      final String formatted = formatter.format(now);
                       BirthDateModel birthDate = BirthDateModel(
                           year: int.parse(selectedYear),
                           day: int.parse(selectedDay),
                           month: int.parse(selectedMonth));
                       FireStoreService().addUserToDBWithInformationUsers(
                           userModel: UserModelReady(
+                        tacherOrStudent: 'Student',
                         name: userNameController!.text,
-                        createdAt: DateTime.now(),
-                        birthDate: [birthDate],
+                        createdAt: formatted,
+                        birthDate: birthDate.toMap(),
                         currentCity: selectedCity,
                         uid: FirebaseAuth.instance.currentUser!.uid,
                         phoneNumber:
                             FirebaseAuth.instance.currentUser!.phoneNumber,
-                        surname: 'Saber',
-                        languages: ['Kurdish', 'English', 'Arabic'],
+                        surname: surnameController!.text.trim(),
+                        languages: [''],
                         gender: selectedGender,
                       ));
                       userNameController!.clear();
                     } else {
-                      print('error');
+                      Get.snackbar('title', 'Please Enter missing information',
+                          backgroundColor: Colors.white);
                     }
                   },
                   color: orangeL,
@@ -241,6 +246,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
         margin: const EdgeInsets.all(8),
         width: 0.2 * sizeWidth,
         child: DropdownButtonFormField<String>(
+          value: items.first,
           // value: selectedDay ?? items.first,
           items: items
               .map((item) => DropdownMenuItem(

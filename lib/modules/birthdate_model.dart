@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BirthDateModel {
   int year;
   int month;
@@ -31,7 +33,13 @@ class BirthDateModel {
     };
   }
 
-  factory BirthDateModel.fromMap(Map<String, dynamic> map) {
+  factory BirthDateModel.fromSnapShot(DocumentSnapshot documentSnapshot) {
+    return BirthDateModel.fromMap(
+        documentSnapshot.data() as Map<String, dynamic>,
+        reference: documentSnapshot.reference);
+  }
+  factory BirthDateModel.fromMap(Map<String, dynamic> map,
+      {DocumentReference? reference}) {
     return BirthDateModel(
       year: map['year'] as int,
       month: map['month'] as int,

@@ -2,9 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-
-import 'package:tutor_group/modules/birthdate_model.dart';
+import 'package:collection/collection.dart';
 
 class UserModelReady {
   String name;
@@ -17,9 +15,10 @@ class UserModelReady {
   String? imageUrl;
   String? phoneNumber;
   String? shortbio;
+  String? tacherOrStudent;
   int? star;
-  DateTime createdAt;
-  List<BirthDateModel>? birthDate;
+  String createdAt;
+  Map<String, dynamic>? birthDate;
   List<String>? education;
   List<String>? languages;
   UserModelReady({
@@ -33,6 +32,7 @@ class UserModelReady {
     this.imageUrl,
     this.phoneNumber,
     this.shortbio,
+    this.tacherOrStudent,
     this.star,
     required this.createdAt,
     this.birthDate,
@@ -51,9 +51,10 @@ class UserModelReady {
     String? imageUrl,
     String? phoneNumber,
     String? shortbio,
+    String? tacherOrStudent,
     int? star,
-    DateTime? createdAt,
-    List<BirthDateModel>? birthDate,
+    String? createdAt,
+    Map<String, dynamic>? birthDate,
     List<String>? education,
     List<String>? languages,
   }) {
@@ -68,6 +69,7 @@ class UserModelReady {
       imageUrl: imageUrl ?? this.imageUrl,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       shortbio: shortbio ?? this.shortbio,
+      tacherOrStudent: tacherOrStudent ?? this.tacherOrStudent,
       star: star ?? this.star,
       createdAt: createdAt ?? this.createdAt,
       birthDate: birthDate ?? this.birthDate,
@@ -88,13 +90,15 @@ class UserModelReady {
       'imageUrl': imageUrl,
       'phoneNumber': phoneNumber,
       'shortbio': shortbio,
+      'tacherOrStudent': tacherOrStudent,
       'star': star,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'birthDate': birthDate!.map((x) => x.toMap()).toList(),
+      'createdAt': createdAt,
+      'birthDate': birthDate,
       'education': education,
       'languages': languages,
     };
   }
+  // factory from document snapshot
 
   factory UserModelReady.fromSnapShot(DocumentSnapshot documentSnapshot) {
     return UserModelReady.fromMap(
@@ -116,20 +120,21 @@ class UserModelReady {
       phoneNumber:
           map['phoneNumber'] != null ? map['phoneNumber'] as String : null,
       shortbio: map['shortbio'] != null ? map['shortbio'] as String : null,
+      tacherOrStudent: map['tacherOrStudent'] != null
+          ? map['tacherOrStudent'] as String
+          : null,
       star: map['star'] != null ? map['star'] as int : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      createdAt: map['createdAt'] as String,
+      // createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
       birthDate: map['birthDate'] != null
-          ? List<BirthDateModel>.from(
-              (map['birthDate'] as List<int>).map<BirthDateModel?>(
-                (x) => BirthDateModel.fromMap(x as Map<String, dynamic>),
-              ),
-            )
+          ? Map<String, dynamic>.from(
+              (map['birthDate'] as Map<String, dynamic>))
           : null,
       education: map['education'] != null
           ? List<String>.from((map['education'] as List<String>))
           : null,
       languages: map['languages'] != null
-          ? List<String>.from((map['languages'] as List<String>))
+          ? List<String>.from((map['languages'] as List<dynamic>))
           : null,
     );
   }
@@ -141,12 +146,13 @@ class UserModelReady {
 
   @override
   String toString() {
-    return 'UserModelReady(name: $name, surname: $surname, email: $email, lessonType: $lessonType, currentCity: $currentCity, gender: $gender, uid: $uid, imageUrl: $imageUrl, phoneNumber: $phoneNumber, shortbio: $shortbio, star: $star, createdAt: $createdAt, birthDate: $birthDate, education: $education, languages: $languages)';
+    return 'UserModelReady(name: $name, surname: $surname, email: $email, lessonType: $lessonType, currentCity: $currentCity, gender: $gender, uid: $uid, imageUrl: $imageUrl, phoneNumber: $phoneNumber, shortbio: $shortbio, tacherOrStudent: $tacherOrStudent, star: $star, createdAt: $createdAt, birthDate: $birthDate, education: $education, languages: $languages)';
   }
 
   @override
   bool operator ==(covariant UserModelReady other) {
     if (identical(this, other)) return true;
+    final collectionEquals = const DeepCollectionEquality().equals;
 
     return other.name == name &&
         other.surname == surname &&
@@ -158,11 +164,12 @@ class UserModelReady {
         other.imageUrl == imageUrl &&
         other.phoneNumber == phoneNumber &&
         other.shortbio == shortbio &&
+        other.tacherOrStudent == tacherOrStudent &&
         other.star == star &&
         other.createdAt == createdAt &&
-        listEquals(other.birthDate, birthDate) &&
-        listEquals(other.education, education) &&
-        listEquals(other.languages, languages);
+        collectionEquals(other.birthDate, birthDate) &&
+        collectionEquals(other.education, education) &&
+        collectionEquals(other.languages, languages);
   }
 
   @override
@@ -177,6 +184,7 @@ class UserModelReady {
         imageUrl.hashCode ^
         phoneNumber.hashCode ^
         shortbio.hashCode ^
+        tacherOrStudent.hashCode ^
         star.hashCode ^
         createdAt.hashCode ^
         birthDate.hashCode ^
