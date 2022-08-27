@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
-import 'package:tutor_group/screens/teacher%20Card/teacher_card.dart';
+import 'package:tutor_group/widgets/teacher_card.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);

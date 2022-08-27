@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tutor_group/screens/setting_page.dart';
+import 'package:tutor_group/screens/home/setting_page.dart';
 import 'package:tutor_group/widgets/profile_header.dart';
 import 'package:tutor_group/widgets/profile_information.dart';
 

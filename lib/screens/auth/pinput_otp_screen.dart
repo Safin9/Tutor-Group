@@ -6,9 +6,9 @@ import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:tutor_group/providers/phone_code_provider.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
-import 'package:tutor_group/screens/home_screen.dart';
+import 'package:tutor_group/screens/home/home_screen.dart';
+
 import 'package:tutor_group/services/auth_services.dart';
-import 'package:tutor_group/utils/utils.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);

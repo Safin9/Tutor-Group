@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:tutor_group/screens/home_screen.dart';
+import 'package:tutor_group/screens/home/home_screen.dart';
 
 class TeacherAuthServices {
   FirebaseAuth auth = FirebaseAuth.instance;

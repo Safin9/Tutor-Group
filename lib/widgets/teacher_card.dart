@@ -1,4 +1,5 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/modules/birthdate_model.dart';
@@ -14,6 +15,10 @@ class TeacherCard extends StatelessWidget {
     final year = DateTime.now().year.toInt();
     final age = year - birth.year;
     final size = MediaQuery.of(context).size;
+
+    final String img = user.imageUrl!.replaceAll("/", "%2F");
+    final String userImage =
+        'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$img?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: 0.05 * size.width, vertical: 0.04 * size.height),
@@ -61,15 +66,24 @@ class TeacherCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: CircleAvatar(
-                            // FIXME: add teacher image
-                            radius: 0.15 * size.width,
-                            backgroundImage:
-                                const AssetImage('assets/images/tutorlogo.png'),
+                        if (user.imageUrl!.isEmpty || user.imageUrl == null)
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: CircleAvatar(
+                              radius: 0.15 * size.width,
+                              backgroundImage: const AssetImage(
+                                  'assets/images/tutorlogo.png'),
+                            ),
+                          )
+                        else
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: CircleAvatar(
+                              radius: 0.15 * size.width,
+                              backgroundImage:
+                                  CachedNetworkImageProvider(userImage),
+                            ),
                           ),
-                        ),
                         SizedBox(
                           width: size.width * 0.1,
                         ),
@@ -95,6 +109,8 @@ class TeacherCard extends StatelessWidget {
                           subjectPic(name: 'biology', sizeWidth: size.width)
                         else if (user.lessonType == 'Mathematics')
                           subjectPic(name: 'math', sizeWidth: size.width)
+                        else if (user.lessonType == 'Chemistry')
+                          subjectPic(name: 'chemistry', sizeWidth: size.width)
                         else
                           Container(),
                       ],

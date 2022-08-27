@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/auth/sign_by_phone.dart';
 import 'package:tutor_group/screens/auth/signup_for_student.dart';
-import 'package:tutor_group/screens/home_screen.dart';
+import 'package:tutor_group/screens/home/home_screen.dart';
 
 class HandlerScreen extends StatefulWidget {
   const HandlerScreen({Key? key}) : super(key: key);

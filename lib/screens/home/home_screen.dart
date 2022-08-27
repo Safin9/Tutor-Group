@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/screens/auth/handler_screen.dart';
-import 'package:tutor_group/screens/chat_screen.dart';
-import 'package:tutor_group/screens/explore_screen.dart';
-import 'package:tutor_group/screens/profile.dart';
+import 'package:tutor_group/screens/home/chat_screen.dart';
+import 'package:tutor_group/screens/home/explore_screen.dart';
+import 'package:tutor_group/screens/home/profile.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
