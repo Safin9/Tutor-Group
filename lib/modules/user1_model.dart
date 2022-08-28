@@ -66,7 +66,8 @@ class UserModel {
     };
   }
 
-  factory UserModel.fromSnapShot(DocumentSnapshot documentSnapshot) {
+  factory UserModel.fromSnapShot(
+      DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     return UserModel.fromMap(documentSnapshot.data() as Map<String, dynamic>,
         reference: documentSnapshot.reference);
   }

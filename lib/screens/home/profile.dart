@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:tutor_group/modules/user_model.dart';
+import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/home/setting_page.dart';
 import 'package:tutor_group/widgets/profile_header.dart';
 import 'package:tutor_group/widgets/profile_information.dart';
@@ -16,6 +19,8 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final UserModelReady user =
+        Provider.of<UserProvider>(context, listen: false).theUser!;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title: const Text('Profile'), actions: [
@@ -49,15 +54,20 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 0.025 * size.height),
                     Wrap(
                       children: [
-                        // FIXME: add bio
-                        SelectableText(
-                          'jhhhhhhhhhhhhhhhhhhhhhyfuccccccccccccccccccccccccccccjddddjssssssssssssssssssssssssssssssssssssssssssssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddddddyucyyyyyyyyyyyyyyyyyyyyyyhhs',
-                          style: bioStyle(),
-                        ),
+                        user.tacherOrStudent! == 'Teacher'
+                            ? user.shortbio != null
+                                ? SelectableText(
+                                    user.shortbio.toString(),
+                                    style: bioStyle(),
+                                  )
+                                : Container()
+                            : Container()
                       ],
                     ),
                     SizedBox(height: 0.025 * size.height),
-                    const ProfileInformation(),
+                    user.tacherOrStudent! == 'Teacher'
+                        ? const ProfileInformation()
+                        : Container(),
                     const SizedBox(height: 100),
                   ],
                 ),

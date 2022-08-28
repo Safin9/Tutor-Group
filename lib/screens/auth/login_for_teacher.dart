@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tutor_group/services/teacher_auth_service.dart';
+import 'package:tutor_group/screens/auth/handler_for_teacher.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 import 'tools/login_and_signup_text_fields.dart';
@@ -98,12 +99,24 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                       },
                       hintText: ''),
                   tools.buildButton(
-                    onPressed: () {
+                    onPressed: () async {
                       bool isvalid = _loginFormKey.currentState!.validate();
                       if (isvalid) {
-                        TeacherAuthServices().signIn(
-                            email: _emailController!.text,
-                            password: _passwordController!.text);
+                        try {
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: _emailController!.text.trim(),
+                                  password: _passwordController!.text)
+                              .then((value) {
+                            // TODO: create a handler screen for teacher
+                            // final user=UserModelReady.fromSnapShot(value.)
+                            // Provider.of<UserProvider>(context).setUser(user)
+                            Get.snackbar('success', 'Logged in');
+                            Get.offAll(() => const HandlerScreenForTeacher());
+                          });
+                        } catch (e) {
+                          Get.snackbar('error', e.toString());
+                        }
                         print(isvalid);
                         print(_emailController!.text);
 

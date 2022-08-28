@@ -1,4 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tutor_group/modules/user_model.dart';
+import 'package:tutor_group/providers/user_provider.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({Key? key}) : super(key: key);
@@ -6,36 +10,47 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final UserModelReady user =
+        Provider.of<UserProvider>(context, listen: false).theUser!;
+    String? userImage;
+    if (user.imageUrl != null) {
+      final String image = user.imageUrl!.replaceAll("/", "%2F");
+      userImage =
+          'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
+    } else {
+      userImage = null;
+    }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const CircleAvatar(
-          radius: 42,
-          // FIXME: add profile picture here
-          // FIXME: use cachedNetworkImage instead
-          backgroundImage: AssetImage('assets/images/tutorlogo.png'),
-        ),
+        if (userImage == null)
+          Align(
+            alignment: Alignment.topLeft,
+            child: CircleAvatar(
+              radius: 0.15 * size.width,
+              backgroundImage: const AssetImage('assets/images/tutorlogo.png'),
+            ),
+          )
+        else
+          Align(
+            alignment: Alignment.topLeft,
+            child: CircleAvatar(
+              radius: 0.15 * size.width,
+              backgroundImage: CachedNetworkImageProvider(userImage),
+            ),
+          ),
         SizedBox(width: 0.025 * size.width),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              // FIXME: add profile picture here
-              'Add here the full name',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(height: 0.01 * size.height),
-            const SelectableText(
-              // FIXME: add profile picture here
-              'add email here if exist',
-              style: TextStyle(
-                fontSize: 10,
-                // FIXME: fontweight.w200
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text(user.createdAt),
+            Text(user.name),
+            Text(user.surname),
+            Text(user.gender),
+            Text(user.tacherOrStudent!),
+            // Text(user.imageUrl.toString()),
+            user.lessonType != null ? Text(user.lessonType!) : Container(),
           ],
-        ),
+        )
       ],
     );
   }

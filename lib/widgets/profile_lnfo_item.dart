@@ -30,7 +30,8 @@ class ProfileListItem extends StatelessWidget {
               style:
                   const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
           const SizedBox(width: 10),
-          Text(desc, style: const TextStyle(fontSize: 14))
+          Text(desc,
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold))
         ]),
       ),
     );

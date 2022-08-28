@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:tutor_group/firebase_options.dart';
 import 'package:tutor_group/providers/phone_code_provider.dart';
+import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/root_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -20,6 +21,9 @@ void main() async {
     MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => TestProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => UserProvider(),
       )
     ], child: const MyApp()),
   );

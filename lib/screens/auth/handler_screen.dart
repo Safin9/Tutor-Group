@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:tutor_group/modules/user_model.dart';
+import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/auth/sign_by_phone.dart';
 import 'package:tutor_group/screens/auth/signup_for_student.dart';
 import 'package:tutor_group/screens/home/home_screen.dart';
@@ -55,6 +57,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
                     !snapshotFromFuture.data!.exists) {
                   return const SignUpForStudent();
                 } else {
+                  setUser(snapshot.data!);
                   return const HomeScreen();
                 }
               });
@@ -63,15 +66,13 @@ class _HandlerScreenState extends State<HandlerScreen> {
     );
   }
 
-  // Future<UserModel> getUser(User user) async {
-  //   UserModel theUser = await FirebaseFirestore.instance
-  //       .collection('Users')
-  //       .doc(user.uid)
-  //       .get()
-  //       .then((value) => UserModel.fromSnapShot(value));
+  setUser(User user) async {
+    UserModelReady theUser = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(user.uid)
+        .get()
+        .then((value) => UserModelReady.fromSnapShot(value));
 
-  //   Provider.of<UserProvider>(context, listen: false).setWeCodeUser(theUser);
-
-  //   return theUser;
-  // }
+    Provider.of<UserProvider>(context, listen: false).setUser(theUser);
+  }
 }
