@@ -15,10 +15,10 @@ class TeacherCard extends StatelessWidget {
     final year = DateTime.now().year.toInt();
     final age = year - birth.year;
     final size = MediaQuery.of(context).size;
-
-    final String img = user.imageUrl!.replaceAll("/", "%2F");
+// this is the format of getting image by url
+    final String image = user.imageUrl!.replaceAll("/", "%2F");
     final String userImage =
-        'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$img?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
+        'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: 0.05 * size.width, vertical: 0.04 * size.height),
