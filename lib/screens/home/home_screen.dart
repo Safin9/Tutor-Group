@@ -24,11 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _pageController = PageController();
     // to listen signing events
+    //  this is how to listen signout events
     FirebaseAuth.instance.authStateChanges().listen((event) {
       if (event == null) {
         Get.offAll(() => const HandlerScreen());
       }
     });
+
     super.initState();
   }
 
