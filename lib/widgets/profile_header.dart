@@ -13,7 +13,7 @@ class ProfileHeader extends StatelessWidget {
     final UserModelReady user =
         Provider.of<UserProvider>(context, listen: false).theUser!;
     String? userImage;
-    if (user.imageUrl != null) {
+    if (user.imageUrl != null && user.imageUrl != "") {
       final String image = user.imageUrl!.replaceAll("/", "%2F");
       userImage =
           'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';

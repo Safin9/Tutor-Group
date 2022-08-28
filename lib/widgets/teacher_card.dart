@@ -26,7 +26,9 @@ class TeacherCard extends StatelessWidget {
           blur: 5,
           height: 0.6 * size.height,
           width: 0.6 * size.width,
-          color: Colors.grey.withOpacity(0.11),
+          color: Get.isDarkMode
+              ? Colors.grey.withOpacity(0.11)
+              : Colors.white.withOpacity(0.11),
           borderRadius: const BorderRadius.all(Radius.circular(25)),
           child: Stack(
             children: [
@@ -47,7 +49,7 @@ class TeacherCard extends StatelessWidget {
                               begin: Alignment.bottomCenter,
                               end: Alignment.topCenter,
                               colors: [
-                                  Colors.white,
+                                  Color.fromARGB(255, 171, 200, 224),
                                   Colors.transparent,
                                 ]),
                       color: Get.isDarkMode
@@ -108,9 +110,17 @@ class TeacherCard extends StatelessWidget {
                         if (user.lessonType == 'Biology')
                           subjectPic(name: 'biology', sizeWidth: size.width)
                         else if (user.lessonType == 'Mathematics')
-                          subjectPic(name: 'math', sizeWidth: size.width)
+                          subjectPic(name: 'maths', sizeWidth: size.width)
                         else if (user.lessonType == 'Chemistry')
                           subjectPic(name: 'chemistry', sizeWidth: size.width)
+                        else if (user.lessonType == 'Arabic')
+                          subjectPic(name: 'arabic', sizeWidth: size.width)
+                        else if (user.lessonType == 'Physics')
+                          subjectPic(name: 'physics', sizeWidth: size.width)
+                        else if (user.lessonType == 'Kurdish')
+                          subjectPic(name: 'kurdish', sizeWidth: size.width)
+                        else if (user.lessonType == 'English')
+                          subjectPic(name: 'english', sizeWidth: size.width)
                         else
                           Container(),
                       ],

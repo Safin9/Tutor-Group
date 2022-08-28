@@ -132,10 +132,13 @@ flutter:
   assets:
     - assets/images/backgroundbook.png
     - assets/images/tutorlogo.png
+    - assets/images/maths.jpg
     - assets/images/biology.jpg
-    - assets/images/physic.jpg
+    - assets/images/physics.jpg
+    - assets/images/english.jpg
     - assets/images/chemistry.jpg
-    - assets/images/math.jpg
+    - assets/images/kurdish.jpg
+    - assets/images/arabic.jpg
     - assets/svg/teacher.svg
     - assets/lottie/teacher.json
 
