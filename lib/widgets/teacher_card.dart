@@ -2,7 +2,6 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tutor_group/modules/birthdate_model.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/utils/constant.dart';
 
@@ -11,14 +10,17 @@ class TeacherCard extends StatelessWidget {
   final UserModelReady user;
   @override
   Widget build(BuildContext context) {
-    final birth = BirthDateModel.fromMap(user.birthDate ?? {'': ''});
-    final year = DateTime.now().year.toInt();
-    final age = year - birth.year;
     final size = MediaQuery.of(context).size;
+    final String? userImage;
 // this is the format of getting image by url
-    final String image = user.imageUrl!.replaceAll("/", "%2F");
-    final String userImage =
-        'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
+    if (user.imageUrl != null || user.imageUrl!.isNotEmpty) {
+      final String image = user.imageUrl!.replaceAll("/", "%2F");
+      userImage =
+          'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
+    } else {
+      userImage = null;
+    }
+
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: 0.05 * size.width, vertical: 0.04 * size.height),
@@ -83,7 +85,7 @@ class TeacherCard extends StatelessWidget {
                             child: CircleAvatar(
                               radius: 0.15 * size.width,
                               backgroundImage:
-                                  CachedNetworkImageProvider(userImage),
+                                  CachedNetworkImageProvider(userImage!),
                             ),
                           ),
                         SizedBox(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tutor_group/modules/user_model.dart';
+import 'package:tutor_group/screens/chats/chat_page.dart';
 
 class SendMessageButton extends StatelessWidget {
   const SendMessageButton({Key? key, required this.user}) : super(key: key);
@@ -9,6 +11,9 @@ class SendMessageButton extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return ElevatedButton(
       onPressed: () {
+        Get.to(() => ChatPage(
+              friendUser: user,
+            ));
         print(user.name);
       },
       style: ButtonStyle(

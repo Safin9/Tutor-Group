@@ -163,6 +163,11 @@ class TeacherProfileDetails extends StatelessWidget {
                           title: 'Age  :',
                           desc: '$age     years old',
                           sizeWidth: size.width),
+                      const SizedBox(height: 25),
+                      text(
+                          title: 'Phone  :',
+                          desc: user.phoneNumber,
+                          sizeWidth: size.width),
                       const SizedBox(height: 120),
                       Center(
                           child: Text('Joined Tutor at    ${user.createdAt}'))
