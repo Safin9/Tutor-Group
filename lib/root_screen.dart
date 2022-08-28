@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
-import 'package:tutor_group/screens/auth/handler_screen.dart';
+import 'package:tutor_group/screens/auth/main_handler.dart';
 
 import 'package:tutor_group/utils/constant.dart';
 
@@ -23,8 +23,9 @@ class _MyAppState extends State<MyApp> {
       themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
       theme: lightTheme,
       darkTheme: darkTheme,
-//  FIXME: add home as HandlerScreen()
-      home: const HandlerScreen(),
+      //FIXME: it should be the MainHandler as home of GetMaterialApp
+      home: const MainHandler(),
+      // home:  TeacherProfileDetails(),
     );
   }
 }

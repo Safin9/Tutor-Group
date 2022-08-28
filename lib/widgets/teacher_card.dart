@@ -24,7 +24,7 @@ class TeacherCard extends StatelessWidget {
           horizontal: 0.05 * size.width, vertical: 0.04 * size.height),
       child: BlurryContainer(
           blur: 5,
-          height: 0.6 * size.height,
+          height: 0.4 * size.height,
           width: 0.6 * size.width,
           color: Get.isDarkMode
               ? Colors.grey.withOpacity(0.11)
@@ -93,14 +93,6 @@ class TeacherCard extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    cardItem(
-                        title: 'Gender:',
-                        info: user.gender,
-                        sizeWidth: size.width),
-                    cardItem(
-                        title: 'Age:',
-                        info: age.toString(),
-                        sizeWidth: size.width),
                     Row(
                       children: [
                         cardItem(

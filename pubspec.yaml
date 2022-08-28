@@ -49,6 +49,7 @@ dependencies:
   cached_network_image: ^3.2.1
   flutter_screenutil: ^1.0.2
   blurrycontainer: ^1.0.2
+  background_app_bar: ^2.0.1
 
   # android_gravity can be one of the following Android Gravity (see
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,

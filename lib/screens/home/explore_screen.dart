@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
+import 'package:tutor_group/screens/chats/teacher_profile_details.dart';
 import 'package:tutor_group/widgets/teacher_card.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -59,7 +60,10 @@ class ExploreScreen extends StatelessWidget {
                         itemBuilder: ((context, index) {
                           final theUser = snapshot.data!.docs[index];
                           final user = UserModelReady.fromSnapShot(theUser);
-                          return TeacherCard(user: user);
+                          return GestureDetector(
+                              onTap: (() => Get.to(
+                                  () => TeacherProfileDetails(user: user))),
+                              child: TeacherCard(user: user));
                         }),
                       ),
                     );
