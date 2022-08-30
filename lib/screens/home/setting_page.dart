@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
 import 'package:tutor_group/utils/utils.dart';
-import 'dart:io';
 
 class Settingsr extends StatefulWidget {
   const Settingsr({Key? key}) : super(key: key);
@@ -36,38 +35,17 @@ class _SettingsrState extends State<Settingsr> {
           child: ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8),
-                child: Platform.isAndroid
-                    ? SwitchListTile(
-                        tileColor: tileColor,
-                        value: theme.isDark,
-                        onChanged: (value) {
-                          setState(() {
-                            theme.changeTheme(value);
-                          });
-                        },
-                        title: const Text('Dark Mode'),
-                      )
-                    : Container(
-                        color: tileColor,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: Row(
-                            children: [
-                              const Text('Dark Mode'),
-                              const Spacer(),
-                              CupertinoSwitch(
-                                  value: theme.isDark,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      theme.changeTheme(value);
-                                    });
-                                  }),
-                            ],
-                          ),
-                        ),
-                      ),
-              ),
+                  padding: const EdgeInsets.only(left: 8.0, right: 8),
+                  child: SwitchListTile.adaptive(
+                    tileColor: tileColor,
+                    value: theme.isDark,
+                    onChanged: (value) {
+                      setState(() {
+                        theme.changeTheme(value);
+                      });
+                    },
+                    title: const Text('Dark Mode'),
+                  )),
               myListTile(
                 tileColor: tileColor,
                 title: 'Log out',
