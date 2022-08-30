@@ -22,7 +22,7 @@ class ChatServices {
 
     final MessageModel message = MessageModel(
         message:
-            'Hello I am ffffffff ${currentUser.name}to  ${friendUser.name}',
+            'chdkay neeeeeeewwwwwwwwwwwwww hhh ${currentUser.name}to  ${friendUser.name}',
         theSendersName: currentUser.name,
         theSenderUid: currentUser.uid);
     final ChatModel chat = ChatModel(
@@ -32,7 +32,7 @@ class ChatServices {
         friendName: friendUser.name,
         message: [message]);
     await firestore
-        .collection('Chats/${currentUser.uid}/Messages/${friendUser.uid}/Texts')
+        .collection('Messages/${friendUser.uid}/Texts')
         // .doc(friendUser.uid)
         // .set(chat.toMap())
         .add(chat.toMap())

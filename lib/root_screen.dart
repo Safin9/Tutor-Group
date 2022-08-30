@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: darkTheme,
       //FIXME: it should be the MainHandler as home of GetMaterialApp
       home: const MainHandler(),
-      // home:  TeacherProfileDetails(),
+      // home: SignInByPhone(),
     );
   }
 }

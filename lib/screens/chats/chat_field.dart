@@ -59,9 +59,7 @@ class _ChatFieldState extends State<ChatField> {
                       focusNode: myFocusNode,
                       keyboardType: TextInputType.multiline,
                       textInputAction: TextInputAction.send,
-                      onSubmitted: ((value) {
-                        print(value);
-                      }),
+                      onSubmitted: ((value) {}),
                       keyboardAppearance:
                           Get.isDarkMode ? Brightness.dark : Brightness.light,
                       decoration: const InputDecoration(

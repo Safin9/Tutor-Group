@@ -57,7 +57,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
                     !snapshotFromFuture.data!.exists) {
                   return const SignUpForStudent();
                 } else {
-                  setUser(snapshot.data!);
+                  setUser(user: snapshot.data!, context: context);
                   return const HomeScreen();
                 }
               });
@@ -66,7 +66,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
     );
   }
 
-  Future setUser(User user) async {
+  Future setUser({required User user, required BuildContext context}) async {
     UserModelReady theUser = await FirebaseFirestore.instance
         .collection('Users')
         .doc(user.uid)

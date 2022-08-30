@@ -7,7 +7,7 @@ class UserProvider extends ChangeNotifier {
 
   setUser(UserModelReady user) {
     theUser = user;
-    debugPrint('from provider : $theUser');
+
     notifyListeners();
   }
 }

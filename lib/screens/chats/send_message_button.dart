@@ -14,7 +14,6 @@ class SendMessageButton extends StatelessWidget {
         Get.to(() => ChatPage(
               friendUser: user,
             ));
-        print(user.name);
       },
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),

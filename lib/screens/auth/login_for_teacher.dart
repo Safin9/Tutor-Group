@@ -44,14 +44,13 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
         backgroundColor: Colors.transparent,
         title: tools.buldText(
           text: 'Teacher Sign In',
-          color: textBlackL,
+          color: Get.isDarkMode ? textWhiteD : textBlackL,
           size: 20,
           fontWeight: FontWeight.bold,
         ),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
           ),
           onPressed: () => Get.back(),
         ),
@@ -117,16 +116,10 @@ class _LogInForTeachreState extends State<LogInForTeachre> {
                         } catch (e) {
                           Get.snackbar('error', e.toString());
                         }
-                        print(isvalid);
-                        print(_emailController!.text);
-
-                        print(_passwordController!.text);
 
                         _emailController!.clear();
                         _passwordController!.clear();
-                      } else {
-                        print('error');
-                      }
+                      } else {}
                     },
                     color: blueL,
                     child: const Text('Sign In'),

@@ -30,7 +30,7 @@ class _OtpScreenState extends State<OtpScreen> {
   void initState() {
     _pinOtpController = TextEditingController();
     _pinOtpFocusNode = FocusNode();
-    debugPrint(context.read<TestProvider>().finalNumber);
+
     verificationphone();
     super.initState();
   }
@@ -57,7 +57,6 @@ class _OtpScreenState extends State<OtpScreen> {
       verificationFailed: ((error) {
         Get.snackbar('Error', error.toString(),
             duration: const Duration(seconds: 60));
-        debugPrint(error.toString());
       }),
       codeSent: ((vID, resendToken) {
         setState(() {

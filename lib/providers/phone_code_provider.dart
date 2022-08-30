@@ -7,16 +7,13 @@ class TestProvider extends ChangeNotifier {
   String? verificationCode;
   method({required int number}) {
     n = number;
-    debugPrint('from provider: $n');
+
     notifyListeners();
   }
 
   String finalPhoneNumber({required String number}) {
     finalNumber = n.toString() + number;
     phonenumber = number;
-    debugPrint('from provider full number: $finalNumber ');
-    debugPrint('from provider code: $n');
-    debugPrint('from provider number: $number ');
 
     notifyListeners();
     return finalNumber!;

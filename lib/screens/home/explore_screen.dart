@@ -11,7 +11,6 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isAndroid = GetPlatform.isAndroid;
     final bool isDark = Get.isDarkMode;
     return Scaffold(
       appBar: AppBar(
@@ -30,6 +29,7 @@ class ExploreScreen extends StatelessWidget {
               StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
                     .collection('Teachers')
+                    // .where("currentCity", isEqualTo: 'Duhok')
                     .snapshots(),
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -41,7 +41,7 @@ class ExploreScreen extends StatelessWidget {
                     return Center(
                       child: SelectableText(snapshot.error.toString()),
                     );
-                  } else if (snapshot.data == null) {
+                  } else if (snapshot.data == null || snapshot.data == '') {
                     return const Center(
                       child: Text('No data'),
                     );

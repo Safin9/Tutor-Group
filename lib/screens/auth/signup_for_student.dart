@@ -149,7 +149,6 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                                 valueChanged: (value) {
                                   setState(() {
                                     selectedDay = value;
-                                    print('selected day :$selectedDay');
                                   });
                                 }),
                             datePicker(
@@ -158,7 +157,6 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                                 valueChanged: (value) {
                                   setState(() {
                                     selectedMonth = value;
-                                    print('selected month :$selectedMonth');
                                   });
                                 }),
                             datePicker(
@@ -167,7 +165,6 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                                 valueChanged: (value) {
                                   setState(() {
                                     selectedYear = value;
-                                    print('selected year :$selectedYear');
                                   });
                                 }),
                           ],

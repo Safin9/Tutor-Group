@@ -36,11 +36,11 @@ class MainHandler extends StatelessWidget {
                   return Center(
                     child: Text(snapshotFromFuture.error.toString()),
                   );
-                } else if (snapshotFromFuture.data == null ||
-                    !snapshotFromFuture.data!.exists) {
-                  return const HandlerScreen();
-                } else {
+                } else if (snapshotFromFuture.data != null ||
+                    snapshotFromFuture.data!.exists) {
                   return const HandlerScreenForTeacher();
+                } else {
+                  return const HandlerScreen();
                 }
               });
         }),

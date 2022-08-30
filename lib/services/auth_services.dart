@@ -34,8 +34,6 @@ class AuthServices {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        print('create account by E and P  $value.');
-
         Get.to(() => const HomeScreen());
         Get.dialog(const Center(
           child: SizedBox(
@@ -60,7 +58,6 @@ class AuthServices {
       });
     } catch (e) {
       Get.snackbar('Error', e.toString());
-      print('error with singing account$e');
     }
   }
 
@@ -85,7 +82,7 @@ class AuthServices {
 //       verificationFailed: ((FirebaseAuthException error) {
 //         Get.snackbar('Error', error.toString(),
 //             duration: const Duration(seconds: 120));
-//         debugPrint(error.toString());
+//
 //       }),
 //       codeSent: ((String vID, int? resendToken) {
 //         setState(() {

@@ -114,7 +114,12 @@ class TeacherCard extends StatelessWidget {
                         SizedBox(
                           width: size.width * 0.1,
                         ),
-                        nameTitle(name: user.name, surName: user.surname)
+                        user.gender == 'Male'
+                            ? nameTitle(
+                                name: 'Mr. ${user.name}', surName: user.surname)
+                            : nameTitle(
+                                name: 'Mrs. ${user.name}',
+                                surName: user.surname)
                       ],
                     ),
                     const Spacer(),

@@ -24,19 +24,7 @@ class SignInByPhone extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: tools.buldText(
-            text: 'TUTOR',
-            color: textBlackL,
-            size: 25,
-            fontWeight: FontWeight.bold),
-        // leading: IconButton(
-        //   icon: const Icon(
-        //     Icons.arrow_back,
-        //     color: Colors.black,
-        //   ),
-        //   onPressed: () {
-        //     Get.back();
-        //   },
-        // ),
+            text: 'TUTOR', size: 25, fontWeight: FontWeight.bold),
         actions: [
           tools.myTextButton(
             text: 'Teacher sign in?',
@@ -68,7 +56,6 @@ class SignInByPhone extends StatelessWidget {
                     const SizedBox(height: 50),
                     tools.buldText(
                       text: 'Education leads to self illumination',
-                      color: textBlackL,
                       size: 15,
                       fontWeight: FontWeight.w400,
                     ),
@@ -111,37 +98,13 @@ class SignInByPhone extends StatelessWidget {
                           if (phoneCode == 964) {
                             if (val.trim().isEmpty) {
                               return 'enter a number';
-                              Get.snackbar(
-                                '',
-                                'Please enter your number',
-                                colorText: Colors.white,
-                                backgroundColor:
-                                    const Color.fromARGB(255, 0, 0, 0),
-                                forwardAnimationCurve: Curves.easeInOutExpo,
-                              );
                             } else if (val.length < 10) {
                               return 'enter a valid number';
-                              Get.snackbar(
-                                '',
-                                ' Please Enter a valid number',
-                                colorText: Colors.white,
-                                backgroundColor:
-                                    const Color.fromARGB(255, 0, 0, 0),
-                                forwardAnimationCurve: Curves.easeInOutExpo,
-                              );
                             }
                             return null;
                           } else {
                             if (val.trim().isEmpty) {
                               return 'enter a number';
-                              Get.snackbar(
-                                '',
-                                'Enter a number',
-                                colorText: Colors.white,
-                                backgroundColor:
-                                    const Color.fromARGB(255, 0, 0, 0),
-                                forwardAnimationCurve: Curves.easeInOutExpo,
-                              );
                             }
                             return null;
                           }
@@ -157,8 +120,6 @@ class SignInByPhone extends StatelessWidget {
                         bool isvalid = numberFormKey.currentState!.validate();
 
                         if (isvalid) {
-                          debugPrint(numberContorller.text.trim());
-
                           context.read<TestProvider>().finalPhoneNumber(
                                 number: numberContorller.text.trim(),
                               );

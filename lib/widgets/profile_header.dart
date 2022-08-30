@@ -41,14 +41,25 @@ class ProfileHeader extends StatelessWidget {
           ),
         SizedBox(width: 0.025 * size.width),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(user.createdAt),
-            Text(user.name),
-            Text(user.surname),
-            Text(user.gender),
-            Text(user.tacherOrStudent!),
+            // Text(user.createdAt),
+            Text(
+              user.name,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              user.surname,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            ),
+            // Text(user.surname),
+            // Text(user.gender),
+            // Text(user.tacherOrStudent!),
             // Text(user.imageUrl.toString()),
-            user.lessonType != null ? Text(user.lessonType!) : Container(),
+            // user.lessonType != null ? Text(user.lessonType!) : Container(),
           ],
         )
       ],

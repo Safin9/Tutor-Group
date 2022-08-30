@@ -42,7 +42,7 @@ class ToolsForLogAndSignup {
 
   Text buldText(
       {required String text,
-      required Color color,
+      Color? color,
       required double size,
       required FontWeight fontWeight}) {
     return Text(
