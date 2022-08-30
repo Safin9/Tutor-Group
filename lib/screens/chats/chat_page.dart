@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/chats/chat_field.dart';
@@ -19,6 +21,8 @@ class ChatPage extends StatelessWidget {
     } else {
       userImage = null;
     }
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     return GestureDetector(
       onTap: (() => FocusScope.of(context).unfocus()),
@@ -73,109 +77,12 @@ class ChatPage extends StatelessWidget {
                             textStyle:
                                 TextStyle(color: Colors.white, fontSize: 16),
                           ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Please try and give some feedback  it!',
-                            color: Color(0xFF1B97F3),
-                            tail: true,
-                            textStyle:
-                                TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Please try and give some feedback  it!',
-                            color: Color(0xFF1B97F3),
-                            tail: true,
-                            textStyle:
-                                TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Please try and give some feedback  it!',
-                            color: Color(0xFF1B97F3),
-                            tail: true,
-                            textStyle:
-                                TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Please try and give some feedback  it!',
-                            color: Color(0xFF1B97F3),
-                            tail: true,
-                            textStyle:
-                                TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Please try and give some feedback  it!',
-                            color: Color(0xFF1B97F3),
-                            tail: true,
-                            textStyle:
-                                TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Please try and give some feedback  it!',
-                            color: Color(0xFF1B97F3),
-                            tail: true,
-                            textStyle:
-                                TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Please try and give some feedback  it!',
-                            color: Color(0xFF1B97F3),
-                            tail: true,
-                            textStyle:
-                                TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                          BubbleSpecialThree(
-                            text: 'Sure',
-                            color: Color(0xFFE8E8EE),
-                            tail: false,
-                            isSender: false,
-                          ),
                         ],
                       ),
                     ),
                   ),
                 ),
-                const ChatField(),
+                ChatField(freind: friendUser),
               ],
             ),
           ),

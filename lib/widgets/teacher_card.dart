@@ -34,33 +34,56 @@ class TeacherCard extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(25)),
           child: Stack(
             children: [
+              Positioned(
+                  right: 5,
+                  top: 5,
+                  child: Row(
+                    children: [
+                      if (user.lessonType == 'Biology')
+                        spotColor(color: Colors.red)
+                      else if (user.lessonType == 'Mathematics')
+                        spotColor(color: Colors.blue)
+                      else if (user.lessonType == 'Chemistry')
+                        spotColor(color: Colors.orange)
+                      else if (user.lessonType == 'Arabic')
+                        spotColor(color: Colors.yellow)
+                      else if (user.lessonType == 'Physics')
+                        spotColor(color: Colors.green)
+                      else if (user.lessonType == 'Kurdish')
+                        spotColor(color: Colors.blueGrey)
+                      else if (user.lessonType == 'English')
+                        spotColor(color: Colors.purple)
+                      else
+                        Container(),
+                    ],
+                  )),
               Positioned.fill(
                 child: Container(
                   height: 0.4 * size.height,
                   decoration: BoxDecoration(
-                      gradient: Get.isDarkMode
-                          ? const LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: [
-                                Color.fromARGB(255, 19, 88, 145),
+                    gradient: Get.isDarkMode
+                        ? const LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Color.fromARGB(255, 19, 88, 145),
+                              Colors.transparent,
+                            ],
+                          )
+                        : const LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                                Color.fromARGB(255, 171, 200, 224),
                                 Colors.transparent,
-                              ],
-                            )
-                          : const LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: [
-                                  Color.fromARGB(255, 171, 200, 224),
-                                  Colors.transparent,
-                                ]),
-                      color: Get.isDarkMode
-                          ? kDarkPrimaryColor
-                          : kLightPrimaryColor,
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25),
-                      )),
+                              ]),
+                    color:
+                        Get.isDarkMode ? kDarkPrimaryColor : kLightPrimaryColor,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25),
+                    ),
+                  ),
                 ),
               ),
               Container(
@@ -165,6 +188,14 @@ class TeacherCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget spotColor({required Color color}) {
+    return Container(
+      height: 25,
+      width: 25,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }
 

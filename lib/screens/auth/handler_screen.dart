@@ -66,7 +66,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
     );
   }
 
-  setUser(User user) async {
+  Future setUser(User user) async {
     UserModelReady theUser = await FirebaseFirestore.instance
         .collection('Users')
         .doc(user.uid)

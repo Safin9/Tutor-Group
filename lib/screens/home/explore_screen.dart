@@ -46,14 +46,6 @@ class ExploreScreen extends StatelessWidget {
                       child: Text('No data'),
                     );
                   } else {
-                    // return PageView.builder(
-                    //     scrollDirection: Axis.vertical,
-                    //     itemCount: snapshot.data!.docs.length,
-                    //     itemBuilder: ((context, index) {
-                    //       final theUser = snapshot.data!.docs[index];
-                    //       final user = UserModelReady.fromSnapShot(theUser);
-                    //       return TeacherCard(user: user);
-                    //     }));
                     return Scrollbar(
                       child: ListView.builder(
                         itemCount: snapshot.data!.docs.length,

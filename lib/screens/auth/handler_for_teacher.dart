@@ -49,7 +49,7 @@ class HandlerScreenForTeacher extends StatelessWidget {
     );
   }
 
-  setUser(User user, BuildContext context) async {
+  Future setUser(User user, BuildContext context) async {
     UserModelReady theUser = await FirebaseFirestore.instance
         .collection('Teachers')
         .doc(user.uid)

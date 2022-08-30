@@ -247,7 +247,6 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
         width: 0.2 * sizeWidth,
         child: DropdownButtonFormField<String>(
           value: items.first,
-          // value: selectedDay ?? items.first,
           items: items
               .map((item) => DropdownMenuItem(
                   value: item,
