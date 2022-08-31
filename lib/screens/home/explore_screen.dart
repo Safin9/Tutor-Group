@@ -29,7 +29,7 @@ class ExploreScreen extends StatelessWidget {
               StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
                     .collection('Teachers')
-                    // .where("currentCity", isEqualTo: 'Duhok')
+                    // .where("currentCity", isEqualTo: '')
                     .snapshots(),
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -48,6 +48,7 @@ class ExploreScreen extends StatelessWidget {
                   } else {
                     return Scrollbar(
                       child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: ((context, index) {
                           final theUser = snapshot.data!.docs[index];

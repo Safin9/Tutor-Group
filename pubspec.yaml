@@ -105,8 +105,11 @@ dev_dependencies:
   flutter_native_splash:
 flutter_icons:
   image_path: "assets/images/tutorlogo.png"
+  adaptive_icon_foreground: "assets/images/tutor_logo_foreground.png"
+  adaptive_icon_background: "#ffffff"
   android: true
   ios: true
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # flutter_native_splash-development.yaml
@@ -137,6 +140,7 @@ flutter:
   assets:
     - assets/images/backgroundbook.png
     - assets/images/tutorlogo.png
+    - assets/images/tutor_logo_foreground.png
     - assets/images/maths.jpg
     - assets/images/biology.jpg
     - assets/images/physics.jpg
