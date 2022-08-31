@@ -146,11 +146,15 @@ class _OtpScreenState extends State<OtpScreen> {
                     focusNode: _pinOtpFocusNode,
                     controller: _pinOtpController,
                     onSubmitted: (value) {},
-                    onCompleted: (pin) {
-                      authServices.signInWithPhoneNumber(
-                        verificationID: verificationCode!,
-                        smsCode: pin,
-                      );
+                    onCompleted: (pin) async {
+                      if (verificationCode != null) {
+                        await authServices.signInWithPhoneNumber(
+                          verificationID: verificationCode!,
+                          smsCode: pin,
+                        );
+                      } else {
+                        Get.snackbar('Error', 'message');
+                      }
                     },
                   ),
                 ),

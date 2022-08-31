@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:tutor_group/screens/auth/handler_screen.dart';
+import 'package:tutor_group/screens/auth/sign_by_phone.dart';
 import 'package:tutor_group/screens/home/chat_screen.dart';
 import 'package:tutor_group/screens/home/explore_screen.dart';
 import 'package:tutor_group/screens/home/profile.dart';
@@ -27,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
     //  this is how to listen signout events
     FirebaseAuth.instance.authStateChanges().listen((event) {
       if (event == null) {
-        Get.offAll(() => const HandlerScreen());
+        // Get.offAll(() => const HandlerScreen());
+        Get.offAll(() => SignInByPhone());
       }
     });
 

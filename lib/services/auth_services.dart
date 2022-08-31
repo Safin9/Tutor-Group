@@ -18,7 +18,6 @@ class AuthServices {
               verificationId: verificationID, smsCode: smsCode))
           .then((value) {
         if (value.user != null) {
-          // FirebaseFirestore.instance.collection('Users').doc(auth.currentUser!.uid).
           Get.offAll(() => const HandlerScreen());
         }
       });

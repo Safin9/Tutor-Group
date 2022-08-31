@@ -4,15 +4,16 @@ import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/chats/chat_page.dart';
 
 class SendMessageButton extends StatelessWidget {
-  const SendMessageButton({Key? key, required this.user}) : super(key: key);
-  final UserModelReady user;
+  const SendMessageButton({Key? key, required this.friendUser})
+      : super(key: key);
+  final UserModelReady friendUser;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ElevatedButton(
       onPressed: () {
         Get.to(() => ChatPage(
-              friendUser: user,
+              friendUser: friendUser,
             ));
       },
       style: ButtonStyle(
