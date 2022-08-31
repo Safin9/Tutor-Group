@@ -4,6 +4,7 @@ import 'package:background_app_bar/background_app_bar.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/modules/birthdate_model.dart';
 import 'package:tutor_group/modules/user_model.dart';
+
 import 'package:tutor_group/screens/chats/send_message_button.dart';
 
 class TeacherProfileDetails extends StatelessWidget {
@@ -25,6 +26,7 @@ class TeacherProfileDetails extends StatelessWidget {
     final birthYear = BirthDateModel.fromMap(friendUser.birthDate!);
     final age = DateTime.now().year - birthYear.year;
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(elevation: 15),
       body: SafeArea(

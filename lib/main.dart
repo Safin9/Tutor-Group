@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:tutor_group/firebase_options.dart';
 import 'package:tutor_group/providers/phone_code_provider.dart';
+
 import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/root_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,7 +13,6 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   widgetsBinding;
 
-  // WidgetsFlutterBinding.ensureInitialized();
   await storage.initStorage;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -24,7 +24,7 @@ void main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => UserProvider(),
-      )
+      ),
     ], child: const MyApp()),
   );
   FlutterNativeSplash.remove();

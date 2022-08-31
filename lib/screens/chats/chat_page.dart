@@ -64,7 +64,7 @@ class ChatPage extends StatelessWidget {
                       return true;
                     },
                     child: SingleChildScrollView(
-                      physics: const ClampingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       keyboardDismissBehavior:
                           ScrollViewKeyboardDismissBehavior.onDrag,
                       reverse: true,
@@ -76,6 +76,14 @@ class ChatPage extends StatelessWidget {
                             tail: true,
                             textStyle:
                                 TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                          BubbleSpecialThree(
+                            text: 'Please try and give some feedback  it!',
+                            color: Color.fromARGB(255, 235, 239, 241),
+                            tail: true,
+                            isSender: false,
+                            textStyle:
+                                TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ],
                       ),

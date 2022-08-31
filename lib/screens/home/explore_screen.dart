@@ -82,6 +82,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 stream: FirebaseFirestore.instance
                     .collection('Teachers')
                     .where("currentCity", isEqualTo: filterCity)
+                    .orderBy('createdAt', descending: true)
                     .snapshots(),
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -100,13 +101,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   } else {
                     return Scrollbar(
                       child: ListView.builder(
-                        reverse: true,
                         physics: const BouncingScrollPhysics(),
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: ((context, index) {
                           final theUser = snapshot.data!.docs[index];
                           final friendUser =
                               UserModelReady.fromSnapShot(theUser);
+
                           return GestureDetector(
                               onTap: (() => Get.to(() => TeacherProfileDetails(
                                   friendUser: friendUser))),
