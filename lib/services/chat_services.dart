@@ -30,7 +30,7 @@ class ChatServices {
         myName: currentUser.name,
         friendUid: friendUser.uid,
         friendName: friendUser.name,
-        message: [message]);
+        docId: 'dd');
     await firestore
         .collection('Messages/${friendUser.uid}/Texts')
         // .doc(friendUser.uid)
@@ -38,4 +38,31 @@ class ChatServices {
         .add(chat.toMap())
         .then((value) => print('send sucesssssssssssssssfullyyyyyy'));
   }
+
+  // Future sendAMessage({
+  //   required ChatModel chatModel,
+  //   required BuildContext context,
+  //   required UserModelReady friendUser,
+  // }) async {
+  //   final UserModelReady currentUser =
+  //       Provider.of<UserProvider>(context, listen: false).theUser!;
+
+  //   final MessageModel message = MessageModel(
+  //       message:
+  //           'chdkay neeeeeeewwwwwwwwwwwwww hhh ${currentUser.name}to  ${friendUser.name}',
+  //       theSendersName: currentUser.name,
+  //       theSenderUid: currentUser.uid);
+  //   final ChatModel chat = ChatModel(
+  //       myUid: currentUser.uid,
+  //       myName: currentUser.name,
+  //       friendUid: friendUser.uid,
+  //       friendName: friendUser.name,
+  //       message: [message]);
+  //   await firestore
+  //       .collection('Messages/${friendUser.uid}/Texts')
+  //       // .doc(friendUser.uid)
+  //       // .set(chat.toMap())
+  //       .add(chat.toMap())
+  //       .then((value) => print('send sucesssssssssssssssfullyyyyyy'));
+  // }
 }

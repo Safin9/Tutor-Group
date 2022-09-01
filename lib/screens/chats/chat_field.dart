@@ -17,14 +17,14 @@ class ChatField extends StatefulWidget {
 }
 
 class _ChatFieldState extends State<ChatField> {
-  late FocusNode myFocusNode;
+  FocusNode myFocusNode = FocusNode();
   TextEditingController? messageCOntroller;
 
   @override
   void initState() {
     super.initState();
     messageCOntroller = TextEditingController();
-    myFocusNode = FocusNode();
+    myFocusNode.removeListener(() {});
   }
 
   @override
@@ -73,7 +73,7 @@ class _ChatFieldState extends State<ChatField> {
                             myUid: currentUser.uid,
                             myName: currentUser.name,
                             friendUid: widget.freind.uid,
-                            message: [message],
+                            docId: 'skjsa',
                             friendName: widget.freind.name);
                         // await chatServices.sendAMessage(
                         //     chatModel: chatmodel,

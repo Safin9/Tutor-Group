@@ -6,16 +6,53 @@ import 'package:flutter/material.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/chats/chat_field.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   const ChatPage({Key? key, required this.friendUser}) : super(key: key);
   final UserModelReady friendUser;
+
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  CollectionReference chat = FirebaseFirestore.instance.collection('Chats');
+  String? chatId;
+
+  @override
+  void initState() {
+    chat
+        .where('myUid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .limit(1)
+        .get()
+        .then((querySnapshot) {
+      if (querySnapshot.docs.isNotEmpty) {
+        setState(() {
+          chatId = querySnapshot.docs.single.id;
+        });
+      } else {
+        chat.add({
+          //FIXME: add message model here
+          'myUid': FirebaseAuth.instance.currentUser!.uid,
+          'friendUid': widget.friendUser.uid,
+          'myName': widget.friendUser.uid,
+          'docId': chatId,
+        }).then((doc) {
+          setState(() {
+            chatId = doc.id;
+          });
+        });
+      }
+    }).catchError((err) {});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final String? userImage;
 // this is the format of getting image by url
-    if (friendUser.imageUrl != null || friendUser.imageUrl!.isNotEmpty) {
-      final String image = friendUser.imageUrl!.replaceAll("/", "%2F");
+    if (widget.friendUser.imageUrl != null ||
+        widget.friendUser.imageUrl!.isNotEmpty) {
+      final String image = widget.friendUser.imageUrl!.replaceAll("/", "%2F");
       userImage =
           'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
     } else {
@@ -31,8 +68,8 @@ class ChatPage extends StatelessWidget {
           elevation: 4,
           title: Row(
             children: [
-              if (friendUser.imageUrl!.isEmpty ||
-                  friendUser.imageUrl == null ||
+              if (widget.friendUser.imageUrl!.isEmpty ||
+                  widget.friendUser.imageUrl == null ||
                   userImage == null)
                 const CircleAvatar(
                   backgroundImage: AssetImage('assets/images/tutorlogo.png'),
@@ -43,9 +80,9 @@ class ChatPage extends StatelessWidget {
                 ),
               const SizedBox(width: 15),
               Text(
-                friendUser.gender == 'Male'
-                    ? "Mr  ${friendUser.name}"
-                    : " Mrs  ${friendUser.name}",
+                widget.friendUser.gender == 'Male'
+                    ? "Mr  ${widget.friendUser.name}"
+                    : " Mrs  ${widget.friendUser.name}",
               ),
             ],
           ),
@@ -90,7 +127,7 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                ChatField(freind: friendUser),
+                ChatField(freind: widget.friendUser),
               ],
             ),
           ),

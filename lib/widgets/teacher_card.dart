@@ -119,7 +119,7 @@ class TeacherCard extends StatelessWidget {
                                 name: 'Mr. ${user.name}', surName: user.surname)
                             : nameTitle(
                                 name: 'Mrs. ${user.name}',
-                                surName: user.surname)
+                                surName: user.surname),
                       ],
                     ),
                     const Spacer(),

@@ -6,6 +6,16 @@ List<String> citysList = [
   'Zakho',
   'Halabja'
 ];
+List<String> lessonType = [
+  'Kurdish',
+  'English',
+  'Arabic',
+  'Mathematics',
+  'Chemistry',
+  'Physics',
+  'Biology',
+  'Geography',
+];
 List<String> gender = [
   'Male',
   'Female',

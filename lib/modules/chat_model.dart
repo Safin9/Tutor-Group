@@ -1,22 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:tutor_group/modules/message_model.dart';
-
 class ChatModel {
   String myUid;
   String myName;
   String friendUid;
   String friendName;
-  List<MessageModel> message;
+  String docId;
   ChatModel({
     required this.myUid,
     required this.myName,
     required this.friendUid,
     required this.friendName,
-    required this.message,
+    required this.docId,
   });
 
   ChatModel copyWith({
@@ -24,14 +20,14 @@ class ChatModel {
     String? myName,
     String? friendUid,
     String? friendName,
-    List<MessageModel>? message,
+    String? docId,
   }) {
     return ChatModel(
       myUid: myUid ?? this.myUid,
       myName: myName ?? this.myName,
       friendUid: friendUid ?? this.friendUid,
       friendName: friendName ?? this.friendName,
-      message: message ?? this.message,
+      docId: docId ?? this.docId,
     );
   }
 
@@ -41,7 +37,7 @@ class ChatModel {
       'myName': myName,
       'friendUid': friendUid,
       'friendName': friendName,
-      'message': message.map((x) => x.toMap()).toList(),
+      'docId': docId,
     };
   }
 
@@ -51,11 +47,7 @@ class ChatModel {
       myName: map['myName'] as String,
       friendUid: map['friendUid'] as String,
       friendName: map['friendName'] as String,
-      message: List<MessageModel>.from(
-        (map['message'] as List<int>).map<MessageModel>(
-          (x) => MessageModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      docId: map['docId'] as String,
     );
   }
 
@@ -66,7 +58,7 @@ class ChatModel {
 
   @override
   String toString() {
-    return 'ChatModel(myUid: $myUid, myName: $myName, friendUid: $friendUid, friendName: $friendName, message: $message)';
+    return 'ChatModel(myUid: $myUid, myName: $myName, friendUid: $friendUid, friendName: $friendName, docId: $docId)';
   }
 
   @override
@@ -77,7 +69,7 @@ class ChatModel {
         other.myName == myName &&
         other.friendUid == friendUid &&
         other.friendName == friendName &&
-        listEquals(other.message, message);
+        other.docId == docId;
   }
 
   @override
@@ -86,6 +78,6 @@ class ChatModel {
         myName.hashCode ^
         friendUid.hashCode ^
         friendName.hashCode ^
-        message.hashCode;
+        docId.hashCode;
   }
 }

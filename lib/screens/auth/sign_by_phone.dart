@@ -137,7 +137,6 @@ class SignInByPhone extends StatelessWidget {
                           Spacer(),
                         ],
                       ),
-                      // widthP: 0.2 * size.width,
                       heightP: 0,
                     ),
                   ],
