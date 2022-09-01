@@ -70,6 +70,19 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         child: Text('No data'),
                       );
                     } else {
+                      if (snapshot.data!.docs.length == 0) {
+                        return const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Text(
+                              'No Teacher for filtered specifications are available yet.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 25),
+                            ),
+                          ),
+                        );
+                      }
+
                       return Scrollbar(
                         child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
