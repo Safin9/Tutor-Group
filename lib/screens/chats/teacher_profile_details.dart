@@ -34,6 +34,7 @@ class TeacherProfileDetails extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           child: NestedScrollView(
+            physics: const BouncingScrollPhysics(),
             headerSliverBuilder: (_, __) => <Widget>[
               SliverAppBar(
                 expandedHeight: 0.5 * size.height,

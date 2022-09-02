@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:tutor_group/modules/user_model.dart';
-import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
 import 'package:tutor_group/screens/chats/teacher_profile_details.dart';
 import 'package:tutor_group/utils/general_dropdown.dart';
@@ -18,15 +16,8 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  String filtered(BuildContext context, String? filterCities) {
-    if (filterCities == null) {
-      return context.read<UserProvider>().theUser!.currentCity;
-    }
-    return filterCities;
-  }
-
-  String filterCity = 'Duhok';
-  String filterSubject = 'Kurdish';
+  String? filterCity;
+  String? filterSubject;
   @override
   Widget build(BuildContext context) {
     final bool isDark = Get.isDarkMode;
@@ -43,7 +34,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             children: [
               Positioned.fill(
                 child: ToolsForLogAndSignup().myBackgroundImage(
-                    isDark ? Colors.grey.withOpacity(0.5) : Colors.grey),
+                    isDark ? Colors.grey.withOpacity(0.2) : Colors.grey),
               ),
               Positioned.fill(
                 top: 60,
@@ -51,8 +42,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   stream: FirebaseFirestore.instance
                       .collection('Teachers')
                       .where('currentCity',
-                          isEqualTo: filtered(context, filterCity))
-                      .where('lessonType', isEqualTo: filterSubject)
+                          isEqualTo: filterCity != 'All' ? filterCity : null)
+                      .where('lessonType',
+                          isEqualTo:
+                              filterSubject != 'All' ? filterSubject : null)
                       .orderBy('createdAt', descending: true)
                       .snapshots(),
                   builder:
@@ -71,14 +64,62 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       );
                     } else {
                       if (snapshot.data!.docs.length == 0) {
-                        return const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Text(
-                              'No Teacher for filtered specifications are available yet.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 25),
-                            ),
+                        return Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Sorry!',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'City:',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    filterCity ?? '',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.red),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 15),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'Subject:',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    filterSubject ?? '',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.red),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 15),
+                              const Text(
+                                'No Teacher is available for filtered specifications yet ..',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
                           ),
                         );
                       }
@@ -111,11 +152,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       height: 55,
                       width: 180,
                       child: GeneralDropDownButton(
-                        itemsList: citysList,
-                        selectedItem: filtered(context, filterCity),
-                        valueChanged: (value) {
+                        itemsList: citysListForFilter,
+                        selectedItem: filterCity,
+                        valueChanged: (value) async {
                           setState(() {
-                            // filtered(context, value);
                             filterCity = value;
                           });
                         },
@@ -125,11 +165,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       height: 55,
                       width: 200,
                       child: GeneralDropDownButton(
-                        itemsList: lessonType,
-                        selectedItem: lessonType.first,
-                        valueChanged: (value) {
+                        itemsList: lessonTypeForFilter,
+                        selectedItem: filterSubject,
+                        valueChanged: (value) async {
                           setState(() {
-                            // filtered(context, value);
                             filterSubject = value;
                           });
                         },

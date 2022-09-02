@@ -10,7 +10,7 @@ import 'package:tutor_group/screens/home/profile.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, int? index}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

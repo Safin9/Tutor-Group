@@ -3,30 +3,22 @@ import 'dart:convert';
 
 class ChatModel {
   String myUid;
-  String myName;
   String friendUid;
-  String friendName;
   String docId;
   ChatModel({
     required this.myUid,
-    required this.myName,
     required this.friendUid,
-    required this.friendName,
     required this.docId,
   });
 
   ChatModel copyWith({
     String? myUid,
-    String? myName,
     String? friendUid,
-    String? friendName,
     String? docId,
   }) {
     return ChatModel(
       myUid: myUid ?? this.myUid,
-      myName: myName ?? this.myName,
       friendUid: friendUid ?? this.friendUid,
-      friendName: friendName ?? this.friendName,
       docId: docId ?? this.docId,
     );
   }
@@ -34,9 +26,7 @@ class ChatModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'myUid': myUid,
-      'myName': myName,
       'friendUid': friendUid,
-      'friendName': friendName,
       'docId': docId,
     };
   }
@@ -44,9 +34,7 @@ class ChatModel {
   factory ChatModel.fromMap(Map<String, dynamic> map) {
     return ChatModel(
       myUid: map['myUid'] as String,
-      myName: map['myName'] as String,
       friendUid: map['friendUid'] as String,
-      friendName: map['friendName'] as String,
       docId: map['docId'] as String,
     );
   }
@@ -57,27 +45,18 @@ class ChatModel {
       ChatModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() {
-    return 'ChatModel(myUid: $myUid, myName: $myName, friendUid: $friendUid, friendName: $friendName, docId: $docId)';
-  }
+  String toString() =>
+      'ChatModel(myUid: $myUid, friendUid: $friendUid, docId: $docId)';
 
   @override
   bool operator ==(covariant ChatModel other) {
     if (identical(this, other)) return true;
 
     return other.myUid == myUid &&
-        other.myName == myName &&
         other.friendUid == friendUid &&
-        other.friendName == friendName &&
         other.docId == docId;
   }
 
   @override
-  int get hashCode {
-    return myUid.hashCode ^
-        myName.hashCode ^
-        friendUid.hashCode ^
-        friendName.hashCode ^
-        docId.hashCode;
-  }
+  int get hashCode => myUid.hashCode ^ friendUid.hashCode ^ docId.hashCode;
 }

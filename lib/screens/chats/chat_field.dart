@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:tutor_group/modules/chat_model.dart';
-import 'package:tutor_group/modules/message_model.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/services/chat_services.dart';
@@ -65,16 +63,16 @@ class _ChatFieldState extends State<ChatField> {
                           messageCOntroller!.clear();
                         }
                         messageCOntroller!.clear();
-                        final message = MessageModel(
-                            theSendersName: currentUser!.name,
-                            theSenderUid: currentUser.uid,
-                            message: 'message');
-                        final chatmodel = ChatModel(
-                            myUid: currentUser.uid,
-                            myName: currentUser.name,
-                            friendUid: widget.freind.uid,
-                            docId: 'skjsa',
-                            friendName: widget.freind.name);
+                        // final message = MessageModel(
+                        //     theSendersName: currentUser!.name,
+                        //     theSenderUid: currentUser.uid,
+                        //     message: 'message');
+                        // final chatmodel = ChatModel(
+                        //     myUid: currentUser.uid,
+                        //     myName: currentUser.name,
+                        //     friendUid: widget.freind.uid,
+                        //     docId: 'skjsa',
+                        //     friendName: widget.freind.name);
                         // await chatServices.sendAMessage(
                         //     chatModel: chatmodel,
                         //     context: context,

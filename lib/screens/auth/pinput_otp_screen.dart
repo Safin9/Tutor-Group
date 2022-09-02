@@ -50,7 +50,7 @@ class _OtpScreenState extends State<OtpScreen> {
             .signInWithCredential(credential)
             .then((value) {
           if (value.user != null) {
-            Get.offAll(() => const HomeScreen());
+            Get.offAll(() => HomeScreen());
           }
         });
       },

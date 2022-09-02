@@ -16,6 +16,26 @@ List<String> lessonType = [
   'Biology',
   'Geography',
 ];
+List<String> citysListForFilter = [
+  'All',
+  'Erbil',
+  'Duhok',
+  'Slemmany',
+  'Karkuk',
+  'Zakho',
+  'Halabja'
+];
+List<String> lessonTypeForFilter = [
+  'All',
+  'Kurdish',
+  'English',
+  'Arabic',
+  'Mathematics',
+  'Chemistry',
+  'Physics',
+  'Biology',
+  'Geography',
+];
 List<String> gender = [
   'Male',
   'Female',

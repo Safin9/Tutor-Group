@@ -74,7 +74,8 @@ class TeacherCard extends StatelessWidget {
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
                             colors: [
-                                Color.fromARGB(255, 171, 200, 224),
+                                // Color.fromARGB(255, 171, 200, 224),
+                                Colors.transparent,
                                 Colors.transparent,
                               ]),
                     color:

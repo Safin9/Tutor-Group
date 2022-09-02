@@ -67,6 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   return ListTile(
                     title: Text('Std. $senderUid'),
                     onTap: (() {}),
+                    // leading: SendMessageButton(friendUser: friendUser),
                   );
                 }),
               );
@@ -80,17 +81,10 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  // Stream<QuerySnapshot<Map<String, dynamic>>> getUsersUid(
+  // FIXME: rebuild the logic
   Stream<QuerySnapshot<Map<String, dynamic>>> getDocs(
       {required BuildContext context}) {
     UserModelReady currentUser = context.read<UserProvider>().theUser!;
-
-    // final CollectionReference chatReference =
-    //     FirebaseFirestore.instance.collection('Chat');
-    // final CollectionReference messageReference = chatReference
-    //     .doc('rLvgJrsx94QO3j023BOomONm6Oh2') //FIXME: it must get all documents.
-    //     .collection('Messages');
-
     return FirebaseFirestore.instance
         .collection('Messages')
         .doc(currentUser.uid)

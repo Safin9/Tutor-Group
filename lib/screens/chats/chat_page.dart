@@ -15,34 +15,41 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  CollectionReference chat = FirebaseFirestore.instance.collection('Chats');
+  CollectionReference chat = FirebaseFirestore.instance.collection('Chat');
+  // DocumentReference doc_ref=FirebaseFirestore.instance.collection("board").document(doc_id).collection("Dates").document();
+
+  //                   var doc_id2=doc_ref.get().then((value) {chatId=value.id});
   String? chatId;
 
   @override
   void initState() {
-    chat
-        .where('myUid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .limit(1)
-        .get()
-        .then((querySnapshot) {
-      if (querySnapshot.docs.isNotEmpty) {
-        setState(() {
-          chatId = querySnapshot.docs.single.id;
-        });
-      } else {
-        chat.add({
-          //FIXME: add message model here
-          'myUid': FirebaseAuth.instance.currentUser!.uid,
-          'friendUid': widget.friendUser.uid,
-          'myName': widget.friendUser.uid,
-          'docId': chatId,
-        }).then((doc) {
-          setState(() {
-            chatId = doc.id;
-          });
-        });
-      }
-    }).catchError((err) {});
+    // ChatServices()
+    //     .sendAMessage(context: context, friendUser: widget.friendUser);
+    // chat
+    //     .where('myUid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+    //     .limit(1)
+    //     .get()
+    //     .then((querySnapshot) {
+    //   if (querySnapshot.docs.isNotEmpty) {
+    //     setState(() {
+    //       chatId = querySnapshot.docs.single.id;
+    //       print('chat idddddddd          exist :::           $chatId');
+    //     });
+    //   } else {
+    //     chat.add({
+    //       //FIXME: add Chat model here
+    //       'myUid': FirebaseAuth.instance.currentUser!.uid,
+    //       'friendUid': widget.friendUser.uid,
+    //       'myName': widget.friendUser.uid,
+    //       'docId': chatId,
+    //     }).then((doc) {
+    //       setState(() {
+    //         chatId = doc.id;
+    //         print('chat idddddddd       NOTT   exist :::           $chatId');
+    //       });
+    //     });
+    //   }
+    // }).catchError((err) {});
     super.initState();
   }
 

@@ -58,7 +58,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
                   return const SignUpForStudent();
                 } else {
                   setUser(user: snapshot.data!, context: context);
-                  return const HomeScreen();
+                  return HomeScreen();
                 }
               });
         },

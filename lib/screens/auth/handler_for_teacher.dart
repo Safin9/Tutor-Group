@@ -39,7 +39,7 @@ class HandlerScreenForTeacher extends StatelessWidget {
                     );
                   } else {
                     setUser(snapshot.data!, context);
-                    return const HomeScreen();
+                    return HomeScreen();
                   }
                 });
 //

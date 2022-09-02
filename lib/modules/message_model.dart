@@ -5,21 +5,25 @@ class MessageModel {
   String theSendersName;
   String theSenderUid;
   String message;
+  DateTime sendAt;
   MessageModel({
     required this.theSendersName,
     required this.theSenderUid,
     required this.message,
+    required this.sendAt,
   });
 
   MessageModel copyWith({
     String? theSendersName,
     String? theSenderUid,
     String? message,
+    DateTime? sendAt,
   }) {
     return MessageModel(
       theSendersName: theSendersName ?? this.theSendersName,
       theSenderUid: theSenderUid ?? this.theSenderUid,
       message: message ?? this.message,
+      sendAt: sendAt ?? this.sendAt,
     );
   }
 
@@ -28,6 +32,7 @@ class MessageModel {
       'theSendersName': theSendersName,
       'theSenderUid': theSenderUid,
       'message': message,
+      'sendAt': sendAt.millisecondsSinceEpoch,
     };
   }
 
@@ -36,6 +41,7 @@ class MessageModel {
       theSendersName: map['theSendersName'] as String,
       theSenderUid: map['theSenderUid'] as String,
       message: map['message'] as String,
+      sendAt: DateTime.fromMillisecondsSinceEpoch(map['sendAt'] as int),
     );
   }
 
@@ -45,8 +51,9 @@ class MessageModel {
       MessageModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'MessageModel(theSendersName: $theSendersName, theSenderUid: $theSenderUid, message: $message)';
+  String toString() {
+    return 'MessageModel(theSendersName: $theSendersName, theSenderUid: $theSenderUid, message: $message, sendAt: $sendAt)';
+  }
 
   @override
   bool operator ==(covariant MessageModel other) {
@@ -54,10 +61,15 @@ class MessageModel {
 
     return other.theSendersName == theSendersName &&
         other.theSenderUid == theSenderUid &&
-        other.message == message;
+        other.message == message &&
+        other.sendAt == sendAt;
   }
 
   @override
-  int get hashCode =>
-      theSendersName.hashCode ^ theSenderUid.hashCode ^ message.hashCode;
+  int get hashCode {
+    return theSendersName.hashCode ^
+        theSenderUid.hashCode ^
+        message.hashCode ^
+        sendAt.hashCode;
+  }
 }

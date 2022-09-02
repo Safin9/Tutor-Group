@@ -33,7 +33,7 @@ class AuthServices {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        Get.to(() => const HomeScreen());
+        Get.to(() => HomeScreen());
         Get.dialog(const Center(
           child: SizedBox(
             height: 200,
@@ -53,7 +53,7 @@ class AuthServices {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        Get.to(() => const HomeScreen());
+        Get.to(() => HomeScreen());
       });
     } catch (e) {
       Get.snackbar('Error', e.toString());
