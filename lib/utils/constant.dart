@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tutor_group/utils/utils.dart';
 
@@ -24,6 +26,8 @@ const kAccentColor = Color(0xFFFFC107);
 //   fontWeight: FontWeight.w400,
 //   color: kDarkPrimaryColor,
 // );
+final firestore = FirebaseFirestore.instance;
+final auth = FirebaseAuth.instance;
 final darkTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: backgroundD,
   primaryColor: Colors.amber,

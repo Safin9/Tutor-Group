@@ -1,47 +1,67 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class MessageModel {
-  String theSendersName;
-  String theSenderUid;
   String message;
-  DateTime sendAt;
+  String senderUid;
+  String senderName;
+  String recieverUid;
+  String recieverName;
+  String messageType;
+  FieldValue sentAt;
   MessageModel({
-    required this.theSendersName,
-    required this.theSenderUid,
     required this.message,
-    required this.sendAt,
+    required this.senderUid,
+    required this.senderName,
+    required this.recieverUid,
+    required this.recieverName,
+    required this.messageType,
+    required this.sentAt,
   });
 
   MessageModel copyWith({
-    String? theSendersName,
-    String? theSenderUid,
     String? message,
-    DateTime? sendAt,
+    String? senderUid,
+    String? senderName,
+    String? recieverUid,
+    String? recieverName,
+    String? messageType,
+    FieldValue? sentAt,
   }) {
     return MessageModel(
-      theSendersName: theSendersName ?? this.theSendersName,
-      theSenderUid: theSenderUid ?? this.theSenderUid,
       message: message ?? this.message,
-      sendAt: sendAt ?? this.sendAt,
+      senderUid: senderUid ?? this.senderUid,
+      senderName: senderName ?? this.senderName,
+      recieverUid: recieverUid ?? this.recieverUid,
+      recieverName: recieverName ?? this.recieverName,
+      messageType: messageType ?? this.messageType,
+      sentAt: sentAt ?? this.sentAt,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'theSendersName': theSendersName,
-      'theSenderUid': theSenderUid,
       'message': message,
-      'sendAt': sendAt.millisecondsSinceEpoch,
+      'senderUid': senderUid,
+      'senderName': senderName,
+      'recieverUid': recieverUid,
+      'recieverName': recieverName,
+      'messageType': messageType,
+      'sentAt': sentAt,
     };
   }
 
   factory MessageModel.fromMap(Map<String, dynamic> map) {
     return MessageModel(
-      theSendersName: map['theSendersName'] as String,
-      theSenderUid: map['theSenderUid'] as String,
       message: map['message'] as String,
-      sendAt: DateTime.fromMillisecondsSinceEpoch(map['sendAt'] as int),
+      senderUid: map['senderUid'] as String,
+      senderName: map['senderName'] as String,
+      recieverUid: map['recieverUid'] as String,
+      recieverName: map['recieverName'] as String,
+      messageType: map['messageType'] as String,
+      sentAt: map['sentAt'] as FieldValue,
     );
   }
 
@@ -52,24 +72,30 @@ class MessageModel {
 
   @override
   String toString() {
-    return 'MessageModel(theSendersName: $theSendersName, theSenderUid: $theSenderUid, message: $message, sendAt: $sendAt)';
+    return 'MessageModel(message: $message, senderUid: $senderUid, senderName: $senderName, recieverUid: $recieverUid, recieverName: $recieverName, messageType: $messageType, sentAt: $sentAt)';
   }
 
   @override
   bool operator ==(covariant MessageModel other) {
     if (identical(this, other)) return true;
 
-    return other.theSendersName == theSendersName &&
-        other.theSenderUid == theSenderUid &&
-        other.message == message &&
-        other.sendAt == sendAt;
+    return other.message == message &&
+        other.senderUid == senderUid &&
+        other.senderName == senderName &&
+        other.recieverUid == recieverUid &&
+        other.recieverName == recieverName &&
+        other.messageType == messageType &&
+        other.sentAt == sentAt;
   }
 
   @override
   int get hashCode {
-    return theSendersName.hashCode ^
-        theSenderUid.hashCode ^
-        message.hashCode ^
-        sendAt.hashCode;
+    return message.hashCode ^
+        senderUid.hashCode ^
+        senderName.hashCode ^
+        recieverUid.hashCode ^
+        recieverName.hashCode ^
+        messageType.hashCode ^
+        sentAt.hashCode;
   }
 }

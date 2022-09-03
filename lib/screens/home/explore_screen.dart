@@ -20,8 +20,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
   String? filterSubject;
   @override
   Widget build(BuildContext context) {
-    final bool isDark = Get.isDarkMode;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
@@ -33,8 +31,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
           child: Stack(
             children: [
               Positioned.fill(
-                child: ToolsForLogAndSignup().myBackgroundImage(
-                    isDark ? Colors.grey.withOpacity(0.2) : Colors.grey),
+                child: ToolsForLogAndSignup()
+                    .myBackgroundImage(Colors.grey.withOpacity(0.2)),
               ),
               Positioned.fill(
                 top: 60,

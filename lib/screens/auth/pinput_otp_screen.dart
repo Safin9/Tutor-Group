@@ -50,7 +50,7 @@ class _OtpScreenState extends State<OtpScreen> {
             .signInWithCredential(credential)
             .then((value) {
           if (value.user != null) {
-            Get.offAll(() => HomeScreen());
+            Get.offAll(() => const HomeScreen());
           }
         });
       },
@@ -61,8 +61,6 @@ class _OtpScreenState extends State<OtpScreen> {
       codeSent: ((vID, resendToken) {
         setState(() {
           verificationCode = vID;
-
-          // verificationId = verificationCode!;
         });
       }),
       codeAutoRetrievalTimeout: ((verificationId) {

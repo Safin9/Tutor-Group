@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
 import 'package:tutor_group/screens/auth/main_handler.dart';
-
 import 'package:tutor_group/utils/constant.dart';
 
 class MyApp extends StatefulWidget {

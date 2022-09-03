@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/modules/birthdate_model.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
 import 'package:tutor_group/services/firestore_services.dart';
+import 'package:tutor_group/utils/constant.dart';
 import 'package:tutor_group/utils/general_dropdown.dart';
 import 'package:tutor_group/utils/strings.dart';
 import 'package:intl/intl.dart';
@@ -179,7 +179,6 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                     bool isvalid = signUpFormKey.currentState!.validate();
                     if (isvalid) {
                       DateTime now = DateTime.now();
-
                       final formatter = DateFormat('yyyy-MM-dd');
                       final String formatted = formatter.format(now);
                       BirthDateModel birthDate = BirthDateModel(
@@ -193,9 +192,8 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                         createdAt: formatted,
                         birthDate: birthDate.toMap(),
                         currentCity: selectedCity,
-                        uid: FirebaseAuth.instance.currentUser!.uid,
-                        phoneNumber:
-                            FirebaseAuth.instance.currentUser!.phoneNumber,
+                        uid: auth.currentUser!.uid,
+                        phoneNumber: auth.currentUser!.phoneNumber,
                         surname: surnameController!.text.trim(),
                         languages: [''],
                         gender: selectedGender,

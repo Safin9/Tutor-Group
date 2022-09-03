@@ -4,6 +4,7 @@ import 'package:background_app_bar/background_app_bar.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/modules/birthdate_model.dart';
 import 'package:tutor_group/modules/user_model.dart';
+import 'package:tutor_group/screens/chats/chat_page.dart';
 
 import 'package:tutor_group/screens/chats/send_message_button.dart';
 
@@ -96,7 +97,15 @@ class TeacherProfileDetails extends StatelessWidget {
                           Text(friendUser.name,
                               style: textStyle(sizeWidth: 1.3 * size.width)),
                           const Spacer(),
-                          SendMessageButton(friendUser: friendUser),
+                          SendMessageButton(
+                            onPressed: (() {
+                              // ChatServices().sendAMessage(
+                              //     context: context, friendUser: friendUser);
+                              // print(friendUser);
+                              // Get.to(() => Chathandler(friendUser: friendUser));
+                              Get.to(() => ChatPage(friendUser: friendUser));
+                            }),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 15),
@@ -117,10 +126,6 @@ class TeacherProfileDetails extends StatelessWidget {
                           ),
                         ],
                       ),
-                      // Text(
-                      //   'jk',
-                      //   style: Theme.of(context).textTheme.headline3,
-                      // ),
                       const SizedBox(height: 25),
                       text(
                           title: 'Email  :',

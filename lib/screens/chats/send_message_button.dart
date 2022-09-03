@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tutor_group/modules/user_model.dart';
-import 'package:tutor_group/screens/chats/chat_handler.dart';
 
 class SendMessageButton extends StatelessWidget {
-  const SendMessageButton({Key? key, required this.friendUser})
+  const SendMessageButton({Key? key, required this.onPressed})
       : super(key: key);
-  final UserModelReady friendUser;
+
+  final GestureTapCallback onPressed;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ElevatedButton(
-      onPressed: () {
-        // ChatServices().sendAMessage(context: context, friendUser: friendUser);
-        Get.to(() => Chathandler(
-              friendUser: friendUser,
-            ));
-      },
+      onPressed: onPressed,
+      // onPressed: () {
+      //   // ChatServices().sendAMessage(context: context, friendUser: friendUser);
+      //   Get.to(() => Chathandler(
+      //         friendUser: friendUser,
+      //       ));
+      // },
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
