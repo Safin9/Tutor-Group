@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:background_app_bar/background_app_bar.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/screens/chats/chat_page.dart';
 
 import 'package:tutor_group/screens/chats/send_message_button.dart';
+import 'package:tutor_group/utils/constant.dart';
 
 class TeacherProfileDetails extends StatelessWidget {
   const TeacherProfileDetails({Key? key, required this.friendUser})
@@ -97,15 +99,27 @@ class TeacherProfileDetails extends StatelessWidget {
                           Text(friendUser.name,
                               style: textStyle(sizeWidth: 1.3 * size.width)),
                           const Spacer(),
-                          SendMessageButton(
-                            onPressed: (() {
-                              // ChatServices().sendAMessage(
-                              //     context: context, friendUser: friendUser);
-                              // print(friendUser);
-                              // Get.to(() => Chathandler(friendUser: friendUser));
-                              Get.to(() => ChatPage(friendUser: friendUser));
+                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                            future: firestore
+                                .collection("Teachers")
+                                .doc(auth.currentUser!.uid)
+                                .get(),
+                            builder: ((context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Container();
+                              } else if (snapshot.data!.exists) {
+                                return Container();
+                              } else {
+                                return SendMessageButton(
+                                  onPressed: (() {
+                                    Get.to(
+                                        () => ChatPage(friendUser: friendUser));
+                                  }),
+                                );
+                              }
                             }),
-                          ),
+                          )
                         ],
                       ),
                       const SizedBox(height: 15),

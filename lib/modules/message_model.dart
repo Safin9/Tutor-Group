@@ -10,7 +10,7 @@ class MessageModel {
   String recieverUid;
   String recieverName;
   String messageType;
-  FieldValue sentAt;
+  Timestamp sentAt;
   MessageModel({
     required this.message,
     required this.senderUid,
@@ -20,26 +20,6 @@ class MessageModel {
     required this.messageType,
     required this.sentAt,
   });
-
-  MessageModel copyWith({
-    String? message,
-    String? senderUid,
-    String? senderName,
-    String? recieverUid,
-    String? recieverName,
-    String? messageType,
-    FieldValue? sentAt,
-  }) {
-    return MessageModel(
-      message: message ?? this.message,
-      senderUid: senderUid ?? this.senderUid,
-      senderName: senderName ?? this.senderName,
-      recieverUid: recieverUid ?? this.recieverUid,
-      recieverName: recieverName ?? this.recieverName,
-      messageType: messageType ?? this.messageType,
-      sentAt: sentAt ?? this.sentAt,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -53,22 +33,28 @@ class MessageModel {
     };
   }
 
-  factory MessageModel.fromMap(Map<String, dynamic> map) {
+  factory MessageModel.fromSnapShot(
+      QuerySnapshot<Map<String, dynamic>> snapshot, int index) {
+    return MessageModel.fromMap(snapshot, index);
+  }
+  factory MessageModel.fromMap(
+      QuerySnapshot<Map<String, dynamic>> map, int index,
+      {DocumentReference? reference}) {
     return MessageModel(
-      message: map['message'] as String,
-      senderUid: map['senderUid'] as String,
-      senderName: map['senderName'] as String,
-      recieverUid: map['recieverUid'] as String,
-      recieverName: map['recieverName'] as String,
-      messageType: map['messageType'] as String,
-      sentAt: map['sentAt'] as FieldValue,
+      message: map.docs[index]['message'] as String,
+      senderUid: map.docs[index]['senderUid'] as String,
+      senderName: map.docs[index]['senderName'] as String,
+      recieverUid: map.docs[index]['recieverUid'] as String,
+      recieverName: map.docs[index]['recieverName'] as String,
+      messageType: map.docs[index]['messageType'] as String,
+      sentAt: map.docs[index]['sentAt'] as Timestamp,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory MessageModel.fromJson(String source) =>
-      MessageModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  // factory MessageModel.fromJson(String source) =>
+  //     MessageModel.fromMap(json.decode(source) as Map<String, dynamic> );
 
   @override
   String toString() {

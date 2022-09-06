@@ -17,6 +17,7 @@ class ToolsForLogAndSignup {
       height: 75,
       padding: EdgeInsets.symmetric(horizontal: padding ?? 25),
       child: TextFormField(
+        enableInteractiveSelection: false,
         keyboardType: textInputType,
         validator: ((value) => validator!(value)),
         controller: controller,

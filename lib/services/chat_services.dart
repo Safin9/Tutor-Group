@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tutor_group/modules/message_model.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/utils/constant.dart';
@@ -18,6 +17,7 @@ class ChatServices {
     required String message,
     required BuildContext context,
     required UserModelReady friend,
+    required String collectionType,
   }) async {
     final UserModelReady currentUser =
         Provider.of<UserProvider>(context, listen: false).theUser!;
@@ -28,26 +28,33 @@ class ChatServices {
 // "message ": haha
 // "FieldValue.timeStamp()":
 // }
-    MessageModel messageDetails = MessageModel(
-      message: message,
-      senderUid: currentUser.uid,
-      senderName: currentUser.name,
-      recieverUid: friend.uid,
-      recieverName: friend.name,
-      messageType: "text",
-      sentAt: FieldValue.serverTimestamp(),
-    );
+    // MessageModel messageDetails = MessageModel(
+    //   message: message,
+    //   senderUid: currentUser.uid,
+    //   senderName: currentUser.name,
+    //   recieverUid: friend.uid,
+    //   recieverName: friend.name,
+    //   messageType: "text",
+    //   sentAt: FieldValue.serverTimestamp(),
+    // );
     await firestore
-        .collection("Users")
+        .collection(collectionType)
         .doc(currentUser.uid)
         .collection("Messages")
         .doc(friend.uid)
         .collection("Chats")
-        .add(messageDetails.toMap())
-        .then(
+        .add({
+      "message": message,
+      "senderUid": currentUser.uid,
+      "senderName": currentUser.name,
+      "recieverUid": friend.uid,
+      "recieverName": friend.name,
+      "messageType": "text",
+      "sentAt": FieldValue.serverTimestamp()
+    }).then(
       (_) {
         firestore
-            .collection("Users")
+            .collection(collectionType)
             .doc(currentUser.uid)
             .collection("Messages")
             .doc(friend.uid)
@@ -58,15 +65,22 @@ class ChatServices {
       },
     );
     await firestore
-        .collection("Teachers")
+        .collection(collectionType == "Users" ? "Teachers" : "Users")
         .doc(friend.uid)
         .collection("Messages")
         .doc(currentUser.uid)
         .collection("Chats")
-        .add(messageDetails.toMap())
-        .then((_) {
+        .add({
+      "message": message,
+      "senderUid": currentUser.uid,
+      "senderName": currentUser.name,
+      "recieverUid": friend.uid,
+      "recieverName": friend.name,
+      "messageType": "text",
+      "sentAt": FieldValue.serverTimestamp()
+    }).then((_) {
       firestore
-          .collection("Teachers")
+          .collection(collectionType == "Users" ? "Teachers" : "Users")
           .doc(friend.uid)
           .collection("Messages")
           .doc(currentUser.uid)
@@ -75,5 +89,42 @@ class ChatServices {
             "dateOfLastMessage": FieldValue.serverTimestamp(),
           }));
     });
+  }
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> teacherCheckerTraffic(
+      BuildContext context) {
+    final UserModelReady currentUser = context.read<UserProvider>().theUser!;
+
+    return firestore.collection("Teachers").doc(currentUser.uid).get();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> gettingChatsForUser(
+    BuildContext context,
+    UserModelReady currentUser,
+    UserModelReady friendUser,
+  ) {
+    return firestore
+        .collection("Users")
+        .doc(currentUser.uid)
+        .collection("Messages")
+        .doc(friendUser.uid)
+        .collection("Chats")
+        .orderBy("sentAt", descending: true)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> gettingChatsForTeacher(
+    BuildContext context,
+    UserModelReady currentUser,
+    UserModelReady friendUser,
+  ) {
+    return firestore
+        .collection("Teachers")
+        .doc(currentUser.uid)
+        .collection("Messages")
+        .doc(friendUser.uid)
+        .collection("Chats")
+        .orderBy("sentAt", descending: true)
+        .snapshots();
   }
 }

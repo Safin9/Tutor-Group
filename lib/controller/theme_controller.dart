@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:tutor_group/main.dart';
 
 class ThemeController extends GetxController {

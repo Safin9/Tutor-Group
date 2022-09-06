@@ -124,8 +124,9 @@ class SignInByPhone extends StatelessWidget {
                                 number: numberContorller.text.trim(),
                               );
 
-                          Get.to(() => const OtpScreen(),
-                              duration: const Duration(seconds: 5));
+                          Get.to(
+                            () => const OtpScreen(),
+                          );
                           numberContorller.clear();
                         }
                       },

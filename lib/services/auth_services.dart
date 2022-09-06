@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/screens/auth/handler_screen.dart';
 import 'package:tutor_group/screens/home/home_screen.dart';
+import 'package:tutor_group/utils/constant.dart';
 
 class AuthServices {
-  FirebaseAuth auth = FirebaseAuth.instance;
   Future<void> createUserWithOtp({required String phoneNumber}) async {
-    final sign = await auth.signInWithPhoneNumber(phoneNumber);
+    await auth.signInWithPhoneNumber(phoneNumber);
   }
 
   signInWithPhoneNumber(
@@ -27,13 +27,13 @@ class AuthServices {
     }
   }
 
-  createAccountWithEmailAndPasswordForUser(
+  Future<void> createAccountWithEmailAndPasswordForUser(
       {required String email, required String password}) async {
     try {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        Get.to(() => HomeScreen());
+        Get.to(() => const HomeScreen());
         Get.dialog(const Center(
           child: SizedBox(
             height: 200,
@@ -43,7 +43,7 @@ class AuthServices {
         ));
       });
     } catch (e) {
-      print('error with creating account$e');
+      print('error with creating account $e');
     }
   }
 
@@ -53,7 +53,7 @@ class AuthServices {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        Get.to(() => HomeScreen());
+        Get.to(() => const HomeScreen());
       });
     } catch (e) {
       Get.snackbar('Error', e.toString());
