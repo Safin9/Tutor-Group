@@ -10,12 +10,6 @@ class SendMessageButton extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return ElevatedButton(
       onPressed: onPressed,
-      // onPressed: () {
-      //   // ChatServices().sendAMessage(context: context, friendUser: friendUser);
-      //   Get.to(() => Chathandler(
-      //         friendUser: friendUser,
-      //       ));
-      // },
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
