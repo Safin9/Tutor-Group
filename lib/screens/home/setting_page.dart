@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
+import 'package:tutor_group/screens/about%20screens/about_developer.dart';
 import 'package:tutor_group/utils/utils.dart';
 
 class Settingsr extends StatefulWidget {
@@ -35,25 +36,27 @@ class _SettingsrState extends State<Settingsr> {
           child: ListView(
             children: [
               Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8),
-                  child: SwitchListTile.adaptive(
-                    tileColor: tileColor,
-                    value: theme.isDark,
-                    onChanged: (value) {
-                      setState(() {
-                        theme.changeTheme(value);
-                      });
-                    },
-                    title: const Text('Dark Mode'),
-                  )),
+                padding: const EdgeInsets.only(left: 8.0, right: 8),
+                child: SwitchListTile.adaptive(
+                  tileColor: tileColor,
+                  value: theme.isDark,
+                  onChanged: (value) {
+                    setState(() {
+                      theme.changeTheme(value);
+                    });
+                  },
+                  title: const Text('Dark Mode'),
+                ),
+              ),
+              myListTile(
+                tileColor: tileColor,
+                title: 'About developer',
+                onTap: () => Get.to(() => const AboutDeveloper()),
+              ),
               myListTile(
                 tileColor: tileColor,
                 title: 'Log out',
                 onTap: logout,
-              ),
-              myListTile(
-                tileColor: tileColor,
-                title: 'About us',
               ),
             ],
           ),

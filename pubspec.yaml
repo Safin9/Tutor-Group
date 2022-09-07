@@ -149,6 +149,9 @@ flutter:
     - assets/images/chemistry.jpg
     - assets/images/kurdish.jpg
     - assets/images/arabic.jpg
+    - assets/images/rwanga.png
+    - assets/images/malestd.png
+    - assets/images/femalestd.png
     - assets/svg/teacher.svg
     - assets/lottie/teacher.json
 

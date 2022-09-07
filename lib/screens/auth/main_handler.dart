@@ -22,7 +22,7 @@ class MainHandler extends StatelessWidget {
             return Center(
               child: Text(snapshot.error.toString()),
             );
-          } else if (!snapshot.hasData || snapshot.data == null) {
+          } else if (!snapshot.hasData && snapshot.data == null) {
             return SignInByPhone();
           }
           return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(

@@ -20,6 +20,7 @@ class ChatHistoryForTeacher extends StatelessWidget {
             .collection("Teachers")
             .doc(currentUser.uid)
             .collection("Messages")
+            .orderBy("dateOfLastMessage", descending: true)
             .snapshots(),
         builder: ((context, snapshotFromStream) {
           if (snapshotFromStream.connectionState == ConnectionState.waiting) {
@@ -36,7 +37,12 @@ class ChatHistoryForTeacher extends StatelessWidget {
               snapshotFromStream.error.toString(),
             ));
           } else {
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  endIndent: 15,
+                );
+              },
               physics: const BouncingScrollPhysics(),
               itemCount: snapshotFromStream.data!.docs.length,
               itemBuilder: ((context, indexforstream) {
@@ -46,8 +52,7 @@ class ChatHistoryForTeacher extends StatelessWidget {
                       snapshotFromStream.data!.docs[indexforstream].id;
                   final String lastMessage = snapshotFromStream
                       .data!.docs[indexforstream]["lastMessage"];
-                  // final String dateOfLastMessage =
-                  //     snapshot.data!.docs[index]["dateOfLastMessage"];
+
                   return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                     future:
                         firestore.collection("Users").doc(friendUserId).get(),
@@ -60,22 +65,35 @@ class ChatHistoryForTeacher extends StatelessWidget {
                       }
                       if (docSnapshot.hasData &&
                           docSnapshot.data!.data() != null &&
-                          docSnapshot.data!.exists) {
+                          docSnapshot.data!.exists &&
+                          snapshotFromStream.data!.docs[indexforstream]
+                                  ["dateOfLastMessage"] !=
+                              null) {
                         final UserModelReady friendInfo =
                             UserModelReady.fromSnapShot(docSnapshot.data!);
+                        final Timestamp lastmessageDate = snapshotFromStream
+                            .data!.docs[indexforstream]["dateOfLastMessage"];
                         return ListTile(
                           onTap: (() =>
                               Get.to(() => ChatPage(friendUser: friendInfo))),
                           title: Text(friendInfo.name),
                           leading: ClipRRect(
-                              child:
-                                  Image.asset('assets/images/tutorlogo.png')),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(50)),
+                            child: friendInfo.gender == 'Male'
+                                ? Image.asset('assets/images/malestd.png')
+                                : Image.asset("assets/images/femalestd.png"),
+                          ),
                           subtitle: Row(
                             children: [
                               Text(lastMessage),
                               const Spacer(),
                             ],
                           ),
+                          trailing: Text(lastmessageDate
+                              .toDate()
+                              .toString()
+                              .substring(0, 16)),
                         );
                       } else {
                         return const Nil();

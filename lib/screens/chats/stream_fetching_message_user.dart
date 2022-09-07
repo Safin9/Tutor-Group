@@ -50,6 +50,9 @@ class _StreamForUserFetchingMessagesState
                 );
               } else if (snapshot.data!.docs.isNotEmpty) {
                 return ListView.builder(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  physics: const BouncingScrollPhysics(),
                   reverse: true,
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: ((context, index) {

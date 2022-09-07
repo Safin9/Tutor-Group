@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class ChatHistoryForUsers extends StatelessWidget {
             .collection("Users")
             .doc(currentUser.uid)
             .collection("Messages")
+            .orderBy("dateOfLastMessage", descending: true)
             .snapshots(),
         builder: ((context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -36,7 +38,13 @@ class ChatHistoryForUsers extends StatelessWidget {
               snapshot.error.toString(),
             ));
           } else {
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  indent: 15,
+                  endIndent: 35,
+                );
+              },
               physics: const BouncingScrollPhysics(),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
@@ -44,30 +52,30 @@ class ChatHistoryForUsers extends StatelessWidget {
                   final String friendUserId = snapshot.data!.docs[index].id;
                   final String lastMessage =
                       snapshot.data!.docs[index]["lastMessage"];
-                  // final String dateOfLastMessage = snapshot
-                  //     .data!.docs[index]["dateOfLastMessage"]
-                  //     .toString();
+
                   return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                     future: firestore
                         .collection("Teachers")
                         .doc(friendUserId)
                         .get(),
                     builder: ((context, docSnapshot) {
-                      // if (docSnapshot.connectionState ==
-                      //     ConnectionState.waiting) {
-                      //   return const Center(
-                      //     child: CircularProgressIndicator.adaptive(),
-                      //   );
-                      // }
-                      if (docSnapshot.hasData && docSnapshot.data!.exists) {
+                      if (docSnapshot.hasData &&
+                          docSnapshot.data!.exists &&
+                          snapshot.data!.docs[index]["dateOfLastMessage"] !=
+                              null) {
                         final UserModelReady friendInfo =
                             UserModelReady.fromSnapShot(docSnapshot.data!);
-
+                        final Timestamp lastmessageDate =
+                            snapshot.data!.docs[index]["dateOfLastMessage"];
                         if (friendInfo.imageUrl != null) {
-                          final String image =
-                              friendInfo.imageUrl!.replaceAll("/", "%2F");
-                          userImage =
-                              'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
+                          if (friendInfo.imageUrl!.isNotEmpty) {
+                            final String image =
+                                friendInfo.imageUrl!.replaceAll("/", "%2F");
+                            userImage =
+                                'https://firebasestorage.googleapis.com/v0/b/tutorgroup-9c6eb.appspot.com/o/Teachers$image?alt=media&token=1b785367-cc2f-40ad-b6de-db69536b3d92';
+                          } else {
+                            userImage = null;
+                          }
                         } else {
                           userImage = null;
                         }
@@ -76,18 +84,24 @@ class ChatHistoryForUsers extends StatelessWidget {
                           onTap: (() =>
                               Get.to(() => ChatPage(friendUser: friendInfo))),
                           title: Text(friendInfo.name),
-                          // leading: SizedBox(
-                          //   height: 25,
-                          //   width: 25,
-                          //   child: ClipRRect(
-                          //     child: userImage == null
-                          //         ? Image.asset('assets/images/tutorlogo.png')
-                          //         : CachedNetworkImage(
-                          //             imageUrl: userImage!,
-                          //             fit: BoxFit.cover,
-                          //           ),
-                          //   ),
-                          // ),
+                          leading: SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(50)),
+                              child: userImage == null
+                                  ? Image.asset('assets/images/tutorlogo.png')
+                                  : CachedNetworkImage(
+                                      imageUrl: userImage!,
+                                      fit: BoxFit.cover,
+                                    ),
+                            ),
+                          ),
+                          trailing: Text(lastmessageDate
+                              .toDate()
+                              .toString()
+                              .substring(0, 16)),
                           subtitle: Row(
                             children: [
                               Text(lastMessage),

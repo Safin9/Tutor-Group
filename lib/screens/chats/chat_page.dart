@@ -33,77 +33,77 @@ class _ChatPageState extends State<ChatPage> {
       userImage = null;
     }
 
-    return GestureDetector(
-      onTap: (() => FocusScope.of(context).previousFocus()),
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 4,
-          title: Row(
-            children: [
-              userImage == null
-                  ? const CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/tutorlogo.png'),
-                    )
-                  : CircleAvatar(
-                      backgroundImage: CachedNetworkImageProvider(userImage),
-                    ),
-              const SizedBox(width: 15),
-              Text(widget.friendUser.name),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 4,
+        title: Row(
+          children: [
+            userImage == null
+                ? widget.friendUser.gender == 'Male'
+                    ? const CircleAvatar(
+                        backgroundImage:
+                            AssetImage('assets/images/malestd.png'),
+                      )
+                    : const CircleAvatar(
+                        backgroundImage:
+                            AssetImage('assets/images/femalestd.png'),
+                      )
+                : CircleAvatar(
+                    backgroundImage: CachedNetworkImageProvider(userImage),
+                  ),
+            const SizedBox(width: 15),
+            Text(widget.friendUser.name),
+          ],
         ),
-        body: Scrollbar(
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(
-              children: [
-                Expanded(
-                  child: NotificationListener<OverscrollIndicatorNotification>(
-                    onNotification: (notification) {
-                      notification.disallowIndicator();
-                      return true;
+      ),
+      body: Scrollbar(
+        child: Container(
+          margin: const EdgeInsets.all(10),
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            children: [
+              Expanded(
+                child: NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (notification) {
+                    notification.disallowIndicator();
+                    return true;
+                  },
+                  child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                    future: ChatServices().teacherCheckerTraffic(context),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: SelectableText(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.data != null &&
+                          snapshot.data!.exists) {
+                        // ignore: todo
+                        // TODO: this if the user was Teacher
+                        return StreamForTeacherFetchingMessages(
+                          friendUser: widget.friendUser,
+                        );
+                      } else if (snapshot.data != null &&
+                          !snapshot.data!.exists) {
+                        // ignore: todo
+                        // TODO: this if the user was User
+                        return StreamForUserFetchingMessages(
+                            friendUser: widget.friendUser);
+                      } else {
+                        return const Center(
+                          child: Text('Oops! something wentWrong'),
+                        );
+                      }
                     },
-                    child:
-                        FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                      future: ChatServices().teacherCheckerTraffic(context),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          );
-                        } else if (snapshot.hasError) {
-                          return Center(
-                            child: SelectableText(snapshot.error.toString()),
-                          );
-                        } else if (snapshot.data != null &&
-                            snapshot.data!.exists) {
-                          // ignore: todo
-                          // TODO: this if the user was Teacher
-                          return StreamForTeacherFetchingMessages(
-                            friendUser: widget.friendUser,
-                          );
-                        } else if (snapshot.data != null &&
-                            !snapshot.data!.exists) {
-                          // ignore: todo
-                          // TODO: this if the user was User
-                          return StreamForUserFetchingMessages(
-                              friendUser: widget.friendUser);
-                        } else {
-                          return const Center(
-                            child: Text('Oops! something wentWrong'),
-                          );
-                        }
-                      },
-                    ),
                   ),
                 ),
-                ChatField(freind: widget.friendUser),
-              ],
-            ),
+              ),
+              ChatField(freind: widget.friendUser),
+            ],
           ),
         ),
       ),

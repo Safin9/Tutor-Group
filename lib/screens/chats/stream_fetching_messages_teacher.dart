@@ -47,6 +47,8 @@ class _StreamForTeacherFetchingMessagesState
               } else {
                 return ListView.builder(
                   reverse: true,
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   physics: const BouncingScrollPhysics(),
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: ((context, index) {

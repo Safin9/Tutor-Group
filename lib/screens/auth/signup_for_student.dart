@@ -143,30 +143,51 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            datePicker(
-                                items: n.days,
-                                sizeWidth: size.width,
-                                valueChanged: (value) {
-                                  setState(() {
-                                    selectedDay = value;
-                                  });
-                                }),
-                            datePicker(
-                                items: n.months,
-                                sizeWidth: size.width,
-                                valueChanged: (value) {
-                                  setState(() {
-                                    selectedMonth = value;
-                                  });
-                                }),
-                            datePicker(
-                                items: n.years,
-                                sizeWidth: size.width,
-                                valueChanged: (value) {
-                                  setState(() {
-                                    selectedYear = value;
-                                  });
-                                }),
+                            Column(
+                              children: [
+                                datePicker(
+                                    items: n.days,
+                                    sizeWidth: size.width,
+                                    valueChanged: (value) {
+                                      setState(() {
+                                        selectedDay = value;
+                                      });
+                                    }),
+                                Text('Day',
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                datePicker(
+                                    items: n.months,
+                                    sizeWidth: size.width,
+                                    valueChanged: (value) {
+                                      setState(() {
+                                        selectedMonth = value;
+                                      });
+                                    }),
+                                Text('Month',
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                datePicker(
+                                    items: n.years,
+                                    sizeWidth: size.width,
+                                    valueChanged: (value) {
+                                      setState(() {
+                                        selectedYear = value;
+                                      });
+                                    }),
+                                Text('Year',
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -200,7 +221,7 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
                       ));
                       userNameController!.clear();
                     } else {
-                      Get.snackbar('title', 'Please Enter missing information',
+                      Get.snackbar('Error', 'Please Enter missing information',
                           backgroundColor: Colors.white);
                     }
                   },
@@ -217,16 +238,16 @@ class _SignUpForStudentState extends State<SignUpForStudent> {
     );
   }
 
-  Widget text({required String text}) {
+  Widget text({required String text, double? size}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: size ?? 18,
           ),
         ),
       ),

@@ -7,6 +7,7 @@ import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/home/setting_page.dart';
 import 'package:tutor_group/widgets/profile_header.dart';
 import 'package:tutor_group/widgets/profile_information.dart';
+import 'package:tutor_group/widgets/profile_lnfo_item.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -67,7 +68,24 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 0.025 * size.height),
                     user.tacherOrStudent! == 'Teacher'
                         ? const ProfileInformation()
-                        : Container(),
+                        : Container(
+                            child: Column(
+                              children: [
+                                ProfileListItem(
+                                    icon: Icons.abc,
+                                    title: 'Full Name',
+                                    desc: user.name),
+                                ProfileListItem(
+                                    icon: Icons.abc,
+                                    title: 'Joined tutor at',
+                                    desc: user.createdAt),
+                                ProfileListItem(
+                                    icon: Icons.abc,
+                                    title: 'Phone Number',
+                                    desc: user.phoneNumber!),
+                              ],
+                            ),
+                          ),
                     const SizedBox(height: 100),
                   ],
                 ),
