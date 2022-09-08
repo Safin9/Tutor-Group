@@ -20,7 +20,7 @@ void main() async {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(
-        create: (context) => TestProvider(),
+        create: (context) => PhoneCodeAndNumberProvider(),
       ),
       ChangeNotifierProvider(
         create: (context) => UserProvider(),

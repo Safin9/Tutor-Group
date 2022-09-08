@@ -44,7 +44,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   verificationphone() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+${context.read<TestProvider>().finalNumber}',
+      phoneNumber: '+${context.read<PhoneCodeAndNumberProvider>().finalNumber}',
       verificationCompleted: (credential) async {
         await FirebaseAuth.instance
             .signInWithCredential(credential)
@@ -76,11 +76,12 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     //this is full number:
-    final phoneNumber = Provider.of<TestProvider>(context).finalNumber!;
+
     //this is code:
-    final code = Provider.of<TestProvider>(context).n;
+    final code = Provider.of<PhoneCodeAndNumberProvider>(context).n;
     //this is number
-    final number = Provider.of<TestProvider>(context).phonenumber!;
+    final number =
+        Provider.of<PhoneCodeAndNumberProvider>(context).phonenumber!;
 
     return Scaffold(
       key: scaffoldkey,
@@ -120,7 +121,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   IconButton(
                       onPressed: (() {
                         Get.back();
-                        context.read<TestProvider>().n = 964;
+                        context.read<PhoneCodeAndNumberProvider>().n = 964;
                       }),
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TestProvider extends ChangeNotifier {
+class PhoneCodeAndNumberProvider extends ChangeNotifier {
   int n = 964;
   String? finalNumber;
   String? phonenumber;
