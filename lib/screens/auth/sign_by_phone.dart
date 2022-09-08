@@ -82,7 +82,7 @@ class SignInByPhone extends StatelessWidget {
                           FocusScope.of(context).requestFocus(FocusNode()),
                       onValuePicked: ((value) {
                         context
-                            .read<TestProvider>()
+                            .read<PhoneCodeAndNumberProvider>()
                             .method(number: int.parse(value.phoneCode));
                       }),
                       sortComparator: (a, b) =>
@@ -94,7 +94,8 @@ class SignInByPhone extends StatelessWidget {
                         textInputType: const TextInputType.numberWithOptions(),
                         padding: 0,
                         validator: (val) {
-                          final phoneCode = context.read<TestProvider>().n;
+                          final phoneCode =
+                              context.read<PhoneCodeAndNumberProvider>().n;
                           if (phoneCode == 964) {
                             if (val.trim().isEmpty) {
                               return 'enter a number';
@@ -120,7 +121,9 @@ class SignInByPhone extends StatelessWidget {
                         bool isvalid = numberFormKey.currentState!.validate();
 
                         if (isvalid) {
-                          context.read<TestProvider>().finalPhoneNumber(
+                          context
+                              .read<PhoneCodeAndNumberProvider>()
+                              .finalPhoneNumber(
                                 number: numberContorller.text.trim(),
                               );
 

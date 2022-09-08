@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       themeMode: theme.isDark ? ThemeMode.dark : ThemeMode.light,
       theme: lightTheme,
       darkTheme: darkTheme,
-      //FIXME: it should be the MainHandler as home of GetMaterialApp
+      //FIXME: it should be the MainHandler() as home of GetMaterialApp
       home: const MainHandler(),
     );
   }
