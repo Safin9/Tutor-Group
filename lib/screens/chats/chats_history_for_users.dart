@@ -108,9 +108,10 @@ class ChatHistoryForUsers extends StatelessWidget {
                           trailing: Text(time),
                           subtitle: Row(
                             children: [
-                              Text(lastMessage),
-                              const Spacer(),
-                              // Text(dateOfLastMessage)
+                              lastMessage.trim().length > 20
+                                  ? Text(
+                                      "${lastMessage.trim().substring(0, 20)}....")
+                                  : Text(lastMessage.trim()),
                             ],
                           ),
                         );

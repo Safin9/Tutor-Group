@@ -1,14 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:background_app_bar/background_app_bar.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:tutor_group/modules/birthdate_model.dart';
 import 'package:tutor_group/modules/user_model.dart';
+import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/chats/chat_page.dart';
-
 import 'package:tutor_group/screens/chats/send_message_button.dart';
-import 'package:tutor_group/utils/constant.dart';
 
 class TeacherProfileDetails extends StatelessWidget {
   const TeacherProfileDetails({Key? key, required this.friendUser})
@@ -29,7 +28,7 @@ class TeacherProfileDetails extends StatelessWidget {
     final birthYear = BirthDateModel.fromMap(friendUser.birthDate!);
     final age = DateTime.now().year - birthYear.year;
     final size = MediaQuery.of(context).size;
-
+    final UserModelReady currentUser = context.read<UserProvider>().theUser!;
     return Scaffold(
       appBar: AppBar(elevation: 15),
       body: SafeArea(
@@ -99,27 +98,35 @@ class TeacherProfileDetails extends StatelessWidget {
                           Text(friendUser.name,
                               style: textStyle(sizeWidth: 1.3 * size.width)),
                           const Spacer(),
-                          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                            future: firestore
-                                .collection("Teachers")
-                                .doc(auth.currentUser!.uid)
-                                .get(),
-                            builder: ((context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Container();
-                              } else if (snapshot.data!.exists) {
-                                return Container();
-                              } else {
-                                return SendMessageButton(
+                          currentUser.tacherOrStudent == 'Student'
+                              ? SendMessageButton(
                                   onPressed: (() {
                                     Get.to(
                                         () => ChatPage(friendUser: friendUser));
                                   }),
-                                );
-                              }
-                            }),
-                          )
+                                )
+                              : Container()
+                          // FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                          //   future: firestore
+                          //       .collection("Teachers")
+                          //       .doc(auth.currentUser!.uid)
+                          //       .get(),
+                          //   builder: ((context, snapshot) {
+                          //     if (snapshot.connectionState ==
+                          //         ConnectionState.waiting) {
+                          //       return Container();
+                          //     } else if (snapshot.data!.exists) {
+                          //       return Container();
+                          //     } else {
+                          //       return SendMessageButton(
+                          //         onPressed: (() {
+                          //           Get.to(
+                          //               () => ChatPage(friendUser: friendUser));
+                          //         }),
+                          //       );
+                          //     }
+                          //   }),
+                          // )
                         ],
                       ),
                       const SizedBox(height: 15),

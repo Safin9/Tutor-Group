@@ -63,7 +63,7 @@ class _StreamForTeacherFetchingMessagesState
                             children: [
                               BubbleNormal(
                                 isSender: true,
-                                text: msg.message,
+                                text: msg.message.trim(),
                                 color: Get.isDarkMode
                                     ? Colors.white
                                     : Colors.grey.withOpacity(0.25),
@@ -87,7 +87,7 @@ class _StreamForTeacherFetchingMessagesState
                               BubbleSpecialThree(
                                 isSender: false,
                                 color: Colors.blue,
-                                text: msg.message,
+                                text: msg.message.trim(),
                               ),
                               Text(
                                 msg.sentAt.toDate().toString().substring(5, 16),

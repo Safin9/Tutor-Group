@@ -93,8 +93,10 @@ class ChatHistoryForTeacher extends StatelessWidget {
                           ),
                           subtitle: Row(
                             children: [
-                              Text(lastMessage),
-                              const Spacer(),
+                              lastMessage.trim().length > 20
+                                  ? Text(
+                                      "${lastMessage.trim().substring(0, 20)}....")
+                                  : Text(lastMessage.trim()),
                             ],
                           ),
                           trailing: Text(time),
