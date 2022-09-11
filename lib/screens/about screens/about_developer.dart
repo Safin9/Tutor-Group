@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutDeveloper extends StatelessWidget {
   const AboutDeveloper({Key? key}) : super(key: key);
@@ -53,9 +56,67 @@ class AboutDeveloper extends StatelessWidget {
                     title: 'About app',
                     text:
                         """This application is developed by Safin Saber Nori during the july of 2022 Rwanga WeCode bootcamp Which was full of  experience and 3 months of code challengings.
+                        """,
+                    context: context),
+                const Divider(thickness: 1, indent: 10, endIndent: 10),
+                myTextForAboutScreen(
+                    title: 'About Developer',
+                    text: """
                         
                         """,
                     context: context),
+
+                ToolsForLogAndSignup().buildButton(
+                    onPressed: (() async {
+                      Uri uri = Uri.parse('https://github.com/Safin9');
+                      await launchUrl(uri);
+                    }),
+                    color: Colors.black,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(FontAwesomeIcons.github),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text('Safin9'),
+                      ],
+                    )),
+
+                ToolsForLogAndSignup().buildButton(
+                    onPressed: (() async {
+                      Uri uri = Uri.parse(
+                          'https://www.linkedin.com/in/safin-saber-233677207/');
+                      await launchUrl(uri);
+                    }),
+                    color: Colors.blue.shade800,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(FontAwesomeIcons.linkedin),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text('Safin Saber'),
+                      ],
+                    )),
+                ToolsForLogAndSignup().buildButton(
+                    onPressed: (() async {
+                      Uri uri = Uri.parse(
+                          'https://stackoverflow.com/users/edit/19226099');
+                      await launchUrl(uri);
+                    }),
+                    color: Colors.orange.shade700,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        FaIcon(FontAwesomeIcons.stackOverflow),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text('Safin Saber Nori'),
+                      ],
+                    ))
               ],
             ),
           ),
