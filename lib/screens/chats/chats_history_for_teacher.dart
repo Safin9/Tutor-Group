@@ -7,6 +7,7 @@ import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/chats/chat_page.dart';
 import 'package:tutor_group/utils/constant.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class ChatHistoryForTeacher extends StatelessWidget {
   const ChatHistoryForTeacher({Key? key}) : super(key: key);
@@ -73,6 +74,12 @@ class ChatHistoryForTeacher extends StatelessWidget {
                             UserModelReady.fromSnapShot(docSnapshot.data!);
                         final Timestamp lastmessageDate = snapshotFromStream
                             .data!.docs[indexforstream]["dateOfLastMessage"];
+                        final DateTime now = DateTime.now();
+                        final Duration loadedTime =
+                            now.difference(lastmessageDate.toDate());
+                        timeago.setLocaleMessages('ar', timeago.ArMessages());
+                        final time = timeago.format(now.subtract(loadedTime),
+                            locale: 'Ar');
                         return ListTile(
                           onTap: (() =>
                               Get.to(() => ChatPage(friendUser: friendInfo))),
@@ -90,10 +97,7 @@ class ChatHistoryForTeacher extends StatelessWidget {
                               const Spacer(),
                             ],
                           ),
-                          trailing: Text(lastmessageDate
-                              .toDate()
-                              .toString()
-                              .substring(0, 16)),
+                          trailing: Text(time),
                         );
                       } else {
                         return const Nil();
