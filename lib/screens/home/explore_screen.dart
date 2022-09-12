@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/modules/user_model.dart';
@@ -135,7 +136,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 onTap: (() => Get.to(() =>
                                     TeacherProfileDetails(
                                         friendUser: friendUser))),
-                                child: TeacherCard(user: friendUser));
+                                child: Entry.scale(
+                                    curve: Curves.easeOutExpo,
+                                    duration: const Duration(seconds: 1),
+                                    child: TeacherCard(user: friendUser)));
                           }),
                         ),
                       );

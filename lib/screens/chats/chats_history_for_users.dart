@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,8 @@ import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/chats/chat_page.dart';
 import 'package:tutor_group/utils/constant.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+import 'listtile_shimmer.dart';
 
 class ChatHistoryForUsers extends StatelessWidget {
   const ChatHistoryForUsers({Key? key}) : super(key: key);
@@ -60,6 +63,10 @@ class ChatHistoryForUsers extends StatelessWidget {
                         .doc(friendUserId)
                         .get(),
                     builder: ((context, docSnapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const SizedBox(
+                            height: 50, width: 50, child: ListTileShimmer());
+                      }
                       if (docSnapshot.hasData &&
                           docSnapshot.data!.exists &&
                           snapshot.data!.docs[index]["dateOfLastMessage"] !=
@@ -87,32 +94,35 @@ class ChatHistoryForUsers extends StatelessWidget {
                         timeago.setLocaleMessages('ar', timeago.ArMessages());
                         final time = timeago.format(now.subtract(loadedTime),
                             locale: 'Ar');
-                        return ListTile(
-                          onTap: (() =>
-                              Get.to(() => ChatPage(friendUser: friendInfo))),
-                          title: Text(friendInfo.name),
-                          leading: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(50)),
-                              child: userImage == null
-                                  ? Image.asset('assets/images/tutorlogo.png')
-                                  : CachedNetworkImage(
-                                      imageUrl: userImage!,
-                                      fit: BoxFit.cover,
-                                    ),
+                        return Entry.opacity(
+                          duration: const Duration(milliseconds: 750),
+                          child: ListTile(
+                            onTap: (() =>
+                                Get.to(() => ChatPage(friendUser: friendInfo))),
+                            title: Text(friendInfo.name),
+                            leading: SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(50)),
+                                child: userImage == null
+                                    ? Image.asset('assets/images/tutorlogo.png')
+                                    : CachedNetworkImage(
+                                        imageUrl: userImage!,
+                                        fit: BoxFit.cover,
+                                      ),
+                              ),
                             ),
-                          ),
-                          trailing: Text(time),
-                          subtitle: Row(
-                            children: [
-                              lastMessage.trim().length > 20
-                                  ? Text(
-                                      "${lastMessage.trim().substring(0, 20)}....")
-                                  : Text(lastMessage.trim()),
-                            ],
+                            trailing: Text(time),
+                            subtitle: Row(
+                              children: [
+                                lastMessage.trim().length > 20
+                                    ? Text(
+                                        "${lastMessage.trim().substring(0, 20)}....")
+                                    : Text(lastMessage.trim()),
+                              ],
+                            ),
                           ),
                         );
                       }

@@ -99,7 +99,7 @@ class SignInByPhone extends StatelessWidget {
                           if (phoneCode == 964) {
                             if (val.trim().isEmpty) {
                               return 'enter a number';
-                            } else if (val.length < 10) {
+                            } else if (val.length < 10 || val.length > 10) {
                               return 'enter a valid number';
                             }
                             return null;
@@ -110,6 +110,7 @@ class SignInByPhone extends StatelessWidget {
                             return null;
                           }
                         },
+                        hint: '7xxxxxxxxx',
                         hintText: 'hintText',
                         controller: numberContorller,
                         labelText: 'Phone',

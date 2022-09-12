@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nil/nil.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:tutor_group/modules/user_model.dart';
 import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/chats/chat_page.dart';
+import 'package:tutor_group/screens/chats/listtile_shimmer.dart';
 import 'package:tutor_group/utils/constant.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -60,9 +62,8 @@ class ChatHistoryForTeacher extends StatelessWidget {
                     builder: ((context, docSnapshot) {
                       if (docSnapshot.connectionState ==
                           ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator.adaptive(),
-                        );
+                        return const SizedBox(
+                            height: 50, width: 50, child: ListTileShimmer());
                       }
                       if (docSnapshot.hasData &&
                           docSnapshot.data!.data() != null &&
@@ -80,26 +81,29 @@ class ChatHistoryForTeacher extends StatelessWidget {
                         timeago.setLocaleMessages('ar', timeago.ArMessages());
                         final time = timeago.format(now.subtract(loadedTime),
                             locale: 'Ar');
-                        return ListTile(
-                          onTap: (() =>
-                              Get.to(() => ChatPage(friendUser: friendInfo))),
-                          title: Text(friendInfo.name),
-                          leading: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(50)),
-                            child: friendInfo.gender == 'Male'
-                                ? Image.asset('assets/images/malestd.png')
-                                : Image.asset("assets/images/femalestd.png"),
+                        return Entry.opacity(
+                          duration: const Duration(seconds: 1),
+                          child: ListTile(
+                            onTap: (() =>
+                                Get.to(() => ChatPage(friendUser: friendInfo))),
+                            title: Text(friendInfo.name),
+                            leading: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(50)),
+                              child: friendInfo.gender == 'Male'
+                                  ? Image.asset('assets/images/malestd.png')
+                                  : Image.asset("assets/images/femalestd.png"),
+                            ),
+                            subtitle: Row(
+                              children: [
+                                lastMessage.trim().length > 20
+                                    ? Text(
+                                        "${lastMessage.trim().substring(0, 20)}....")
+                                    : Text(lastMessage.trim()),
+                              ],
+                            ),
+                            trailing: Text(time),
                           ),
-                          subtitle: Row(
-                            children: [
-                              lastMessage.trim().length > 20
-                                  ? Text(
-                                      "${lastMessage.trim().substring(0, 20)}....")
-                                  : Text(lastMessage.trim()),
-                            ],
-                          ),
-                          trailing: Text(time),
                         );
                       } else {
                         return const Nil();

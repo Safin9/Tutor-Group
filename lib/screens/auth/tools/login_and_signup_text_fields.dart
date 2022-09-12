@@ -34,7 +34,7 @@ class ToolsForLogAndSignup {
           hintText: hint,
           hintStyle: const TextStyle(
             color: Colors.grey,
-            fontSize: 22,
+            fontSize: 17,
           ),
         ),
       ),
