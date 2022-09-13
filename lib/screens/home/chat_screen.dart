@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:tutor_group/screens/chats/chats_history_for_teacher.dart';
 import 'package:tutor_group/screens/chats/chats_history_for_users.dart';
-import 'package:tutor_group/screens/chats/shimmer.dart';
+import 'package:tutor_group/widgets/shimmer.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
