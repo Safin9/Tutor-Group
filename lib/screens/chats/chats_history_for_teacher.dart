@@ -10,6 +10,7 @@ import 'package:tutor_group/screens/chats/chat_page.dart';
 import 'package:tutor_group/screens/chats/listtile_shimmer.dart';
 import 'package:tutor_group/utils/constant.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:tutor_group/widgets/loading_for_firstpage.dart';
 
 class ChatHistoryForTeacher extends StatelessWidget {
   const ChatHistoryForTeacher({Key? key}) : super(key: key);
@@ -27,9 +28,7 @@ class ChatHistoryForTeacher extends StatelessWidget {
             .snapshots(),
         builder: ((context, snapshotFromStream) {
           if (snapshotFromStream.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const LoadingForFirstPage();
           } else if (snapshotFromStream.data!.docs.isEmpty) {
             return const Center(
               child: Text("No chats yet"),

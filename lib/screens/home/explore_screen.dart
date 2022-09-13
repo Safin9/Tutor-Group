@@ -7,6 +7,7 @@ import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart
 import 'package:tutor_group/screens/chats/teacher_profile_details.dart';
 import 'package:tutor_group/utils/general_dropdown.dart';
 import 'package:tutor_group/utils/strings.dart';
+import 'package:tutor_group/widgets/loading_for_firstpage.dart';
 import 'package:tutor_group/widgets/teacher_card.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -50,9 +51,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   builder:
                       (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
+                      return const LoadingForFirstPage();
                     } else if (snapshot.hasError) {
                       return Center(
                         child: SelectableText(snapshot.error.toString()),

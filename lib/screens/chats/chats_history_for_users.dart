@@ -9,6 +9,7 @@ import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/chats/chat_page.dart';
 import 'package:tutor_group/utils/constant.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:tutor_group/widgets/loading_for_firstpage.dart';
 
 import 'listtile_shimmer.dart';
 
@@ -29,9 +30,7 @@ class ChatHistoryForUsers extends StatelessWidget {
             .snapshots(),
         builder: ((context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const LoadingForFirstPage();
           } else if (snapshot.data!.docs.isEmpty) {
             return const Center(
               child: Text("No chats yet"),

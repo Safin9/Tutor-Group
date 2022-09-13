@@ -19,11 +19,10 @@ class SignUpForStudent extends StatefulWidget {
 
 class _SignUpForStudentState extends State<SignUpForStudent> {
   ToolsForLogAndSignup tools = ToolsForLogAndSignup();
-  TextEditingController? emailController;
-  TextEditingController? passwordController;
+
   TextEditingController? userNameController;
   TextEditingController? surnameController;
-  TextEditingController? passwordConfirmController;
+
   final signUpFormKey = GlobalKey<FormState>();
 
   String selectedDay = '0';

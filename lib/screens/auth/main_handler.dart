@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tutor_group/screens/auth/handler_for_teacher.dart';
 import 'package:tutor_group/screens/auth/handler_screen.dart';
 import 'package:tutor_group/screens/auth/sign_by_phone.dart';
+import 'package:tutor_group/widgets/loading_for_firstpage.dart';
 
 class MainHandler extends StatelessWidget {
   const MainHandler({Key? key}) : super(key: key);
@@ -15,9 +16,7 @@ class MainHandler extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: ((context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const LoadingForFirstPage();
           } else if (snapshot.hasError) {
             return Center(
               child: Text(snapshot.error.toString()),
@@ -33,8 +32,7 @@ class MainHandler extends StatelessWidget {
               builder: (context, snapshotFromFuture) {
                 if (snapshotFromFuture.connectionState ==
                     ConnectionState.waiting) {
-                  return const Center(
-                      child: CircularProgressIndicator.adaptive());
+                  return const LoadingForFirstPage();
                 } else if (snapshotFromFuture.hasError) {
                   return Center(
                     child: Text(snapshotFromFuture.error.toString()),

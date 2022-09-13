@@ -8,6 +8,7 @@ import 'package:tutor_group/providers/user_provider.dart';
 import 'package:tutor_group/screens/auth/sign_by_phone.dart';
 import 'package:tutor_group/screens/auth/signup_for_student.dart';
 import 'package:tutor_group/screens/home/home_screen.dart';
+import 'package:tutor_group/widgets/loading_for_firstpage.dart';
 
 class HandlerScreen extends StatefulWidget {
   const HandlerScreen({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
         stream: auth.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator.adaptive();
+            return const LoadingForFirstPage();
           } else if (snapshot.data == null) {
             return SignInByPhone();
           } else if (snapshot.hasError) {
@@ -47,8 +48,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
               builder: (context, snapshotFromFuture) {
                 if (snapshotFromFuture.connectionState ==
                     ConnectionState.waiting) {
-                  return const Center(
-                      child: CircularProgressIndicator.adaptive());
+                  return const LoadingForFirstPage();
                 } else if (snapshotFromFuture.hasError) {
                   return Center(
                     child: Text(snapshotFromFuture.error.toString()),
@@ -58,7 +58,7 @@ class _HandlerScreenState extends State<HandlerScreen> {
                   return const SignUpForStudent();
                 } else {
                   setUser(user: snapshot.data!, context: context);
-                  return HomeScreen();
+                  return const HomeScreen();
                 }
               });
         },

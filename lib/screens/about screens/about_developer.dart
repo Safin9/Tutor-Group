@@ -1,3 +1,4 @@
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tutor_group/screens/auth/tools/login_and_signup_text_fields.dart';
@@ -61,62 +62,72 @@ class AboutDeveloper extends StatelessWidget {
                 const Divider(thickness: 1, indent: 10, endIndent: 10),
                 myTextForAboutScreen(
                     title: 'About Developer',
-                    text: """
-                        
+                    text: """Safin Saber Nori
++964 780 705 0300  +964 750 737 4132
+safinsabir@gmail.com
                         """,
                     context: context),
 
-                ToolsForLogAndSignup().buildButton(
-                    onPressed: (() async {
-                      Uri uri = Uri.parse('https://github.com/Safin9');
-                      await launchUrl(uri);
-                    }),
-                    color: Colors.black,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(FontAwesomeIcons.github),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text('Safin9'),
-                      ],
-                    )),
+                Entry.all(
+                  duration: const Duration(milliseconds: 500),
+                  child: ToolsForLogAndSignup().buildButton(
+                      onPressed: (() async {
+                        Uri uri = Uri.parse('https://github.com/Safin9');
+                        await launchUrl(uri);
+                      }),
+                      color: Colors.black,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          FaIcon(FontAwesomeIcons.github),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text('Safin9'),
+                        ],
+                      )),
+                ),
 
-                ToolsForLogAndSignup().buildButton(
-                    onPressed: (() async {
-                      Uri uri = Uri.parse(
-                          'https://www.linkedin.com/in/safin-saber-233677207/');
-                      await launchUrl(uri);
-                    }),
-                    color: Colors.blue.shade800,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(FontAwesomeIcons.linkedin),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text('Safin Saber'),
-                      ],
-                    )),
-                ToolsForLogAndSignup().buildButton(
-                    onPressed: (() async {
-                      Uri uri = Uri.parse(
-                          'https://stackoverflow.com/users/edit/19226099');
-                      await launchUrl(uri);
-                    }),
-                    color: Colors.orange.shade700,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        FaIcon(FontAwesomeIcons.stackOverflow),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text('Safin Saber Nori'),
-                      ],
-                    ))
+                Entry.all(
+                  duration: const Duration(seconds: 1),
+                  child: ToolsForLogAndSignup().buildButton(
+                      onPressed: (() async {
+                        Uri uri = Uri.parse(
+                            'https://www.linkedin.com/in/safin-saber-233677207/');
+                        await launchUrl(uri);
+                      }),
+                      color: Colors.blue.shade800,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          FaIcon(FontAwesomeIcons.linkedin),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text('Safin Saber'),
+                        ],
+                      )),
+                ),
+                Entry.all(
+                  duration: const Duration(milliseconds: 1500),
+                  child: ToolsForLogAndSignup().buildButton(
+                      onPressed: (() async {
+                        Uri uri = Uri.parse(
+                            'https://stackoverflow.com/users/edit/19226099');
+                        await launchUrl(uri);
+                      }),
+                      color: Colors.orange.shade700,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          FaIcon(FontAwesomeIcons.stackOverflow),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text('Safin Saber Nori'),
+                        ],
+                      )),
+                )
               ],
             ),
           ),
@@ -130,7 +141,7 @@ class AboutDeveloper extends StatelessWidget {
       required String title,
       required BuildContext context}) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

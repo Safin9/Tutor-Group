@@ -58,6 +58,7 @@ dependencies:
   timeago: ^3.3.0
   url_launcher: ^6.1.5
   google_fonts: ^3.0.1
+  flutter_spinkit: ^5.1.0
 
   # android_gravity can be one of the following Android Gravity (see
   # https://developer.android.com/reference/android/view/Gravity): bottom, center,
