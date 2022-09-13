@@ -13,6 +13,7 @@ class LoadingForFirstPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return DecoratedBox(
               decoration: BoxDecoration(
+                shape: BoxShape.circle,
                 color: index.isEven ? Colors.yellow : Colors.purple.shade900,
               ),
             );
