@@ -3,7 +3,7 @@
 # final-solo-project-for-WeCode
 ### for implementing the final solo project as WeCode required procedure 
 
-```bash
+```dart
 pip install foobar
 ```
 
