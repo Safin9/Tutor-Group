@@ -1,11 +1,36 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/97254019/179369890-28d9d041-e9ba-4e73-bfba-e0512c31b4c5.png" width=150 height=150></p>
-
 # TutorGroup
-Tutor Group: Is an online explore tutoring is a simple app which enables students and tutors to interact, 
+Tutor Group: Is an online explore tutoring is an app which enables students and tutors to interact, 
 where tutors have their special accounts and student as regular accounts, this makes easier for students 
 and tutors to adjust the demanded session (dealing).
 
 ### for implementing the final solo project as WeCode required procedure 
+
+
+## services uses:
+* firebase authentication both PhoneNumber & emailAndPassword.
+* Firebase Firestore containing two collections(Teachers & Users as students )
+* Firebase CloudStorage storing image files
+* Get_Storage as a local storage for storing some important variables such as used for (isDarkmode or LightMode )
+* Provider State management and user saving his information and sharing in entire application.
+
+
+
+
+## The Logic
+
+### Teachers:
+* can not sign up unless the admin can sign him up in another special application(TutorAdmin).
+* use's their email & password where they given to him by Tutor Admin and signed him to the system.
+* not able to explore students unless he got a message from him before.
+* the ability of exploring other teachers without connecting with them.
+
+
+### Students:
+* can sign up once and then sign in with his provided info. before.
+* uses their Phone Number to sign in & sign up with necessary informations.
+* not able to explore or interact with any other student.
+* the ability to explore teachers and interact with them.
+
 
 
 ## Contributing
@@ -65,3 +90,4 @@ flutter_native_splash:
   image: "assets/images/tutorlogo.png"
   web: false
 ```
+<p align="center"><img src="https://user-images.githubusercontent.com/97254019/179369890-28d9d041-e9ba-4e73-bfba-e0512c31b4c5.png" width=150 height=150></p>
