@@ -12,6 +12,7 @@ and tutors to adjust the demanded session (dealing).
 * Firebase CloudStorage storing image files
 * Get_Storage as a local storage for storing some important variables such as used for (isDarkmode or LightMode )
 * Provider State management and user saving his information and sharing in entire application.
+* timeago package ( messages are sent in between user and teacher in a format which also saves the time the message sent which saves the Server Time instead of using device time, However reciever shoing message in an format of ( a momment ago , 10 minutes ago or 10 days ago .....etc) 
 
 
 
