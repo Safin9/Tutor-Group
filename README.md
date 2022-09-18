@@ -12,7 +12,10 @@ and tutors to adjust the demanded session (dealing).
 * Firebase CloudStorage storing image files
 * Get_Storage as a local storage for storing some important variables such as used for (isDarkmode or LightMode )
 * Provider State management and user saving his information and sharing in entire application.
-* timeago package ( messages are sent in between user and teacher in a format which also saves the time the message sent which saves the Server Time instead of using device time, However reciever shoing message in an format of ( a momment ago , 10 minutes ago or 10 days ago .....etc) 
+* timeago package ( messages are sent in between user and teacher in a format which also saves the time the message sent which saves the Server Time instead of using device time, However reciever shoing message in an format of ( a momment ago , 10 minutes ago or 10 days ago .....etc).
+* CacheNetworkImage and CachedNetworkImageProvider used to cache the images in a local memory of device.
+* The teacher differintiate between Males & Females by their Image which automatically selected when the student selects their gender in SignUp form, Their profile pictures are not stored in Firebase_storage in order of the size of files in it would be enourmous for a not needed purposes instead of the teacher images they are stored in FirebaseStorage.
+* Custom Loading used 
 
 
 
@@ -23,7 +26,7 @@ and tutors to adjust the demanded session (dealing).
 * can not sign up unless the admin can sign him up in another special application(TutorAdmin).
 * use's their email & password where they given to him by Tutor Admin and signed him to the system.
 * not able to explore students unless he got a message from him before.
-* the ability of exploring other teachers without connecting with them.
+* the ability of exploring other teachers without connecting to them.
 
 
 ### Students:
@@ -31,6 +34,8 @@ and tutors to adjust the demanded session (dealing).
 * uses their Phone Number to sign in & sign up with necessary informations.
 * not able to explore or interact with any other student.
 * the ability to explore teachers and interact with them.
+![Screenshot_1662996885](https://user-images.githubusercontent.com/97254019/190927735-0398b50b-fa6a-4b74-9379-aba3a91746fb.png)
+![Screenshot_1663175859](https://user-images.githubusercontent.com/97254019/190927743-e1df7aa4-c9a6-49cf-9709-dddb341ea7a9.png)
 
 
 
@@ -39,7 +44,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-
+<p align="center"><img src="https://user-images.githubusercontent.com/97254019/190927735-0398b50b-fa6a-4b74-9379-aba3a91746fb.png" width=150 height=150></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/97254019/190927743-e1df7aa4-c9a6-49cf-9709-dddb341ea7a9.png" width=150 height=150></p>
 # packages used:
 ```dart
 dependencies:
