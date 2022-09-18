@@ -6,7 +6,7 @@ and tutors to adjust the demanded session (dealing).
 ### for implementing the final solo project as WeCode required procedure 
 
 
-## services uses:
+## services used:
 * firebase authentication both PhoneNumber & emailAndPassword.
 * Firebase Firestore containing two collections(Teachers & Users as students )
 * Firebase CloudStorage storing image files
@@ -51,6 +51,16 @@ Please make sure to update tests as appropriate.
         <a href="https://drive.google.com/file/d/1GCLoEVviHxhf-ZOyuL_-hl3y9GcIDTHp/view?usp=sharing">application video show</a>
     </div>
 </p>
+
+
+
+ <div>
+      <img src="https://user-images.githubusercontent.com/97254019/190928504-f619fc1c-733e-4e17-b00b-4b7a8ff5022b.png" width=150 height=150>
+    </div>
+<div>  
+        <a href="https://github.com/Safin9/tutor-admin.git">TutorAdmin Repositary</a>
+</div>
+
 
 
 
