@@ -42,7 +42,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-
+<colgroup>
+    <col span="2" style="background-color:red">
+    <col style="background-color:yellow">
+  </colgroup>
+  
 <p align="center"> <img src="https://user-images.githubusercontent.com/97254019/190927743-e1df7aa4-c9a6-49cf-9709-dddb341ea7a9.png" width=150 height=150>
 <a href="https://drive.google.com/file/d/1GCLoEVviHxhf-ZOyuL_-hl3y9GcIDTHp/view?usp=sharing">application video show</a>
 </p>
