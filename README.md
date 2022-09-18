@@ -34,8 +34,6 @@ and tutors to adjust the demanded session (dealing).
 * uses their Phone Number to sign in & sign up with necessary informations.
 * not able to explore or interact with any other student.
 * the ability to explore teachers and interact with them.
-![Screenshot_1662996885](https://user-images.githubusercontent.com/97254019/190927735-0398b50b-fa6a-4b74-9379-aba3a91746fb.png)
-![Screenshot_1663175859](https://user-images.githubusercontent.com/97254019/190927743-e1df7aa4-c9a6-49cf-9709-dddb341ea7a9.png)
 
 
 
