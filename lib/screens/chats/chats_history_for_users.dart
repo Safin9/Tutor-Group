@@ -41,13 +41,7 @@ class ChatHistoryForUsers extends StatelessWidget {
               snapshot.error.toString(),
             ));
           } else {
-            return ListView.separated(
-              separatorBuilder: (context, index) {
-                return const Divider(
-                  indent: 15,
-                  endIndent: 35,
-                );
-              },
+            return ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {

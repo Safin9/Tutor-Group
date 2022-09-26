@@ -39,12 +39,7 @@ class ChatHistoryForTeacher extends StatelessWidget {
               snapshotFromStream.error.toString(),
             ));
           } else {
-            return ListView.separated(
-              separatorBuilder: (context, index) {
-                return const Divider(
-                  endIndent: 15,
-                );
-              },
+            return ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: snapshotFromStream.data!.docs.length,
               itemBuilder: ((context, indexforstream) {

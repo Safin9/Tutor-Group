@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tutor_group/controller/theme_controller.dart';
+import 'package:tutor_group/screens/auth/main_handler.dart';
 import 'package:tutor_group/utils/constant.dart';
-import 'package:tutor_group/widgets/loading_for_firstpage.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -23,8 +23,7 @@ class _MyAppState extends State<MyApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       //FIXME: it should be the MainHandler() as home of GetMaterialApp
-      // home: const MainHandler(),
-      home: const LoadingForFirstPage(),
+      home: const MainHandler(),
     );
   }
 }
